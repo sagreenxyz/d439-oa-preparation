@@ -2,15 +2,15 @@
 
 A nurse is teaching a client how to properly collect a 24-hour urine specimen. Which of the following instructions should the nurse include? Select All That Apply
 
-**Type:** Multiple choice
+**Type:** Select All That Apply
 
 **Points:** 2 Points
 
 ## Options
 
-- Begin the collection by discarding the first morning urine and then collecting all urine for the next 24 hours
-- Keep the urine collection container refrigerated or on ice during the entire 24-hour period
-- Void one last time at the end of the 24 hours and add this urine to the collection
+- CORRECT ==> Begin the collection by discarding the first morning urine and then collecting all urine for the next 24 hours
+- CORRECT ==> Keep the urine collection container refrigerated or on ice during the entire 24-hour period
+- CORRECT ==> Void one last time at the end of the 24 hours and add this urine to the collection
 - Collect urine only during waking hours and discard nighttime voids
 - Avoid excessive physical activity during the 24-hour collection period to prevent altered results
-- Notify the laboratory immediately if any urine is accidentally discarded during the collection period
+- CORRECT ==> Notify the laboratory immediately if any urine is accidentally discarded during the collection period
