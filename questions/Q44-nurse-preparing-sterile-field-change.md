@@ -8,9 +8,9 @@ A nurse is preparing a sterile field to change a client’s central venous cathe
 
 ## Options
 
-- Opening sterile packages away from the body to prevent contamination
-- Keeping the sterile field at or above waist level during the procedure
+- CORRECT ==> Opening sterile packages away from the body to prevent contamination
+- CORRECT ==> Keeping the sterile field at or above waist level during the procedure
 - Touching the outer 1-inch border of the sterile field when arranging supplies
-- Reaching over the sterile field only when wearing sterile gloves
+- CORRECT ==> Reaching over the sterile field only when wearing sterile gloves
 - Turning the back to the sterile field briefly while retrieving supplies
-- Donning sterile gloves before touching sterile dressings
+- CORRECT ==> Donning sterile gloves before touching sterile dressings
