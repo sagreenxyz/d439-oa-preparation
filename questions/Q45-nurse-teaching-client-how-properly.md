@@ -2,7 +2,7 @@
 
 A nurse is teaching a client how to properly collect a 24-hour urine specimen. Which of the following instructions should the nurse include? Select All That Apply
 
-**Type:** Select All That Apply
+**Type:** Multiple choice
 
 **Points:** 2 Points
 
