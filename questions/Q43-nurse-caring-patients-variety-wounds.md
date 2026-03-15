@@ -8,7 +8,7 @@ A nurse is caring for patients with variety of wounds. Which wound will most lik
 
 ## Options
 
-- Cut in the skin from a kitchen knife
+- CORRECT ==> Cut in the skin from a kitchen knife
 - Excoriated perineal area
 - Abrasion of the skin
 - Pressure ulcer
