@@ -10,5 +10,5 @@ A nurse is caring for a client receiving continuous enteral tube feeding via a n
 
 - Supine with the head of the bed flat
 - Left lateral side-lying position
-- Semi-Fowler’s position with the head of the bed elevated 30–45 degrees
+- CORRECT ==> Semi-Fowler’s position with the head of the bed elevated 30–45 degrees
 - Trendelenburg position (head lower than feet)
