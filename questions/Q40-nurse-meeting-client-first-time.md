@@ -9,6 +9,6 @@ The nurse is meeting a client for the first time. Which should the nurse do duri
 ## Options
 
 - Collect data
-- Build rapport
+- CORRECT ==> Build rapport
 - Identify problems
 - Establish priorities
