@@ -1,0 +1,16 @@
+# Question 21
+
+A nurse is preparing to administer oxygen therapy to a client in the hospital. Which of the following actions should the nurse take to ensure oxygen safety? Select all that apply.
+
+**Type:** Multiple choice
+
+**Points:** 2 Points
+
+## Options
+
+- Remove all flammable materials, such as petroleum-based lotions, from the client’s vicinity
+- Place “No Smoking” signs clearly in the client’s room
+- Ensure electrical equipment near the client is properly grounded and in good working order
+- Use cotton bedding over synthetic materials.
+- Allow the client to adjust the oxygen flow rate as needed for comfort
+- Keep oxygen tanks secured in an upright position at all times
