@@ -10,5 +10,5 @@ The nurse is caring for a group of clients experiencing various medical conditio
 
 - Surgical creation of a colostomy
 - First-degree burn on the back
-- Puncture of the foot by a nail
+- CORRECT ==> Puncture of the foot by a nail
 - Paper cut on the finger
