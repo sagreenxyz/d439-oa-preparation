@@ -9,6 +9,6 @@ A male client on prolonged bed rest has developed a pressure ulcer. The wound sh
 ## Options
 
 - Inadequate vitamin D intake.
-- Inadequate protein intake.
+- CORRECT ==> Inadequate protein intake.
 - Inadequate massaging of the affected area.
 - Low calcium level.
