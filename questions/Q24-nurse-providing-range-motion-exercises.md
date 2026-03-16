@@ -8,9 +8,9 @@ A nurse is providing range-of-motion exercises for a 53-year-old female patient 
 
 ## Options
 
-- Stop performing the exercises.
+- CORRECT ==> Stop performing the exercises.
 - Decrease the number of repetitions performed
-- Re-evaluate the nursing plan of care
+- CORRECT ==> Re-evaluate the nursing plan of care
 - Move to the patient's other side to perform exercises.
 - Encourage the patient to finish the exercises and then rest.
-- Assess the patient for other symptoms.
+- CORRECT ==> Assess the patient for other symptoms.
