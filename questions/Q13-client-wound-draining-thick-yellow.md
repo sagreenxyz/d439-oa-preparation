@@ -11,4 +11,4 @@ A client's wound is draining thick yellow material. The nurse correctly describe
 - Sanguineous
 - Serous-sanguineous
 - Serous
-- Purulent
+- CORRECT ==> Purulent
