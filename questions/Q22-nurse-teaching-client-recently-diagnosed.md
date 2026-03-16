@@ -10,5 +10,5 @@ A nurse is teaching a client recently diagnosed with obstructive sleep apnea (OS
 
 - “I should wear the CPAP mask every night while I sleep.”
 - “This machine helps keep my airway open so I can breathe better at night.”
-- “If I feel better after a few nights, I can stop using the machine.”
+- CORRECT ==> “If I feel better after a few nights, I can stop using the machine.”
 - “I’ll clean the mask and tubing regularly to prevent infection.”
