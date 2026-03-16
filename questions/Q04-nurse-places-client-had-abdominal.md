@@ -8,7 +8,7 @@ The nurse places a client who had abdominal surgery in the semi-Fowler position.
 
 ## Options
 
-- “Raising the head of your bed supports your breathing.”
+- CORRECT ==> “Raising the head of your bed supports your breathing.”
 - “Keeping your upper body elevated encourages urinary elimination.”
 - “Increasing the height of the top of the bed promotes your passing gas.”
 - “Lifting your chest above your abdomen facilitates drainage in your wound drains.”
