@@ -8,9 +8,9 @@ A nurse is caring for a client diagnosed with influenza. Which of the following 
 
 ## Options
 
-- Place the client in a private room or cohort with a client who has the same infection
-- Wear a surgical mask when within 3 feet of the client
+- CORRECT ==> Place the client in a private room or cohort with a client who has the same infection
+- CORRECT ==> Wear a surgical mask when within 3 feet of the client
 - Use airborne isolation room with negative pressure ventilation
-- Wear gloves when touching the client or contaminated items
-- Instruct the client to wear a mask when outside the room
-- Wash hands before and after client contact
+- CORRECT ==> Wear gloves when touching the client or contaminated items
+- CORRECT ==> Instruct the client to wear a mask when outside the room
+- CORRECT ==> Wash hands before and after client contact
