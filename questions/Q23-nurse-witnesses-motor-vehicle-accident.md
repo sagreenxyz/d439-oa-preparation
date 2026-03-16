@@ -8,7 +8,7 @@ A nurse witnesses a motor vehicle accident and stops to assist the injured drive
 
 ## Options
 
-- Performing emergency CPR even though the nurse is off duty and not at work
+- CORRECT ==> Performing emergency CPR even though the nurse is off duty and not at work
 - Providing detailed medical advice over the phone to the victim’s family
 - Transporting the injured driver to the hospital in their personal vehicle
 - Leaving the scene after ensuring the victim is stable and emergency services are on the way
