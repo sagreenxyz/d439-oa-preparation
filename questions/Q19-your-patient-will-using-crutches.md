@@ -9,6 +9,6 @@ Your patient will be using crutches for mobility. After educating the patient on
 ## Options
 
 - The hand grips of the crutches are even with the mid-forearm
-- When the patient grips the hand grips of the crutches the elbow bends at about 30 degrees.
-- The patient has a 2-3 finger width distance between the axillae and crutch rest pad
+- CORRECT ==> When the patient grips the hand grips of the crutches the elbow bends at about 30 degrees.
+- CORRECT ==> The patient has a 2-3 finger width distance between the axillae and crutch rest pad
 - The patient places weight on the axillae rather than the hands while ambulating
