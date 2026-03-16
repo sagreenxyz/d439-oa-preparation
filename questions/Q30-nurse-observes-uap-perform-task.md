@@ -2,7 +2,7 @@
 
 A nurse observes a UAP about to perform a task that is outside the UAP’s scope of practice and could compromise client safety. What is the nurse’s best action?
 
-**Type:** Multiple choice
+**Type:** Single choice
 
 **Points:** 2 Points
 

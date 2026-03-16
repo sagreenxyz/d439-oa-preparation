@@ -2,7 +2,7 @@
 
 A nurse is preparing to perform wound care using medical asepsis. Which of the following actions should the nurse take to maintain medical asepsis?
 
-**Type:** Multiple choice
+**Type:** Single choice
 
 **Points:** 2 Points
 
