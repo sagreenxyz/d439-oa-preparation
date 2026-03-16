@@ -10,5 +10,5 @@ When the nurse is administering medication to a confused client, the client says
 
 - Explain the purpose of the medication
 - Ask what the other medication looked like
-- Check the original medication prescription
+- CORRECT ==> Check the original medication prescription
 - Encourage the client to take the medication
