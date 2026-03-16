@@ -11,4 +11,4 @@ A patient returning to the nursing unit after knee surgery is verbalizing pain a
 - Call the patient's health care provider
 - Administer pain medication as ordered.
 - Check the patient's vital signs
-- Assess the characteristics of the pain
+- CORRECT ==> Assess the characteristics of the pain
