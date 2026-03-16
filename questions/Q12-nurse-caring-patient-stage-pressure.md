@@ -9,6 +9,6 @@ The nurse is caring for a patient with a Stage IV pressure ulcer. Which type of 
 ## Options
 
 - Partial-thickness wound repair
-- Full-thickness wound repair
+- CORRECT ==> Full-thickness wound repair
 - Primary intention
 - Tertiary intention
