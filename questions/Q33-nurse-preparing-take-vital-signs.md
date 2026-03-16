@@ -9,6 +9,6 @@ The nurse is preparing to take vital signs in an alert client admitted to the ho
 ## Options
 
 - Oral
-- Axillary
+- CORRECT ==> Axillary
 - Radial
 - Heat sensitive tape
