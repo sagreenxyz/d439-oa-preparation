@@ -10,5 +10,5 @@ The nurse is caring for a client with advanced heart failure on an inpatient hos
 
 - Administer as need prn albuterol by nebulizer
 - Administer prn intravenous (iv) furosemide
-- Elevate the head of bed
+- CORRECT ==> Elevate the head of bed
 - Give prn sublingual morphine
