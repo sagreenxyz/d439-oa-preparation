@@ -8,9 +8,9 @@ A postoperative client has been placed on a clear liquid diet. Which items can t
 
 ## Options
 
-- Broth
-- Coffee
-- Gelatin
-- Popsicle
+- CORRECT ==> Broth
+- CORRECT ==> Coffee
+- CORRECT ==> Gelatin
+- CORRECT ==> Popsicle
 - Ice Cream
 - Vegetable Juice
