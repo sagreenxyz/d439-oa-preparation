@@ -8,7 +8,7 @@ Isotonic, isometric, and resistive isometric are three categories of exercise. T
 
 ## Options
 
-- Bicycling, swimming, walking, jogging, dancing
+- CORRECT ==> Bicycling, swimming, walking, jogging, dancing
 - Tightening or tensing of muscles without moving body parts
 - Push-ups, hip lifting, pushing feet against a footboard on the bed
 - Quadriceps set exercises and contraction of the gluteal muscles
