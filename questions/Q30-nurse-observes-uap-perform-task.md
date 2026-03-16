@@ -9,6 +9,6 @@ A nurse observes a UAP about to perform a task that is outside the UAP’s scope
 ## Options
 
 - Allow the UAP to complete the task but supervise closely
-- Stop the UAP, explain why the task is inappropriate, and redirect to an appropriate task
+- CORRECT ==> Stop the UAP, explain why the task is inappropriate, and redirect to an appropriate task
 - Report the UAP to the supervisor immediately without intervening
 - Ignore the behavior since the UAP is busy and focus on other patient care duties
