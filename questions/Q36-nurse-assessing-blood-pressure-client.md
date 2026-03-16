@@ -11,4 +11,4 @@ A nurse is assessing the blood pressure of a client diagnosed with primary hyper
 - Seating the client with arm bared, supported, and at heart level.
 - Measuring the blood pressure after the client has been seated quietly for 5 minutes.
 - Using a cuff with a rubber bladder that encircles at least 80% of the limb
-- Taking a blood pressure within 15 minutes after nicotine or caffeine ingestion.
+- CORRECT ==> Taking a blood pressure within 15 minutes after nicotine or caffeine ingestion.
