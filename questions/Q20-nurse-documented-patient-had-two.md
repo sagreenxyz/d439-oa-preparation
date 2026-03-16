@@ -9,6 +9,6 @@ The nurse has documented that a patient has had two episodes of steatorrhea, whi
 ## Options
 
 - Hard and clay colored
-- Frothy and foul smelling
+- CORRECT ==> Frothy and foul smelling
 - Very liquid and streaked with blood
 - Soft and filled with mucus
