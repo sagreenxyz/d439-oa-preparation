@@ -8,9 +8,9 @@ A nurse is implementing interventions to promote restorative sleep for a hospita
 
 ## Options
 
-- Offer a back massage before bedtime
+- CORRECT ==> Offer a back massage before bedtime
 - Encourage the client to watch television until falling asleep
-- Reduce environmental noise and dim the lights in the room
-- Avoid administering diuretics late in the evening
-- Ensure the client’s pain is managed before bedtime
+- CORRECT ==> Reduce environmental noise and dim the lights in the room
+- CORRECT ==> Avoid administering diuretics late in the evening
+- CORRECT ==> Ensure the client’s pain is managed before bedtime
 - Wake the client every 2 hours to assess orientation and skin integrity
