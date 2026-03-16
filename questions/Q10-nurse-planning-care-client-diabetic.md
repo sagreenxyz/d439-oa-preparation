@@ -10,5 +10,5 @@ A nurse is planning care for a client with diabetic neuropathy who has decreased
 
 - Encourage the client to walk barefoot in their room to improve circulation
 - Apply heat packs to the client’s feet to promote vasodilation
-- Assess the feet daily and encourage the client to wear cotton socks and supportive footwear
+- CORRECT ==> Assess the feet daily and encourage the client to wear cotton socks and supportive footwear
 - Use adhesive bandages for minor cuts and instruct the client to monitor for drainage
