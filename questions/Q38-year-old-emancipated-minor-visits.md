@@ -9,6 +9,6 @@ A 17-year-old emancipated minor visits the clinic seeking treatment for a sensit
 ## Options
 
 - Notify the minor’s parents about the visit unless the minor gives written consent
-- Maintain confidentiality and provide care without parental notification
+- CORRECT ==> Maintain confidentiality and provide care without parental notification
 - Refuse treatment until parental consent is obtained due to the minor’s age
 - Document the visit but share all information with the healthcare provider only
