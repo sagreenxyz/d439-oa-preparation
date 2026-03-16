@@ -10,6 +10,6 @@ A nurse is completing an assessment. Which findings will the nurse report as sub
 
 - Patient temperature
 - Patient wound appearance
-- Patient describing excitement about discharge
+- CORRECT ==> Patient describing excitement about discharge
 - Patient pacing the floor awaiting test results
-- Patient reports fear regarding upcoming surgery
+- CORRECT ==> Patient reports fear regarding upcoming surgery
