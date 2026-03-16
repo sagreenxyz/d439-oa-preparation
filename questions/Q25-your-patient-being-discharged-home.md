@@ -9,6 +9,6 @@ Your patient is being discharged home and will be required to self-administer in
 ## Options
 
 - The patient injects the needle into the fatty tissue of the abdomen
-- The patient injects the needle 1 inch away from the umbilicus
+- CORRECT ==> The patient injects the needle 1 inch away from the umbilicus
 - The patient rotates the injection site
 - The patient does not massage the injection site after administering the medication
