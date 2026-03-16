@@ -9,6 +9,6 @@ A nurse is providing care based on Maslow's hierarchy of basic human needs. For 
 ## Options
 
 - Making accurate nursing diagnoses
-- Establishing priorities of care
+- CORRECT ==> Establishing priorities of care
 - Communicating concerns more concisely
 - Integrating science into nursing care
