@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nursing Foundations Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: #f2e8d5;
+    color: #1a0a00;
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ===== LAYOUT ===== */
+  .screen { display: none; width: 100%; min-height: 100vh; }
+  .screen.active { display: block; }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ===== HOME SCREEN ===== */
+  .home-header {
+    background: #2c1a08;
+    color: #f2e8d5;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+
+  .home-header .badge {
+    display: inline-block;
+    background: #4a2e10;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .home-header h1 {
+    font-family: "Lora", serif;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .home-header p {
+    font-size: 15px;
+    color: #c8b48a;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .home-body { padding: 32px 20px 60px; }
+
+  .overall-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 12px;
+    padding: 18px 12px;
+    text-align: center;
+  }
+
+  .stat-card .stat-value {
+    font-family: "Lora", serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c1a08;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+  }
+
+  .section-title {
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+    margin-bottom: 14px;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .topic-card {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .topic-card:hover {
+    background: #d4bc88;
+    border-color: #2c1a08;
+  }
+
+  .topic-card.selected {
+    background: #2c1a08;
+    border-color: #2c1a08;
+  }
+
+  .topic-card.selected .topic-name { color: #f2e8d5; }
+  .topic-card.selected .topic-meta { color: #c8b48a; }
+  .topic-card.selected .topic-progress-track { background: #4a2e10; }
+  .topic-card.selected .topic-progress-fill { background: #c8b48a; }
+
+  .topic-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .topic-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a0a00;
+    flex: 1;
+  }
+
+  .topic-meta {
+    font-size: 12px;
+    color: #6b4c2a;
+    white-space: nowrap;
+  }
+
+  .topic-progress-track {
+    height: 4px;
+    background: #c8b48a;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .topic-progress-fill {
+    height: 100%;
+    background: #2c1a08;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .home-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    display: block;
+    width: 100%;
+    background: #2c1a08;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 24px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: #4a2e10; }
+
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #2c1a08;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 14px 24px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-secondary:hover { background: #d4bc88; }
+
+  .btn-danger {
+    background: transparent;
+    color: #8b3010;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid #e8b89a;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-danger:hover { background: #fce8e0; }
+
+  /* ===== QUIZ SCREEN ===== */
+  .quiz-topbar {
+    background: #2c1a08;
+    padding: 14px 20px;
+  }
+
+  .quiz-topbar-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .quiz-badge {
+    display: inline-block;
+    background: #4a2e10;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  .quiz-counter {
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #c8b48a;
+  }
+
+  .quiz-progress-bar {
+    height: 3px;
+    background: #c8b48a;
+    overflow: hidden;
+  }
+
+  .quiz-progress-fill {
+    height: 100%;
+    background: #f2e8d5;
+    transition: width 0.4s ease;
+  }
+
+  .quiz-body {
+    padding: 32px 20px 60px;
+  }
+
+  .question-topic-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    font-family: "Lora", serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.58;
+    color: #1a0a00;
+    margin-bottom: 28px;
+  }
+
+  .question-type-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a6840;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, border-color 0.15s, transform 0.08s;
+    width: 100%;
+    outline: none;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    background: #d4bc88;
+    border-color: #2c1a08;
+  }
+
+  .option-btn:active:not(:disabled) { transform: scale(0.99); }
+
+  .option-btn:disabled { cursor: default; }
+
+  .option-btn.correct {
+    background: #b8ddb8;
+    border-color: #2d6e2d;
+  }
+
+  .option-btn.wrong {
+    background: #e8b89a;
+    border-color: #8b3010;
+  }
+
+  .option-btn.selected-pending {
+    background: #d4bc88;
+    border-color: #2c1a08;
+  }
+
+  .letter-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    background: #2c1a08;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .option-btn.correct .letter-key {
+    background: #2d6e2d;
+    color: #e8f5e8;
+  }
+
+  .option-btn.wrong .letter-key {
+    background: #8b3010;
+    color: #fce8e0;
+  }
+
+  .option-text {
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a0a00 !important;
+    line-height: 1.45;
+  }
+
+  .check-answer-btn {
+    background: #2c1a08;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background 0.15s;
+    display: none;
+  }
+
+  .check-answer-btn:hover { background: #4a2e10; }
+  .check-answer-btn.visible { display: block; }
+
+  /* Explanation panel */
+  .explanation-panel {
+    background: #dcc898;
+    border-left: 4px solid #6b4c2a;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    display: none;
+    animation: slideDown 0.3s ease;
+  }
+
+  .explanation-panel.visible { display: block; }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .explanation-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+    margin-bottom: 6px;
+  }
+
+  .explanation-text {
+    font-size: 14px;
+    color: #1a0a00;
+    line-height: 1.55;
+  }
+
+  .continue-btn {
+    background: #2c1a08;
+    color: #f2e8d5;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 24px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: none;
+    transition: background 0.15s;
+  }
+
+  .continue-btn:hover { background: #4a2e10; }
+  .continue-btn.visible { display: block; }
+
+  /* Question transition */
+  .question-area {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .question-area.exit {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  .question-area.enter {
+    animation: enterUp 0.25s ease;
+  }
+
+  @keyframes enterUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RESULTS SCREEN ===== */
+  .results-body {
+    padding: 48px 20px 60px;
+    text-align: center;
+  }
+
+  .ornament {
+    font-family: "Lora", serif;
+    font-size: 18px;
+    color: #6b4c2a;
+    margin-bottom: 28px;
+    letter-spacing: 0.2em;
+  }
+
+  .score-ring-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .score-ring-svg { overflow: visible; }
+
+  .score-ring-bg { fill: none; stroke: #c8b48a; stroke-width: 8; }
+  .score-ring-fill { fill: none; stroke: #2c1a08; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease; }
+
+  .score-ring-text {
+    font-family: "Lora", serif;
+    font-size: 36px;
+    font-weight: 600;
+    fill: #1a0a00;
+    dominant-baseline: central;
+    text-anchor: middle;
+  }
+
+  .results-title {
+    font-family: "Lora", serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #1a0a00;
+    margin-bottom: 8px;
+  }
+
+  .results-subtitle {
+    font-size: 15px;
+    color: #6b4c2a;
+    margin-bottom: 32px;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .results-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .results-stat {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 12px;
+    padding: 20px 16px;
+  }
+
+  .results-stat .stat-value {
+    font-family: "Lora", serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .results-stat .stat-value.correct-val { color: #0d3d0d; }
+  .results-stat .stat-value.wrong-val { color: #4a0e00; }
+
+  .results-stat .stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+  }
+
+  .results-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* ===== DASHBOARD SCREEN ===== */
+  .dashboard-header {
+    background: #2c1a08;
+    color: #f2e8d5;
+    padding: 36px 24px 32px;
+  }
+
+  .dashboard-header h1 {
+    font-family: "Lora", serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .dashboard-header p {
+    font-size: 14px;
+    color: #c8b48a;
+  }
+
+  .dashboard-body { padding: 28px 20px 60px; }
+
+  .dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .dash-stat {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+  }
+
+  .dash-stat .val {
+    font-family: "Lora", serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c1a08;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .dash-stat .lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b4c2a;
+  }
+
+  .topic-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .topic-row {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .topic-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .topic-row-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a0a00;
+  }
+
+  .topic-row-pct {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c1a08;
+  }
+
+  .topic-row-sub {
+    font-size: 12px;
+    color: #8a6840;
+    margin-bottom: 8px;
+  }
+
+  .topic-bar-track {
+    height: 6px;
+    background: #c8b48a;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .topic-bar-fill {
+    height: 100%;
+    background: #2c1a08;
+    border-radius: 3px;
+  }
+
+  .dash-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #c8b48a;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 18px;
+  }
+
+  .nav-back:hover { color: #f2e8d5; }
+
+  /* Responsive */
+  @media (min-width: 600px) {
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+    .home-actions { flex-direction: row; }
+    .btn-primary, .btn-secondary { width: auto; flex: 1; }
+  }
+
+  @media (max-width: 440px) {
+    .overall-stats { grid-template-columns: 1fr 1fr; }
+    .dash-stats { grid-template-columns: 1fr 1fr; }
+    .results-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  .keyboard-hint {
+    text-align: center;
+    font-size: 11px;
+    color: #8a6840;
+    margin-top: 12px;
+  }
+
+  .keyboard-hint kbd {
+    display: inline-block;
+    background: #e8d5b0;
+    border: 1px solid #b8a07a;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+  }
+
+  .no-data-msg {
+    text-align: center;
+    font-size: 14px;
+    color: #8a6840;
+    padding: 20px 0;
+    font-style: italic;
+  }
+
+  .all-topics-option {
+    background: #e8d5b0;
+    border: 1.5px solid #b8a07a;
+    border-radius: 10px;
+    padding: 16px 16px;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .all-topics-option:hover {
+    background: #d4bc88;
+    border-color: #2c1a08;
+  }
+
+  .all-topics-option.selected {
+    background: #2c1a08;
+    border-color: #2c1a08;
+    color: #f2e8d5;
+  }
+
+  .all-topics-option .topic-name { color: inherit; }
+
+  .mode-select-title {
+    font-family: "Lora", serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a0a00;
+    margin-bottom: 6px;
+  }
+
+  .mode-select-sub {
+    font-size: 14px;
+    color: #6b4c2a;
+    margin-bottom: 24px;
+  }
+
+  .topic-count-badge {
+    display: inline-block;
+    background: #2c1a08;
+    color: #f2e8d5;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 8px;
+  }
+
+  .all-topics-option.selected .topic-count-badge {
+    background: #c8b48a;
+    color: #2c1a08;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HOME SCREEN ===== -->
+<div id="screen-home" class="screen active">
+  <div class="home-header">
+    <div class="badge">D439 Foundations of Nursing</div>
+    <h1>Nursing Quiz</h1>
+    <p>Practice questions to prepare for your OA exam. Track your progress by topic.</p>
+  </div>
+  <div class="home-body">
+    <div class="container">
+      <!-- Overall stats -->
+      <div class="overall-stats">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-total">0</div>
+          <div class="stat-label">Attempted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg">—</div>
+          <div class="stat-label">Avg Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-streak">0</div>
+          <div class="stat-label">Best Streak</div>
+        </div>
+      </div>
+
+      <!-- Topic selection -->
+      <div class="mode-select-title">Choose a Topic</div>
+      <div class="mode-select-sub">Select a topic below, then start the quiz.</div>
+
+      <div class="all-topics-option selected" id="select-all-topics" onclick="selectTopic('all')">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span class="topic-name" style="font-size:15px;font-weight:700;">All Topics</span>
+          <span class="topic-count-badge">50</span>
+        </div>
+        <div style="font-size:12px;margin-top:4px;opacity:0.75;">Full exam simulation — all 50 questions</div>
+      </div>
+
+      <div class="section-title">Topics</div>
+      <div class="topics-grid" id="topics-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="home-actions">
+        <button class="btn-primary" onclick="startQuiz()">Start Quiz →</button>
+        <button class="btn-secondary" onclick="showDashboard('home')">View Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUIZ SCREEN ===== -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-topbar">
+    <div class="quiz-topbar-inner">
+      <span class="quiz-badge">Nursing Quiz</span>
+      <span class="quiz-counter" id="quiz-counter">Question 1 of 50</span>
+    </div>
+  </div>
+  <div class="quiz-progress-bar">
+    <div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div>
+  </div>
+  <div class="quiz-body">
+    <div class="container">
+      <div class="question-area" id="question-area">
+        <div class="question-topic-label" id="q-topic-label"></div>
+        <div class="question-text" id="q-text"></div>
+        <div class="question-type-label" id="q-type-label"></div>
+        <div class="options-list" id="options-list"></div>
+        <button class="check-answer-btn" id="check-answer-btn" onclick="checkMultipleAnswer()">Check Answer</button>
+        <div class="explanation-panel" id="explanation-panel">
+          <div class="explanation-label">Explanation</div>
+          <div class="explanation-text" id="explanation-text"></div>
+        </div>
+        <button class="continue-btn" id="continue-btn" onclick="nextQuestion()">Continue →</button>
+        <div class="keyboard-hint" id="keyboard-hint"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULTS SCREEN ===== -->
+<div id="screen-results" class="screen">
+  <div class="quiz-topbar" style="background:#2c1a08;">
+    <div class="quiz-topbar-inner">
+      <span class="quiz-badge">Results</span>
+    </div>
+  </div>
+  <div class="results-body">
+    <div class="container">
+      <div class="ornament">— ✦ —</div>
+
+      <div class="score-ring-wrap">
+        <svg class="score-ring-svg" width="160" height="160" viewBox="0 0 160 160">
+          <circle class="score-ring-bg" cx="80" cy="80" r="66"/>
+          <circle class="score-ring-fill" id="score-ring-fill" cx="80" cy="80" r="66"
+            stroke-dasharray="414.69" stroke-dashoffset="414.69"
+            transform="rotate(-90 80 80)"/>
+          <text class="score-ring-text" x="80" y="80" id="score-pct-text">0%</text>
+        </svg>
+      </div>
+
+      <div class="results-title" id="results-title">Good effort!</div>
+      <div class="results-subtitle" id="results-subtitle">Keep reviewing and you'll master this material.</div>
+
+      <div class="results-stats">
+        <div class="results-stat">
+          <div class="stat-value correct-val" id="res-correct">0</div>
+          <div class="stat-label">Correct</div>
+        </div>
+        <div class="results-stat">
+          <div class="stat-value wrong-val" id="res-wrong">0</div>
+          <div class="stat-label">Wrong</div>
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn-primary" onclick="retakeQuiz()">Retake Quiz</button>
+        <button class="btn-secondary" onclick="showDashboard('results')">View Dashboard</button>
+        <button class="btn-secondary" onclick="goHome()">← Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD SCREEN ===== -->
+<div id="screen-dashboard" class="screen">
+  <div class="dashboard-header">
+    <div style="max-width:720px;margin:0 auto;">
+      <button class="nav-back" id="dash-back-btn" onclick="dashBack()">← Back</button>
+      <h1>Performance Dashboard</h1>
+      <p>Your progress across all topics</p>
+    </div>
+  </div>
+  <div class="dashboard-body">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:12px;">Overall Statistics</div>
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="val" id="dash-total">0</div>
+          <div class="lbl">Questions</div>
+        </div>
+        <div class="dash-stat">
+          <div class="val" id="dash-avg">—</div>
+          <div class="lbl">Avg Score</div>
+        </div>
+        <div class="dash-stat">
+          <div class="val" id="dash-streak">0</div>
+          <div class="lbl">Best Streak</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px;">Topic Breakdown</div>
+      <div class="topic-breakdown" id="dash-topic-breakdown">
+        <div class="no-data-msg">No quiz data yet. Take a quiz to see your progress!</div>
+      </div>
+
+      <div class="dash-actions">
+        <button class="btn-primary" onclick="startQuizFromDash()">Start New Quiz →</button>
+        <button class="btn-danger" onclick="resetData()">Reset All Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// =============================================
+// QUESTION DATA
+// =============================================
+const QUESTIONS = [
+  {
+    "id": "Q01",
+    "text": "A nurse is providing care to a client with an indwelling urinary catheter. Which of the following actions should the nurse perform to prevent catheter-associated urinary tract infections (CAUTI)?\u00a0 Select all that apply.",
+    "type": "multiple",
+    "topic": "Infection Control & Precautions",
+    "options": [
+      "Keep the drainage bag below the level of the bladder at all times",
+      "Clamp the catheter tubing every 4 hours to allow the bladder to fill",
+      "Clean the catheter insertion site daily with soap and water",
+      "Disconnect the catheter tubing frequently for cleaning",
+      "Secure the catheter to the client\u2019s thigh to prevent tension on the tubing"
+    ],
+    "correct": [
+      0,
+      2,
+      4
+    ],
+    "explanation": "To prevent CAUTI, nurses must keep the drainage bag below bladder level, maintain a closed system, secure the catheter, and clean the insertion site. These practices minimize infection risk."
+  },
+  {
+    "id": "Q02",
+    "text": "A nurse is caring for a client receiving oxygen via nasal cannula at 4 L/min. During the morning assessment, the nurse notes redness and irritation around the client's nares and behind the ears. Which of the following is the priority nursing action?",
+    "type": "single",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "Apply a water-soluble lubricant to the client\u2019s nostrils and document the finding",
+      "Secure the cannula tubing more tightly to prevent movement and dislodgement",
+      "Notify the healthcare provider and request an order for humidified oxygen",
+      "Pad the tubing with gauze or foam and reassess skin frequently for breakdown"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "When skin breakdown occurs from oxygen tubing, padding the tubing with gauze or foam protects skin integrity. Frequent reassessment ensures early detection of worsening irritation."
+  },
+  {
+    "id": "Q03",
+    "text": "A nurse is preparing to perform wound care using medical asepsis. Which of the following actions should the nurse take to maintain medical asepsis?",
+    "type": "single",
+    "topic": "Infection Control & Precautions",
+    "options": [
+      "Wash hands for at least 20 seconds before the procedure",
+      "Keep sterile supplies below waist level",
+      "Pour sterile solution onto a sterile field",
+      "Touch the inside of the sterile dressing wrapper while applying the dressing"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Medical asepsis requires thorough hand hygiene for at least 20 seconds before procedures. This is the single most important action to prevent the spread of infection."
+  },
+  {
+    "id": "Q04",
+    "text": "The nurse places a client who had abdominal surgery in the semi-Fowler position. The client states, \u201cI prefer to lie flat when in bed. I feel like I am almost sitting up.\u201d Which is the most appropriate response by the nurse ?",
+    "type": "single",
+    "topic": "Mobility & Activity",
+    "options": [
+      "\u201cRaising the head of your bed supports your breathing.\u201d",
+      "\u201cKeeping your upper body elevated encourages urinary elimination.\u201d",
+      "\u201cIncreasing the height of the top of the bed promotes your passing gas.\u201d",
+      "\u201cLifting your chest above your abdomen facilitates drainage in your wound drains.\u201d"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Semi-Fowler's position (30\u201345\u00b0 head elevation) supports diaphragmatic breathing and reduces respiratory effort after abdominal surgery. This is the physiologic rationale for the position."
+  },
+  {
+    "id": "Q05",
+    "text": "The Joint Commission issues guidelines regarding the use of restraints. In which case is a restraint properly used?",
+    "type": "single",
+    "topic": "Patient Safety & Restraints",
+    "options": [
+      "The nurse positions a pt. in a supine position prior to applying wrist restraints.",
+      "The nurse ensures that two fingers can be inserted between the restraint and the patient's ankle",
+      "The nurse applies a cloth restraint to the L hand of a patient with an IV catheter in the R wrist.",
+      "The nurse ties an elbow restraint to the raised side rail of a patient's bed."
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "The correct answer is: The nurse ensures that two fingers can be inserted between the restraint and the patient's ankle. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q06",
+    "text": "When the nurse is administering medication to a confused client, the client says, \u201cThis pill looks different from the one I had before.\u201d Which should the nurse do first?",
+    "type": "single",
+    "topic": "Patient Safety & Restraints",
+    "options": [
+      "Explain the purpose of the medication",
+      "Ask what the other medication looked like",
+      "Check the original medication prescription",
+      "Encourage the client to take the medication"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "When a patient questions a medication's appearance, the nurse must first verify the original prescription to ensure patient safety. This is a critical medication safety step."
+  },
+  {
+    "id": "Q07",
+    "text": "A nurse is caring for a patient who does not speak English. After teaching the patient about wound care, which action best evaluates the patient\u2019s understanding?",
+    "type": "single",
+    "topic": "Communication & Education",
+    "options": [
+      "Ask the patient, \u201cDo you understand how to care for your wound?\u201d",
+      "Use a professional interpreter to have the patient explain the wound care steps back to the nurse",
+      "Provide written wound care instructions in English only",
+      "Observe the patient\u2019s facial expressions during teaching for signs of understanding"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "A professional interpreter facilitates accurate teach-back, which is the gold standard for evaluating patient understanding. Asking yes/no questions or relying on family members is inadequate."
+  },
+  {
+    "id": "Q08",
+    "text": "A nurse is caring for four clients. Based on Maslow\u2019s Hierarchy of Needs, which client should the nurse assess first?",
+    "type": "single",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "A client who is crying quietly and states, \u201cI don\u2019t feel like life is worth living anymore.\u201d",
+      "A client who reports increasing shortness of breath when walking to the bathroom.",
+      "A client who has not had a bowel movement in three days and is requesting a laxative.",
+      "A client who is expressing concern about missing their child\u2019s school recital while hospitalized."
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Maslow's hierarchy prioritizes physiological needs first. Shortness of breath (airway/oxygenation) is a physiological need that takes priority over safety, social, or esteem needs."
+  },
+  {
+    "id": "Q09",
+    "text": "A patient returning to the nursing unit after knee surgery is verbalizing pain at the surgical site. The nurse's first action is to:",
+    "type": "single",
+    "topic": "Pain Management",
+    "options": [
+      "Call the patient's health care provider",
+      "Administer pain medication as ordered.",
+      "Check the patient's vital signs",
+      "Assess the characteristics of the pain"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "The correct answer is: Assess the characteristics of the pain. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q10",
+    "text": "A nurse is planning care for a client with diabetic neuropathy who has decreased sensation in both feet. Which of the following interventions is most appropriate to promote skin integrity and prevent injury?",
+    "type": "single",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Encourage the client to walk barefoot in their room to improve circulation",
+      "Apply heat packs to the client\u2019s feet to promote vasodilation",
+      "Assess the feet daily and encourage the client to wear cotton socks and supportive footwear",
+      "Use adhesive bandages for minor cuts and instruct the client to monitor for drainage"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Clients with diabetic neuropathy have decreased sensation, making them unable to detect injuries. Daily foot assessment and protective footwear are essential to prevent wounds."
+  },
+  {
+    "id": "Q11",
+    "text": "A nurse is implementing interventions to promote restorative sleep for a hospitalized older adult. Which of the following actions are appropriate? Select all that apply.",
+    "type": "multiple",
+    "topic": "Sleep & Rest",
+    "options": [
+      "Offer a back massage before bedtime",
+      "Encourage the client to watch television until falling asleep",
+      "Reduce environmental noise and dim the lights in the room",
+      "Avoid administering diuretics late in the evening",
+      "Ensure the client\u2019s pain is managed before bedtime",
+      "Wake the client every 2 hours to assess orientation and skin integrity"
+    ],
+    "correct": [
+      0,
+      2,
+      3,
+      4
+    ],
+    "explanation": "Promoting sleep involves non-pharmacological measures: reducing noise, dimming lights, managing pain, and offering back massages. Television and frequent awakenings disrupt sleep cycles."
+  },
+  {
+    "id": "Q12",
+    "text": "The nurse is caring for a patient with a Stage IV pressure ulcer. Which type of healing will the nurse consider when planning care for this patient?",
+    "type": "single",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Partial-thickness wound repair",
+      "Full-thickness wound repair",
+      "Primary intention",
+      "Tertiary intention"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Stage IV pressure ulcers involve full-thickness tissue loss. These wounds cannot heal by primary intention and require full-thickness wound repair (secondary or tertiary intention)."
+  },
+  {
+    "id": "Q13",
+    "text": "A client's wound is draining thick yellow material. The nurse correctly describes the drainage as:",
+    "type": "single",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Sanguineous",
+      "Serous-sanguineous",
+      "Serous",
+      "Purulent"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "Purulent drainage is thick, yellow, green, or brown and indicates infection with dead cells, leukocytes, and bacteria. This differs from serous (clear) or sanguineous (bloody) drainage."
+  },
+  {
+    "id": "Q14",
+    "text": "To allow adequate ventilation and oxygenation during nasopharyngeal suctioning, which action should the nurse take?",
+    "type": "single",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "Perform at least four suctioning passes but no more than five passes with the suction catheter.",
+      "Allow adequate time between suctioning passes",
+      "Suction again immediately after a pass to minimize the overall procedure time.",
+      "Perform at least three suctioning passes but no more than four passes with the suction catheter."
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Allowing adequate rest time between suctioning passes prevents hypoxia. Each pass removes oxygen as well as secretions, so rest periods allow reoxygenation."
+  },
+  {
+    "id": "Q15",
+    "text": "A nurse is preparing to obtain a tympanic temperature from a 4-year-old child who is febrile. Which of the following actions should the nurse take to ensure the most accurate reading?",
+    "type": "single",
+    "topic": "Vital Signs & Assessment",
+    "options": [
+      "Pull the pinna down and back before inserting the thermometer",
+      "Place the probe loosely at the opening of the ear canal",
+      "Gently pull the pinna up and back before inserting the thermometer",
+      "Insert the thermometer probe deeply into the ear canal to obtain a core temperature"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "For children over 3 years and adults, the pinna is pulled up and back to straighten the ear canal for accurate tympanic temperature measurement."
+  },
+  {
+    "id": "Q16",
+    "text": "The nurse plans to teach a client with hemiparesis to use a cane. Which should the nurse teach the client to do?",
+    "type": "single",
+    "topic": "Mobility & Activity",
+    "options": [
+      "Move forward 1 step with the weak leg first, followed by the strong leg and cane.",
+      "Adjust the cane height 12 inches lower than the waist.",
+      "Hold the cane in the strong hand when walking",
+      "Lean over onto the cane when walking."
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "The cane is held in the strong (unaffected) hand to provide support and counterbalance the weak side, maintaining a normal gait pattern."
+  },
+  {
+    "id": "Q17",
+    "text": "A nurse is completing an assessment. Which findings will the nurse report as subjective data? (Select all that apply.)",
+    "type": "multiple",
+    "topic": "Documentation & Nursing Process",
+    "options": [
+      "Patient temperature",
+      "Patient wound appearance",
+      "Patient describing excitement about discharge",
+      "Patient pacing the floor awaiting test results",
+      "Patient reports fear regarding upcoming surgery"
+    ],
+    "correct": [
+      2,
+      4
+    ],
+    "explanation": "Subjective data is information reported by the patient (symptoms), such as feelings, fears, or emotional states. Objective data is what the nurse observes or measures directly."
+  },
+  {
+    "id": "Q18",
+    "text": "A nurse is caring for a client diagnosed with influenza. Which of the following actions should the nurse include when implementing droplet precautions? Select all that apply.",
+    "type": "multiple",
+    "topic": "Infection Control & Precautions",
+    "options": [
+      "Place the client in a private room or cohort with a client who has the same infection",
+      "Wear a surgical mask when within 3 feet of the client",
+      "Use airborne isolation room with negative pressure ventilation",
+      "Wear gloves when touching the client or contaminated items",
+      "Instruct the client to wear a mask when outside the room",
+      "Wash hands before and after client contact"
+    ],
+    "correct": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "explanation": "To prevent CAUTI, nurses must keep the drainage bag below bladder level, maintain a closed system, secure the catheter, and clean the insertion site. These practices minimize infection risk."
+  },
+  {
+    "id": "Q19",
+    "text": "Your patient will be using crutches for mobility. After educating the patient on how to adjust the crutches to fit correctly, you assess how well the patient understood the instructions. What findings demonstrate that the crutches were adjusted correctly by the patient? Select all that apply",
+    "type": "multiple",
+    "topic": "Mobility & Activity",
+    "options": [
+      "The hand grips of the crutches are even with the mid-forearm",
+      "When the patient grips the hand grips of the crutches the elbow bends at about 30 degrees.",
+      "The patient has a 2-3 finger width distance between the axillae and crutch rest pad",
+      "The patient places weight on the axillae rather than the hands while ambulating"
+    ],
+    "correct": [
+      1,
+      2
+    ],
+    "explanation": "Correctly fitted crutches have a 2-3 finger width between the axilla and the crutch pad, with elbows bent at 30\u00b0. Weight should be on the hands, not the axillae."
+  },
+  {
+    "id": "Q20",
+    "text": "The nurse has documented that a patient has had two episodes of steatorrhea, which means that the character of the stool is:",
+    "type": "single",
+    "topic": "Nutrition & Elimination",
+    "options": [
+      "Hard and clay colored",
+      "Frothy and foul smelling",
+      "Very liquid and streaked with blood",
+      "Soft and filled with mucus"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Steatorrhea refers to fatty, frothy, foul-smelling stools caused by fat malabsorption. It is commonly associated with pancreatic disorders or malabsorption syndromes."
+  },
+  {
+    "id": "Q21",
+    "text": "A nurse is preparing to administer oxygen therapy to a client in the hospital. Which of the following actions should the nurse take to ensure oxygen safety? Select all that apply.",
+    "type": "multiple",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "Remove all flammable materials, such as petroleum-based lotions, from the client\u2019s vicinity",
+      "Place \u201cNo Smoking\u201d signs clearly in the client\u2019s room",
+      "Ensure electrical equipment near the client is properly grounded and in good working order",
+      "Use cotton bedding over synthetic materials.",
+      "Allow the client to adjust the oxygen flow rate as needed for comfort",
+      "Keep oxygen tanks secured in an upright position at all times"
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      5
+    ],
+    "explanation": "Oxygen safety requires removing flammable materials, posting no-smoking signs, grounding electrical equipment, using cotton bedding, and securing tanks upright."
+  },
+  {
+    "id": "Q22",
+    "text": "A nurse is teaching a client recently diagnosed with obstructive sleep apnea (OSA) about the use of a CPAP machine at home. Which statement by the client indicates a need for further teaching?",
+    "type": "single",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "\u201cI should wear the CPAP mask every night while I sleep.\u201d",
+      "\u201cThis machine helps keep my airway open so I can breathe better at night.\u201d",
+      "\u201cIf I feel better after a few nights, I can stop using the machine.\u201d",
+      "\u201cI\u2019ll clean the mask and tubing regularly to prevent infection.\u201d"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "CPAP therapy is a lifelong treatment for obstructive sleep apnea; stopping when symptoms improve is incorrect. The device must be used every night to prevent airway obstruction."
+  },
+  {
+    "id": "Q23",
+    "text": "A nurse witnesses a motor vehicle accident and stops to assist the injured driver until emergency personnel arrive. Which of the following actions is protected under the Good Samaritan Law?",
+    "type": "single",
+    "topic": "Legal & Ethical Principles",
+    "options": [
+      "Performing emergency CPR even though the nurse is off duty and not at work",
+      "Providing detailed medical advice over the phone to the victim\u2019s family",
+      "Transporting the injured driver to the hospital in their personal vehicle",
+      "Leaving the scene after ensuring the victim is stable and emergency services are on the way"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Good Samaritan laws protect off-duty healthcare providers who voluntarily render emergency aid in good faith. The protection applies to reasonable care given at the scene."
+  },
+  {
+    "id": "Q24",
+    "text": "A nurse is providing range-of-motion exercises for a 53-year-old female patient who is recovering from a stroke. During the session, the patient complains that she is \"too tired to go on.\" What would be priority nursing actions for this patient? Select all that apply",
+    "type": "multiple",
+    "topic": "Mobility & Activity",
+    "options": [
+      "Stop performing the exercises.",
+      "Decrease the number of repetitions performed",
+      "Re-evaluate the nursing plan of care",
+      "Move to the patient's other side to perform exercises.",
+      "Encourage the patient to finish the exercises and then rest.",
+      "Assess the patient for other symptoms."
+    ],
+    "correct": [
+      0,
+      2,
+      5
+    ],
+    "explanation": "When a patient reports fatigue during exercises, the nurse must stop immediately, reassess the plan of care, and evaluate for other symptoms before continuing."
+  },
+  {
+    "id": "Q25",
+    "text": "Your patient is being discharged home and will be required to self-administer injectable heparin. You are observing the patient administer their scheduled dose of heparin to confirm that the patient knows how to do it correctly. What action by the patient requires you to re-educate them about how to administer heparin?",
+    "type": "single",
+    "topic": "Patient Safety & Restraints",
+    "options": [
+      "The patient injects the needle into the fatty tissue of the abdomen",
+      "The patient injects the needle 1 inch away from the umbilicus",
+      "The patient rotates the injection site",
+      "The patient does not massage the injection site after administering the medication"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "The correct answer is: The patient injects the needle 1 inch away from the umbilicus. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q26",
+    "text": "During a sudden hospital power outage, the nurse is unable to access the Electronic Health Record (EHR) system to document a client\u2019s change in condition. What is the nurse\u2019s best action to ensure accurate and legal documentation?",
+    "type": "single",
+    "topic": "Documentation & Nursing Process",
+    "options": [
+      "Wait until the power is restored to document the assessment in the EHR",
+      "Verbally report the client\u2019s condition to the healthcare provider and delay documentation",
+      "Document the assessment on paper using the facility\u2019s downtime forms and enter it into the EHR later",
+      "Rely on memory to complete the documentation once the EHR is available"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "During EHR downtime, nurses use paper downtime forms to document and then enter the information into the EHR when the system is restored. Delaying documentation is unsafe."
+  },
+  {
+    "id": "Q27",
+    "text": "A postoperative client has been placed on a clear liquid diet. Which items can the client consume? Select all that apply:",
+    "type": "multiple",
+    "topic": "Nutrition & Elimination",
+    "options": [
+      "Broth",
+      "Coffee",
+      "Gelatin",
+      "Popsicle",
+      "Ice Cream",
+      "Vegetable Juice"
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "A clear liquid diet includes transparent fluids: broth, coffee, gelatin, and popsicles. Ice cream and vegetable juice are not clear liquids."
+  },
+  {
+    "id": "Q28",
+    "text": "The nurse is caring for a client with advanced heart failure on an inpatient hospice unit. the client is having trouble breathing. which comfort intervention should the nurse implement first?",
+    "type": "single",
+    "topic": "Oxygenation & Airway",
+    "options": [
+      "Administer as need prn albuterol by nebulizer",
+      "Administer prn intravenous (iv) furosemide",
+      "Elevate the head of bed",
+      "Give prn sublingual morphine"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Elevating the head of bed is the first non-pharmacological comfort measure for dyspnea in heart failure, as it reduces preload and improves breathing mechanics."
+  },
+  {
+    "id": "Q29",
+    "text": "A nurse caring for patients in a long-term care facility is often required to collect urine specimens from patients for laboratory testing. Which techniques for urine collection are performed correctly? Select all that apply.",
+    "type": "multiple",
+    "topic": "Nutrition & Elimination",
+    "options": [
+      "The nurse catheterizes a patient to collect a sterile urine sample for routine urinalysis",
+      "The nurse collects a clean-catch urine specimen in the morning from a patient and stores it at room temperature until an afternoon pick-up.",
+      "The nurse collects a sterile urine specimen from the collection receptacle of a patient's indwelling catheter",
+      "The nurse collects about 3 mL of urine from a patient's indwelling catheter port to send for a urine culture.",
+      "The nurse discards the first urine of the day when performing a 24-hour urine specimen collection on a patient."
+    ],
+    "correct": [
+      3,
+      4
+    ],
+    "explanation": "Sterile urine cultures are collected from catheter ports, not drainage bags. For 24-hour specimens, the first morning void is discarded and collection begins fresh."
+  },
+  {
+    "id": "Q30",
+    "text": "A nurse observes a UAP about to perform a task that is outside the UAP\u2019s scope of practice and could compromise client safety. What is the nurse\u2019s best action?",
+    "type": "single",
+    "topic": "Prioritization & Delegation",
+    "options": [
+      "Allow the UAP to complete the task but supervise closely",
+      "Stop the UAP, explain why the task is inappropriate, and redirect to an appropriate task",
+      "Report the UAP to the supervisor immediately without intervening",
+      "Ignore the behavior since the UAP is busy and focus on other patient care duties"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "The nurse must intervene immediately when a UAP is about to perform a task outside their scope of practice. Patient safety requires stopping the action and redirecting."
+  },
+  {
+    "id": "Q31",
+    "text": "A nurse is using the PQRST method to assess an adult client\u2019s pain. Which question corresponds to the \u201cS\u201d in PQRST?",
+    "type": "single",
+    "topic": "Pain Management",
+    "options": [
+      "What does the pain feel like? (sharp, dull, burning)",
+      "What makes the pain better or worse?",
+      "Where is the pain located, and does it radiate?",
+      "On a scale of 0 to 10, how severe is your pain?"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "In the PQRST pain assessment, 'S' stands for Severity, assessed using a 0\u201310 numeric pain scale. This quantifies the pain intensity to guide interventions."
+  },
+  {
+    "id": "Q32",
+    "text": "A nurse is providing care based on Maslow's hierarchy of basic human needs. For which of the following nursing activities is this approach useful?",
+    "type": "single",
+    "topic": "Prioritization & Delegation",
+    "options": [
+      "Making accurate nursing diagnoses",
+      "Establishing priorities of care",
+      "Communicating concerns more concisely",
+      "Integrating science into nursing care"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "The correct answer is: Establishing priorities of care. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q33",
+    "text": "The nurse is preparing to take vital signs in an alert client admitted to the hospital with dehydration secondary to vomiting and diarrhea. What is the\u00a0best\u00a0method used to assess the client\u2019s temperature",
+    "type": "single",
+    "topic": "Vital Signs & Assessment",
+    "options": [
+      "Oral",
+      "Axillary",
+      "Radial",
+      "Heat sensitive tape"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "The correct answer is: Axillary. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q34",
+    "text": "Isotonic, isometric, and resistive isometric are three categories of exercise. They are classified according to the type of muscle contraction involved. of the following exercises, which are considered isotonic?",
+    "type": "single",
+    "topic": "Mobility & Activity",
+    "options": [
+      "Bicycling, swimming, walking, jogging, dancing",
+      "Tightening or tensing of muscles without moving body parts",
+      "Push-ups, hip lifting, pushing feet against a footboard on the bed",
+      "Quadriceps set exercises and contraction of the gluteal muscles"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Isotonic exercises involve muscle contractions with movement (dynamic), such as bicycling, swimming, walking, and dancing. They differ from isometric (no movement) exercises."
+  },
+  {
+    "id": "Q35",
+    "text": "A mother whose young daughter has died of leukemia is crying and is unable to talk about her feelings. Which is the best response by the nurse?",
+    "type": "single",
+    "topic": "Psychosocial Care",
+    "options": [
+      "\u201cEveryone will remember her because she was so cute. She was one of our favorites.\"",
+      "\u201cAs hard as this is, it is probably for the best because she was in a lot of pain.\u201d",
+      "\u201cShe put up the good fight, but now she is out of pain and in heaven.\u201d",
+      "\u201cIt must be hard to deal with such a precious loss.\u201d"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "Therapeutic communication acknowledges the patient's feelings with empathy. Statements like 'It must be hard' validate grief without minimizing or redirecting the emotion."
+  },
+  {
+    "id": "Q36",
+    "text": "A nurse is assessing the blood pressure of a client diagnosed with primary hypertension. The nurse ensures accurate measurement by avoiding which of the following",
+    "type": "single",
+    "topic": "Vital Signs & Assessment",
+    "options": [
+      "Seating the client with arm bared, supported, and at heart level.",
+      "Measuring the blood pressure after the client has been seated quietly for 5 minutes.",
+      "Using a cuff with a rubber bladder that encircles at least 80% of the limb",
+      "Taking a blood pressure within 15 minutes after nicotine or caffeine ingestion."
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "Accurate BP measurement requires avoiding nicotine and caffeine for at least 30 minutes prior. These substances temporarily elevate blood pressure and cause false readings."
+  },
+  {
+    "id": "Q37",
+    "text": "A nurse finds that a terminally ill patient has cold, clammy, and wax-like skin. What should the nurse infer from this assessment",
+    "type": "single",
+    "topic": "Vital Signs & Assessment",
+    "options": [
+      "The patient is improving.",
+      "The patient is likely to die soon.",
+      "The patient has edema and needs diuretics.",
+      "The intravenous fluids have extravasated."
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Cold, clammy, wax-like skin in a terminally ill patient indicates circulatory shutdown and impending death. This is a recognized sign of the active dying process."
+  },
+  {
+    "id": "Q38",
+    "text": "A 17-year-old emancipated minor visits the clinic seeking treatment for a sensitive health issue. Which action by the nurse is most appropriate regarding confidentiality and HIPAA regulations?",
+    "type": "single",
+    "topic": "Legal & Ethical Principles",
+    "options": [
+      "Notify the minor\u2019s parents about the visit unless the minor gives written consent",
+      "Maintain confidentiality and provide care without parental notification",
+      "Refuse treatment until parental consent is obtained due to the minor\u2019s age",
+      "Document the visit but share all information with the healthcare provider only"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Emancipated minors have legal adult status and are entitled to full HIPAA confidentiality protections. Parental notification without consent violates their legal rights."
+  },
+  {
+    "id": "Q39",
+    "text": "A nurse is caring for a client receiving continuous enteral tube feeding via a nasogastric tube. Which position should the nurse place the client in to reduce the risk of aspiration during feeding?",
+    "type": "single",
+    "topic": "Mobility & Activity",
+    "options": [
+      "Supine with the head of the bed flat",
+      "Left lateral side-lying position",
+      "Semi-Fowler\u2019s position with the head of the bed elevated 30\u201345 degrees",
+      "Trendelenburg position (head lower than feet)"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Semi-Fowler's position (30\u201345\u00b0) during tube feeding uses gravity to promote gastric emptying and significantly reduces aspiration risk."
+  },
+  {
+    "id": "Q40",
+    "text": "The nurse is meeting a client for the first time. Which should the nurse do during the orientation phase of this therapeutic relationship?",
+    "type": "single",
+    "topic": "Psychosocial Care",
+    "options": [
+      "Collect data",
+      "Build rapport",
+      "Identify problems",
+      "Establish priorities"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "During the orientation phase of a therapeutic nurse-patient relationship, the primary goal is building rapport and trust to establish a foundation for therapeutic work."
+  },
+  {
+    "id": "Q41",
+    "text": "A nurse is assessing a client\u2019s pressure ulcer on the sacrum. Which of the following findings are consistent with a Stage III pressure ulcer? Select All That Apply",
+    "type": "multiple",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Full-thickness tissue loss with visible subcutaneous fat but no bone, tendon, or muscle exposure \\[Stage III\\]",
+      "Intact skin with non-blanchable redness over a bony prominence \\[Stage I\\]",
+      "Partial-thickness loss of dermis presenting as a shallow open ulcer with a red-pink wound bed \\[Stage II\\]",
+      "Presence of slough or eschar that may obscure the wound bed \\[Stage III\\]",
+      "Full-thickness tissue loss exposing bone, tendon, or muscle \\[Stage IV\\]",
+      "Blister or shallow crater involving the epidermis and dermis \\[Stage II\\]"
+    ],
+    "correct": [
+      0,
+      3
+    ],
+    "explanation": "Stage III pressure ulcers show full-thickness tissue loss with visible subcutaneous fat. Slough or eschar may be present, but bone, tendon, and muscle are not exposed."
+  },
+  {
+    "id": "Q42",
+    "text": "A nurse is preparing to administer a prescribed antibiotic ear drop to an adult client with external otitis. Which of the following actions by the nurse demonstrates correct technique?",
+    "type": "single",
+    "topic": "Specialized Care",
+    "options": [
+      "Pull the pinna down and back to straighten the ear canal",
+      "Keep the client in a side-lying position with the affected ear up for 2\u20133 minutes after administration",
+      "Hold the ear drop bottle in the refrigerator until administration to preserve potency",
+      "Insert a cotton-tipped applicator to push the medication deeper into the ear canal"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "After instilling ear drops, the patient should remain in side-lying position with the affected ear up for 2-3 minutes to allow the medication to reach the tympanic membrane."
+  },
+  {
+    "id": "Q43",
+    "text": "A nurse is caring for patients with variety of wounds. Which wound will most likely heal by primary intention?",
+    "type": "single",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Cut in the skin from a kitchen knife",
+      "Excoriated perineal area",
+      "Abrasion of the skin",
+      "Pressure ulcer"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Primary intention healing occurs in clean wounds with well-approximated edges, such as surgical incisions or clean cuts. Pressure ulcers and abrasions heal by secondary intention."
+  },
+  {
+    "id": "Q44",
+    "text": "A nurse is preparing a sterile field to change a client\u2019s central venous catheter dressing. Which of the following actions indicate proper surgical asepsis? Select all that apply.",
+    "type": "multiple",
+    "topic": "Infection Control & Precautions",
+    "options": [
+      "Opening sterile packages away from the body to prevent contamination",
+      "Keeping the sterile field at or above waist level during the procedure",
+      "Touching the outer 1-inch border of the sterile field when arranging supplies",
+      "Reaching over the sterile field only when wearing sterile gloves",
+      "Turning the back to the sterile field briefly while retrieving supplies",
+      "Donning sterile gloves before touching sterile dressings"
+    ],
+    "correct": [
+      0,
+      1,
+      3,
+      5
+    ],
+    "explanation": "The correct answer is: Opening sterile packages away from the body to prevent contamination. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q45",
+    "text": "A nurse is teaching a client how to properly collect a 24-hour urine specimen. Which of the following instructions should the nurse include? Select All That Apply",
+    "type": "multiple",
+    "topic": "Nutrition & Elimination",
+    "options": [
+      "Begin the collection by discarding the first morning urine and then collecting all urine for the next 24 hours",
+      "Keep the urine collection container refrigerated or on ice during the entire 24-hour period",
+      "Void one last time at the end of the 24 hours and add this urine to the collection",
+      "Collect urine only during waking hours and discard nighttime voids",
+      "Avoid excessive physical activity during the 24-hour collection period to prevent altered results",
+      "Notify the laboratory immediately if any urine is accidentally discarded during the collection period"
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      5
+    ],
+    "explanation": "Sterile urine cultures are collected from catheter ports, not drainage bags. For 24-hour specimens, the first morning void is discarded and collection begins fresh."
+  },
+  {
+    "id": "Q46",
+    "text": "The nurse is caring for a group of clients experiencing various medical conditions. Which condition places the client at the highest risk for a wound infection?",
+    "type": "single",
+    "topic": "Infection Control & Precautions",
+    "options": [
+      "Surgical creation of a colostomy",
+      "First-degree burn on the back",
+      "Puncture of the foot by a nail",
+      "Paper cut on the finger"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "A puncture wound from a nail carries the highest infection risk due to the deep, narrow tract that traps bacteria and is difficult to clean, creating an anaerobic environment."
+  },
+  {
+    "id": "Q47",
+    "text": "A nurse is calling the healthcare provider to report a change in a post-operative client's condition using the SBAR framework. Which of the following statements made by the nurse best reflects the \"Recommendation\" component?",
+    "type": "single",
+    "topic": "Prioritization & Delegation",
+    "options": [
+      "\"The client is a 72-year-old who had a total hip arthroplasty 24 hours ago.\" \\",
+      "\"Vital signs are: BP 88/54, HR 112, and the surgical dressing is saturated with blood.\" \\",
+      "\"I believe the client is experiencing postoperative hemorrhage and needs immediate intervention.\" \\[this is recommendation\\]",
+      "\"The client became hypotensive and tachycardic during my shift.\" \\"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "The 'R' in SBAR stands for Recommendation\u2014the nurse's suggested course of action. This is distinct from the Situation (what happened), Background (history), and Assessment (findings)."
+  },
+  {
+    "id": "Q48",
+    "text": "An anxious client repeatedly uses the call bell to get the nurse to come to the room. Finally, the nurse says to the client, \u201cIf you keep ringing, there will come a time when I won\u2019t answer your bell.\u201d Which legal term is related to this statement?",
+    "type": "single",
+    "topic": "Legal & Ethical Principles",
+    "options": [
+      "Slander",
+      "Battery",
+      "Assault",
+      "Libel"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "The correct answer is: Assault. This reflects evidence-based nursing practice and clinical guidelines."
+  },
+  {
+    "id": "Q49",
+    "text": "When signing a form as a witness, your signature shows that the client",
+    "type": "single",
+    "topic": "Legal & Ethical Principles",
+    "options": [
+      "Is fully informed and is aware of all consequences.",
+      "Was awake and fully alert and not medicated with narcotics",
+      "Was free to sign without pressure.",
+      "Has signed that form and the witness saw it being done."
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "A witness signature on a consent form only attests that the patient signed the form voluntarily and the witness observed the signing\u2014not that the patient was fully informed."
+  },
+  {
+    "id": "Q50",
+    "text": "A male client on prolonged bed rest has developed a pressure ulcer. The wound shows no signs of healing even though the client has received skin care and has been turned every 2 hours. Which factor is\u00a0most\u00a0likely responsible for the failure to heal?",
+    "type": "single",
+    "topic": "Wound Care & Skin Integrity",
+    "options": [
+      "Inadequate vitamin D intake.",
+      "Inadequate protein intake.",
+      "Inadequate massaging of the affected area.",
+      "Low calcium level."
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Protein is essential for wound healing. Inadequate protein intake impairs collagen synthesis and immune function, causing pressure ulcers to fail to heal despite proper care."
+  }
+];
+
+// =============================================
+// STATE
+// =============================================
+const STORAGE_KEY = "nursingQuizData";
+let quizState = {
+  questions: [],
+  currentIndex: 0,
+  selectedTopic: "all",
+  session: null,
+  answered: false,
+  selectedOptions: new Set(),
+  fromScreen: "home"
+};
+
+// =============================================
+// STORAGE HELPERS
+// =============================================
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : { sessions: [] };
+  } catch (e) {
+    return { sessions: [] };
+  }
+}
+
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// =============================================
+// STATS CALCULATION
+// =============================================
+function calcStats(sessions) {
+  if (!sessions || sessions.length === 0) {
+    return { total: 0, avg: null, streak: 0, byTopic: {} };
+  }
+  let totalAttempted = 0;
+  let totalCorrect = 0;
+  let byTopic = {};
+  let streak = 0;
+  let maxStreak = 0;
+
+  sessions.forEach(session => {
+    session.questions.forEach(q => {
+      totalAttempted++;
+      if (q.correct) {
+        totalCorrect++;
+        streak++;
+        if (streak > maxStreak) maxStreak = streak;
+      } else {
+        streak = 0;
+      }
+
+      const t = q.topic || "Unknown";
+      if (!byTopic[t]) byTopic[t] = { attempted: 0, correct: 0 };
+      byTopic[t].attempted++;
+      if (q.correct) byTopic[t].correct++;
+    });
+  });
+
+  return {
+    total: totalAttempted,
+    avg: totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : null,
+    streak: maxStreak,
+    byTopic
+  };
+}
+
+function getTopicStats() {
+  const data = loadData();
+  return calcStats(data.sessions);
+}
+
+// =============================================
+// HOME SCREEN
+// =============================================
+let selectedTopicForQuiz = "all";
+const ALL_TOPICS = [...new Set(QUESTIONS.map(q => q.topic))].sort();
+
+function selectTopic(topic) {
+  selectedTopicForQuiz = topic;
+  document.getElementById("select-all-topics").classList.toggle("selected", topic === "all");
+  document.querySelectorAll(".topic-card").forEach(el => {
+    el.classList.toggle("selected", el.dataset.topic === topic);
+  });
+}
+
+function renderHomeScreen() {
+  const stats = getTopicStats();
+
+  // Overall stats
+  document.getElementById("stat-total").textContent = stats.total;
+  document.getElementById("stat-avg").textContent = stats.avg !== null ? stats.avg + "%" : "—";
+  document.getElementById("stat-streak").textContent = stats.streak;
+
+  // Topic cards
+  const grid = document.getElementById("topics-grid");
+  grid.innerHTML = "";
+
+  ALL_TOPICS.forEach(topic => {
+    const topicQs = QUESTIONS.filter(q => q.topic === topic);
+    const tStats = stats.byTopic[topic];
+    const pct = tStats && tStats.attempted > 0 ? Math.round((tStats.correct / tStats.attempted) * 100) : 0;
+    const attempted = tStats ? tStats.attempted : 0;
+
+    const card = document.createElement("div");
+    card.className = "topic-card" + (selectedTopicForQuiz === topic ? " selected" : "");
+    card.dataset.topic = topic;
+    card.onclick = () => selectTopic(topic);
+    card.innerHTML = `
+      <div class="topic-card-inner">
+        <span class="topic-name">${topic}</span>
+        <span class="topic-meta">${topicQs.length} Qs${attempted > 0 ? " · " + pct + "%" : ""}</span>
+      </div>
+      <div class="topic-progress-track">
+        <div class="topic-progress-fill" style="width:${pct}%"></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function startQuiz() {
+  let filteredQs = selectedTopicForQuiz === "all"
+    ? [...QUESTIONS]
+    : QUESTIONS.filter(q => q.topic === selectedTopicForQuiz);
+
+  // Shuffle
+  for (let i = filteredQs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filteredQs[i], filteredQs[j]] = [filteredQs[j], filteredQs[i]];
+  }
+
+  quizState.questions = filteredQs;
+  quizState.currentIndex = 0;
+  quizState.selectedTopic = selectedTopicForQuiz;
+  quizState.session = {
+    date: new Date().toISOString().slice(0, 10),
+    topic: selectedTopicForQuiz,
+    score: 0,
+    questions: []
+  };
+
+  showScreen("quiz");
+  renderQuestion();
+}
+
+function startQuizFromDash() {
+  showScreen("home");
+  renderHomeScreen();
+}
+
+// =============================================
+// QUIZ SCREEN
+// =============================================
+function renderQuestion() {
+  const q = quizState.questions[quizState.currentIndex];
+  const total = quizState.questions.length;
+  const idx = quizState.currentIndex;
+
+  // Reset state
+  quizState.answered = false;
+  quizState.selectedOptions = new Set();
+
+  // Update top bar
+  document.getElementById("quiz-counter").textContent =
+    `Question ${idx + 1} of ${total}`;
+  const pct = ((idx) / total) * 100;
+  document.getElementById("quiz-progress").style.width = pct + "%";
+
+  // Reset panels
+  document.getElementById("explanation-panel").classList.remove("visible");
+  document.getElementById("continue-btn").classList.remove("visible");
+  document.getElementById("check-answer-btn").classList.remove("visible");
+
+  // Animate question area
+  const area = document.getElementById("question-area");
+  area.classList.add("enter");
+  area.addEventListener("animationend", () => area.classList.remove("enter"), { once: true });
+
+  // Topic label
+  document.getElementById("q-topic-label").textContent = q.topic;
+
+  // Question text
+  document.getElementById("q-text").textContent = q.text;
+
+  // Type label
+  document.getElementById("q-type-label").textContent =
+    q.type === "multiple" ? "Select all that apply" : "Select one answer";
+
+  // Render options
+  const optList = document.getElementById("options-list");
+  optList.innerHTML = "";
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.dataset.index = i;
+    btn.innerHTML = `<span class="letter-key">${letters[i]}</span><span class="option-text">${opt}</span>`;
+
+    if (q.type === "single") {
+      btn.onclick = () => handleSingleChoice(i);
+    } else {
+      btn.onclick = () => handleMultipleChoice(i);
+    }
+
+    optList.appendChild(btn);
+  });
+
+  // Keyboard hint
+  const hintEl = document.getElementById("keyboard-hint");
+  if (q.type === "single") {
+    hintEl.innerHTML = `Press <kbd>A</kbd>–<kbd>${letters[q.options.length - 1]}</kbd> to select · <kbd>Enter</kbd> to continue`;
+  } else {
+    hintEl.innerHTML = `Press <kbd>A</kbd>–<kbd>${letters[q.options.length - 1]}</kbd> to toggle · <kbd>Enter</kbd> to check answer`;
+  }
+}
+
+function handleSingleChoice(index) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+
+  const q = quizState.questions[quizState.currentIndex];
+  const isCorrect = q.correct.includes(index);
+  const buttons = document.querySelectorAll(".option-btn");
+
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (q.correct.includes(i)) {
+      btn.classList.add("correct");
+    } else if (i === index && !isCorrect) {
+      btn.classList.add("wrong");
+    }
+  });
+
+  showExplanation(q.explanation);
+  recordAnswer(q, isCorrect);
+  showContinueBtn();
+}
+
+function handleMultipleChoice(index) {
+  if (quizState.answered) return;
+  const btn = document.querySelectorAll(".option-btn")[index];
+
+  if (quizState.selectedOptions.has(index)) {
+    quizState.selectedOptions.delete(index);
+    btn.classList.remove("selected-pending");
+  } else {
+    quizState.selectedOptions.add(index);
+    btn.classList.add("selected-pending");
+  }
+
+  // Show check answer button if at least one selected
+  const checkBtn = document.getElementById("check-answer-btn");
+  if (quizState.selectedOptions.size > 0) {
+    checkBtn.classList.add("visible");
+  } else {
+    checkBtn.classList.remove("visible");
+  }
+}
+
+function checkMultipleAnswer() {
+  if (quizState.answered) return;
+  quizState.answered = true;
+
+  const q = quizState.questions[quizState.currentIndex];
+  const selected = [...quizState.selectedOptions];
+  const correctSet = new Set(q.correct);
+
+  // Check exact match
+  const isCorrect = selected.length === q.correct.length &&
+    selected.every(i => correctSet.has(i));
+
+  const buttons = document.querySelectorAll(".option-btn");
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    btn.classList.remove("selected-pending");
+    if (q.correct.includes(i)) {
+      btn.classList.add("correct");
+    } else if (selected.includes(i)) {
+      btn.classList.add("wrong");
+    }
+  });
+
+  document.getElementById("check-answer-btn").classList.remove("visible");
+  showExplanation(q.explanation);
+  recordAnswer(q, isCorrect);
+  showContinueBtn();
+}
+
+function showExplanation(text) {
+  document.getElementById("explanation-text").textContent = text;
+  document.getElementById("explanation-panel").classList.add("visible");
+}
+
+function showContinueBtn() {
+  const btn = document.getElementById("continue-btn");
+  const isLast = quizState.currentIndex === quizState.questions.length - 1;
+  btn.textContent = isLast ? "See Results →" : "Continue →";
+  btn.classList.add("visible");
+}
+
+function recordAnswer(q, isCorrect) {
+  quizState.session.questions.push({
+    id: q.id,
+    correct: isCorrect,
+    topic: q.topic
+  });
+}
+
+function nextQuestion() {
+  const isLast = quizState.currentIndex === quizState.questions.length - 1;
+
+  if (isLast) {
+    finishQuiz();
+    return;
+  }
+
+  // Animate out
+  const area = document.getElementById("question-area");
+  area.classList.add("exit");
+  setTimeout(() => {
+    area.classList.remove("exit");
+    quizState.currentIndex++;
+    renderQuestion();
+  }, 200);
+}
+
+function finishQuiz() {
+  // Save session
+  const session = quizState.session;
+  const correct = session.questions.filter(q => q.correct).length;
+  session.score = correct / session.questions.length;
+
+  const data = loadData();
+  data.sessions.push(session);
+  saveData(data);
+
+  // Show results
+  showResults(correct, session.questions.length);
+}
+
+// =============================================
+// RESULTS SCREEN
+// =============================================
+function showResults(correct, total) {
+  const pct = Math.round((correct / total) * 100);
+  const wrong = total - correct;
+
+  // Score ring animation
+  const circumference = 2 * Math.PI * 66; // 414.69
+  const offset = circumference - (pct / 100) * circumference;
+
+  document.getElementById("score-pct-text").textContent = pct + "%";
+  document.getElementById("res-correct").textContent = correct;
+  document.getElementById("res-wrong").textContent = wrong;
+
+  let title, subtitle;
+  if (pct >= 85) {
+    title = "Excellent work!";
+    subtitle = "Outstanding performance. You have a strong command of this material.";
+  } else if (pct >= 65) {
+    title = "Good effort!";
+    subtitle = "You're on the right track. Review the topics you missed and try again.";
+  } else {
+    title = "Keep studying";
+    subtitle = "Don't give up! Review the content and practice again — improvement takes time.";
+  }
+
+  document.getElementById("results-title").textContent = title;
+  document.getElementById("results-subtitle").textContent = subtitle;
+
+  showScreen("results");
+
+  // Animate ring after paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById("score-ring-fill").style.strokeDashoffset = offset;
+    });
+  });
+}
+
+function retakeQuiz() {
+  // Retake with same topic
+  selectedTopicForQuiz = quizState.selectedTopic;
+  startQuiz();
+}
+
+function goHome() {
+  showScreen("home");
+  renderHomeScreen();
+}
+
+// =============================================
+// DASHBOARD SCREEN
+// =============================================
+let dashFromScreen = "home";
+
+function showDashboard(from) {
+  dashFromScreen = from;
+  renderDashboard();
+  showScreen("dashboard");
+}
+
+function dashBack() {
+  if (dashFromScreen === "results") {
+    showScreen("results");
+  } else {
+    showScreen("home");
+    renderHomeScreen();
+  }
+}
+
+function renderDashboard() {
+  const stats = getTopicStats();
+
+  document.getElementById("dash-total").textContent = stats.total;
+  document.getElementById("dash-avg").textContent = stats.avg !== null ? stats.avg + "%" : "—";
+  document.getElementById("dash-streak").textContent = stats.streak;
+
+  const breakdown = document.getElementById("dash-topic-breakdown");
+
+  if (stats.total === 0) {
+    breakdown.innerHTML = '<div class="no-data-msg">No quiz data yet. Take a quiz to see your progress!</div>';
+    return;
+  }
+
+  breakdown.innerHTML = "";
+
+  ALL_TOPICS.forEach(topic => {
+    const t = stats.byTopic[topic];
+    if (!t) return;
+    const pct = Math.round((t.correct / t.attempted) * 100);
+
+    const row = document.createElement("div");
+    row.className = "topic-row";
+    row.innerHTML = `
+      <div class="topic-row-top">
+        <span class="topic-row-name">${topic}</span>
+        <span class="topic-row-pct">${pct}%</span>
+      </div>
+      <div class="topic-row-sub">${t.correct} correct of ${t.attempted} attempted</div>
+      <div class="topic-bar-track">
+        <div class="topic-bar-fill" style="width:${pct}%"></div>
+      </div>
+    `;
+    breakdown.appendChild(row);
+  });
+}
+
+function resetData() {
+  if (confirm("Reset all quiz data? This cannot be undone.")) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderDashboard();
+    renderHomeScreen();
+  }
+}
+
+// =============================================
+// SCREEN MANAGEMENT
+// =============================================
+function showScreen(name) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById("screen-" + name).classList.add("active");
+  window.scrollTo(0, 0);
+}
+
+// =============================================
+// KEYBOARD SHORTCUTS
+// =============================================
+document.addEventListener("keydown", (e) => {
+  const activeScreen = document.querySelector(".screen.active");
+  if (!activeScreen || activeScreen.id !== "screen-quiz") return;
+
+  const q = quizState.questions[quizState.currentIndex];
+  if (!q) return;
+
+  const letters = ["a","b","c","d","e","f"];
+  const key = e.key.toLowerCase();
+  const idx = letters.indexOf(key);
+
+  if (idx >= 0 && idx < q.options.length) {
+    if (q.type === "single" && !quizState.answered) {
+      handleSingleChoice(idx);
+    } else if (q.type === "multiple" && !quizState.answered) {
+      handleMultipleChoice(idx);
+    }
+    return;
+  }
+
+  if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+    e.preventDefault();
+    if (quizState.answered) {
+      nextQuestion();
+    } else if (q.type === "multiple" && quizState.selectedOptions.size > 0) {
+      checkMultipleAnswer();
+    }
+  }
+});
+
+// =============================================
+// INIT
+// =============================================
+renderHomeScreen();
+</script>
+</body>
+</html>
