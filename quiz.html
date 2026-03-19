@@ -828,7 +828,7 @@
       <div class="mode-select-title">Choose a Topic</div>
       <div class="mode-select-sub">Select a topic below, then start the quiz.</div>
 
-      <div class="all-topics-option selected" id="select-all-topics" onclick="selectTopic('all')">
+      <div class="all-topics-option selected" id="select-all-topics" role="button" tabindex="0" onclick="selectTopic('all')" onkeydown="if(event.key==='Enter'||event.key===' '){selectTopic('all');event.preventDefault();}" aria-label="All Topics - 50 questions">
         <div style="display:flex;align-items:center;justify-content:space-between;">
           <span class="topic-name" style="font-size:15px;font-weight:700;">All Topics</span>
           <span class="topic-count-badge">50</span>
@@ -1926,7 +1926,11 @@ function renderHomeScreen() {
     const card = document.createElement("div");
     card.className = "topic-card" + (selectedTopicForQuiz === topic ? " selected" : "");
     card.dataset.topic = topic;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", `${topic} - ${topicQs.length} questions`);
     card.onclick = () => selectTopic(topic);
+    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { selectTopic(topic); e.preventDefault(); } };
     card.innerHTML = `
       <div class="topic-card-inner">
         <span class="topic-name">${topic}</span>
@@ -1940,16 +1944,20 @@ function renderHomeScreen() {
   });
 }
 
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function startQuiz() {
   let filteredQs = selectedTopicForQuiz === "all"
     ? [...QUESTIONS]
     : QUESTIONS.filter(q => q.topic === selectedTopicForQuiz);
 
-  // Shuffle
-  for (let i = filteredQs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [filteredQs[i], filteredQs[j]] = [filteredQs[j], filteredQs[i]];
-  }
+  shuffleArray(filteredQs);
 
   quizState.questions = filteredQs;
   quizState.currentIndex = 0;
@@ -2270,11 +2278,49 @@ function renderDashboard() {
 }
 
 function resetData() {
-  if (confirm("Reset all quiz data? This cannot be undone.")) {
+  showConfirmModal("Reset all quiz data? This cannot be undone.", () => {
     localStorage.removeItem(STORAGE_KEY);
     renderDashboard();
     renderHomeScreen();
-  }
+  });
+}
+
+function showConfirmModal(message, onConfirm) {
+  const overlay = document.createElement("div");
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Confirmation");
+  overlay.style.cssText = "position:absolute;inset:0;background:rgba(26,10,0,0.55);display:flex;align-items:center;justify-content:center;z-index:9999;";
+
+  const modal = document.createElement("div");
+  modal.style.cssText = "background:#f2e8d5;border:2px solid #b8a07a;border-radius:16px;padding:32px 28px;max-width:380px;width:90%;font-family:DM Sans,sans-serif;";
+  modal.innerHTML = `
+    <p style="font-family:Lora,serif;font-size:17px;color:#1a0a00;margin-bottom:24px;line-height:1.5;">${message}</p>
+    <div style="display:flex;gap:10px;">
+      <button id="confirm-cancel" style="flex:1;padding:12px;border:1.5px solid #b8a07a;border-radius:8px;background:#e8d5b0;color:#1a0a00;font-family:DM Sans,sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Cancel</button>
+      <button id="confirm-ok" style="flex:1;padding:12px;border:none;border-radius:8px;background:#8b3010;color:#fce8e0;font-family:DM Sans,sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Reset Data</button>
+    </div>
+  `;
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  const focusable = modal.querySelectorAll("button");
+  focusable[0].focus();
+
+  function closeModal() { document.body.removeChild(overlay); }
+
+  document.getElementById("confirm-cancel").onclick = closeModal;
+  document.getElementById("confirm-ok").onclick = () => { closeModal(); onConfirm(); };
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+    if (e.key === "Tab") {
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+    }
+  });
 }
 
 // =============================================
