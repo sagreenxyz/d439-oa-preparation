@@ -1,6 +1,6 @@
 # Foundations of Nursing — Interactive Exam Review LMS
 
-A fully self-contained, browser-based Learning Management System built from the `Notes.md` study guide. No server required — open `index.html` in any modern web browser.
+A fully self-contained, browser-based Learning Management System built from the `Notes2.md` study guide. No server required — open `index.html` in any modern web browser.
 
 ## How to Use
 
@@ -38,7 +38,7 @@ A fully self-contained, browser-based Learning Management System built from the 
 
 ## Features
 
-- **21 Units** parsed directly from `Notes.md`
+- **21 Units** parsed directly from `Notes2.md`
 - **125 Practice Questions** (50 Exam 1 + 75 Lab Exam) mapped to their respective units
 - **Select All That Apply (SATA)** questions with checkbox-style multi-select
 - **Instant feedback** with per-option rationales
@@ -56,18 +56,18 @@ nursing-lms/
 ├── css/
 │   └── styles.css      # Professional medical-themed styles
 └── js/
-    ├── curriculum.js   # Auto-generated course data (from Notes.md)
+    ├── curriculum.js   # Auto-generated course data (from Notes2.md)
     ├── app.js          # Application logic
     └── marked.min.js   # Markdown renderer (local copy, no CDN)
 ```
 
 ## Regenerating Curriculum Data
 
-The `js/curriculum.js` file is auto-generated from `../Notes.md` using `parse_notes.py`. To regenerate after editing `Notes.md`:
+The `js/curriculum.js` file is auto-generated from `../Notes2.md` using `parse_notes.py`. To regenerate after editing `Notes2.md`:
 
 ```bash
 cd nursing-lms
 python3 parse_notes.py
 ```
 
-The script reads `../Notes.md` relative to its location and writes `js/curriculum.js` directly.
+The script reads `../Notes2.md` relative to its location and writes `js/curriculum.js` directly.
