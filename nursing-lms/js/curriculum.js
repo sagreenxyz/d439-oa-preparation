@@ -1340,8 +1340,25 @@ const CURRICULUM = {
       "concept": "CPAP; OSA; Patient Teaching; Identifying Incorrect Understanding",
       "unitId": 13,
       "questionText": "Which statement by the client indicates a need for further teaching about CPAP?",
-      "options": [],
-      "correctIds": [],
+      "options": [
+        {
+          "id": "1",
+          "text": "I will use my CPAP device every night while I sleep."
+        },
+        {
+          "id": "2",
+          "text": "The CPAP machine keeps my airway open by delivering pressurized air."
+        },
+        {
+          "id": "3",
+          "text": "Since my symptoms have improved, I plan to stop using CPAP."
+        },
+        {
+          "id": "4",
+          "text": "I need to clean my mask, headgear, and tubing on a regular basis."
+        }
+      ],
+      "correctIds": ["3"],
       "correctAnswerText": "3",
       "explanation": "*(the statement that requires further teaching)*\n\n**Rationales:**\n\n❌ **Option 1 — Correct understanding (no teaching needed):** Daily, every-night use of CPAP while sleeping is exactly what is required. CPAP is only effective when worn consistently. Intermittent use — skipping nights, removing the mask during the night — allows apneic episodes to recur and eliminates the therapeutic benefit. This statement reflects correct understanding.\n\n❌ **Option 2 — Correct understanding (no teaching needed):** This accurately describes the mechanism of CPAP therapy. Obstructive sleep apnea occurs because the soft tissues of the upper airway collapse during sleep, blocking airflow. CPAP delivers a continuous stream of pressurized air that acts as a pneumatic splint, keeping the airway open throughout sleep. This statement reflects accurate patient understanding.\n\n✅ **Option 3 — Incorrect understanding (requires further teaching):** This statement reflects a critical and common misconception about CPAP therapy. CPAP **manages** OSA — it does not **cure** it. When CPAP is used, apneic episodes are prevented and the patient sleeps better, feels more rested, and experiences fewer symptoms. However, the underlying anatomical and physiological factors that cause airway collapse during sleep (obesity, tongue and palate anatomy, muscle tone) remain unchanged. Stopping CPAP will immediately cause the return of sleep apnea, oxygen desaturation, fragmented sleep, and all associated risks (hypertension, cardiac arrhythmias, daytime somnolence). CPAP must be used every night, indefinitely, unless an underlying reversible cause (such as obesity) is addressed through treatment.\n\n❌ **Option 4 — Correct understanding (no teaching needed):** Regular cleaning of the CPAP mask, headgear, and tubing is essential to prevent the accumulation of bacteria, mold, and mineral deposits from humidified air. This reduces the risk of respiratory tract infections and skin irritation. Daily rinsing with warm water and weekly washing with mild soap are standard recommendations. This statement reflects correct understanding.\n\n---",
       "isSATA": false
@@ -1428,8 +1445,25 @@ const CURRICULUM = {
       "concept": "Heparin Subcutaneous Injection Technique; Patient Education; Identifying Errors",
       "unitId": 10,
       "questionText": "While observing the patient self-administer Heparin, which action requires re-education?",
-      "options": [],
-      "correctIds": [],
+      "options": [
+        {
+          "id": "1",
+          "text": "Selects the abdomen as the injection site"
+        },
+        {
+          "id": "2",
+          "text": "Injects the medication 1 inch from the navel"
+        },
+        {
+          "id": "3",
+          "text": "Rotates the injection site with each dose"
+        },
+        {
+          "id": "4",
+          "text": "Applies pressure to the site without massaging after the injection"
+        }
+      ],
+      "correctIds": ["2"],
       "correctAnswerText": "2",
       "explanation": "**Rationales:**\n\n❌ **Option 1 — Correct technique (no re-education needed):** The fatty subcutaneous tissue of the abdomen is the preferred and recommended injection site for subcutaneous heparin. The abdominal tissue provides a large, accessible subcutaneous fat pad, and heparin is reliably absorbed from this site. The abdomen is preferred over the thigh or upper arm for subcutaneous anticoagulants because of its consistent absorption profile.\n\n✅ **Option 2 — Incorrect technique (requires re-education):** The injection must be administered **at least 2 inches (5 cm)** from the umbilicus, not 1 inch. The periumbilical area has dense connective tissue, a richer blood supply, and thinner subcutaneous fat compared to the broader abdominal tissue. Injecting too close to the umbilicus increases the risk of inadvertent intramuscular injection, hematoma formation, and erratic drug absorption. The patient must be taught that the minimum safe distance is 2 inches — not 1 inch. This is the error that requires correction.\n\n❌ **Option 3 — Correct technique (no re-education needed):** Site rotation is essential for subcutaneous heparin. Repeated injections into the same site cause lipodystrophy (fatty tissue breakdown or thickening), which alters drug absorption and can lead to unpredictable anticoagulation. A systematic rotation pattern — moving through designated abdominal quadrants or zones — ensures that no single area receives injections too frequently.\n\n❌ **Option 4 — Correct technique (no re-education needed):** NOT massaging the injection site is correct. This is one of the most commonly tested points for heparin administration. Massaging the site after injection disperses the medication too rapidly into the surrounding tissue and capillaries, breaking the protective subcutaneous depot that allows gradual, controlled absorption. Rapid dispersal increases bruising (hematoma formation) and can alter the anticoagulant effect. Patients must be clearly instructed never to massage after a heparin injection. *Note: This is the most commonly tested heparin error — if the question presented \"patient massages the injection site\" as an option, that would be the action requiring re-education.*",
       "isSATA": false
@@ -1777,8 +1811,25 @@ const CURRICULUM = {
       "concept": "Blood Pressure Measurement; Avoiding Measurement Error",
       "unitId": 6,
       "questionText": "The nurse ensures accurate BP measurement by avoiding which of the following?",
-      "options": [],
-      "correctIds": [],
+      "options": [
+        {
+          "id": "1",
+          "text": "Seating the client with the arm bared and supported at heart level"
+        },
+        {
+          "id": "2",
+          "text": "Instructing the client to sit quietly for 5 minutes before measurement"
+        },
+        {
+          "id": "3",
+          "text": "Selecting a cuff with a bladder that encircles at least 80% of the arm"
+        },
+        {
+          "id": "4",
+          "text": "Taking the BP reading within 15 minutes after the client ingests caffeine or nicotine"
+        }
+      ],
+      "correctIds": ["4"],
       "correctAnswerText": "4",
       "explanation": "**Rationales:**\n\n❌ **Option 1 — Correct technique (should NOT be avoided):** Seating the client with the arm bared, supported at the level of the heart is standard BP measurement protocol. The arm must be at heart level because holding the arm above or below that level introduces hydrostatic pressure errors — arm below heart level produces falsely elevated readings; arm above heart level produces falsely low readings. Clothing constricting the arm (a rolled-up sleeve, for instance) can also artifactually elevate readings.\n\n❌ **Option 2 — Correct technique (should NOT be avoided):** Having the client sit quietly for at least 5 minutes before measurement allows the cardiovascular system to reach a resting steady state. Physical activity, walking, anxiety, and even talking immediately before BP measurement can transiently elevate the reading. The 5-minute rest period is a standard evidence-based recommendation for accurate resting blood pressure assessment.\n\n❌ **Option 3 — Correct technique (should NOT be avoided):** The cuff bladder should encircle at least 80% of the limb circumference. Using a cuff that is too small for the patient's arm (such as using a standard adult cuff on an obese patient) produces falsely elevated readings because the cuff must be inflated to a higher pressure to compress a larger limb. Using a correctly sized cuff is essential for accuracy.\n\n✅ **Option 4 — This IS the error to avoid:** Taking a blood pressure within **30 minutes** of caffeine or nicotine ingestion is contraindicated — not 15 minutes. Both caffeine and nicotine are vasoconstrictors and stimulants that transiently elevate blood pressure and heart rate. Measuring within 15 minutes (as this option states) is insufficient — the standard interval is 30 minutes to allow these effects to dissipate and obtain a true resting measurement. This is a frequently tested distinction and a common clinical error.\n\n---",
       "isSATA": false
@@ -3066,6 +3117,10 @@ const CURRICULUM = {
       "unitId": 6,
       "questionText": "Which nursing practices indicate the need for further teaching? *(Select all that apply)*",
       "options": [
+        {
+          "id": "A",
+          "text": "Using the index and middle fingers to palpate the radial pulse"
+        },
         {
           "id": "B",
           "text": "Counting apical pulse for 30 seconds when rhythm is irregular"
@@ -4568,8 +4623,25 @@ const CURRICULUM = {
       "concept": "Cultural Competence; Professional Medical Interpreters; Teaching",
       "unitId": 3,
       "questionText": "During a cultural sensitivity educational session, which statement by the nurse needs correction?",
-      "options": [],
-      "correctIds": [],
+      "options": [
+        {
+          "id": "A",
+          "text": "Every culture views health, illness, and death differently."
+        },
+        {
+          "id": "B",
+          "text": "Using a family member as an interpreter is a good practice that helps the patient feel comfortable."
+        },
+        {
+          "id": "C",
+          "text": "Religious beliefs often influence end-of-life decisions for many patients."
+        },
+        {
+          "id": "D",
+          "text": "Asking patients about their cultural preferences helps provide individualized care."
+        }
+      ],
+      "correctIds": ["B"],
       "correctAnswerText": "B",
       "explanation": "*(the statement that needs correction)*\n\n**Rationales:**\n\n❌ **A — Correct statement (no correction needed):** Every culture does view health, illness, death, and the role of medicine differently. Cultural beliefs about the etiology of illness, the role of healers, the value of technology-driven care, dietary practices, and decision-making processes vary widely across cultural groups. This is a foundational principle of culturally competent care.\n\n✅ **B — Needs correction:** This statement is problematic despite appearing supportive. While family **presence** can be emotionally supportive, using family members as **medical interpreters** is not best practice for several reasons: (1) family members may not have accurate medical vocabulary in either language, leading to dangerous mistranslation; (2) they may filter or alter information to protect the patient emotionally; (3) the patient may withhold sensitive information in front of family (domestic violence, substance use, sexual health concerns); (4) family members may not accurately convey bad news; (5) they may consciously or unconsciously advocate for their own preferences rather than the patient's. **Professional medical interpreters** are the required standard. Family presence during care is encouraged — family as translators is not.\n\n❌ **C — Correct statement (no correction needed):** Religious beliefs profoundly influence end-of-life decision-making for many patients — including views on life support, organ donation, autopsy, blood transfusion, and the moral weight of a natural death vs. prolonged medical intervention. Acknowledging religion's role in these decisions is culturally competent and essential for individualized care.\n\n❌ **D — Correct statement (no correction needed):** Asking patients about their cultural preferences — rather than assuming or applying generalizations — is the cornerstone of individualized cultural care. Cultural humility involves approaching each patient as an individual who may or may not conform to cultural norms associated with their background. Asking rather than assuming respects individual variation within cultural groups.\n\n---",
       "isSATA": false
