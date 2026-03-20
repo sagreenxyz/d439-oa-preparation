@@ -265,17 +265,34 @@ function showDistractorPopup(element, md) {
 
 function positionDistractorPopup(element) {
   const rect = element.getBoundingClientRect();
-  const popW = 400;
+  const popW = Math.min(400, window.innerWidth * 0.9);
+
+  // Measure popup height off-screen first
   distractorPopup.style.left = '0px';
   distractorPopup.style.top = '-9999px';
   distractorPopup.style.display = 'block';
   const popH = distractorPopup.offsetHeight;
-  let left = rect.left;
-  let top = (rect.top - popH - 8 > 0) ? rect.top - popH - 8 : rect.bottom + 8;
-  if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
-  if (left < 8) left = 8;
+
+  // Vertically align top of popup with top of the hovered distractor row.
+  // The popup is position:fixed so coordinates are viewport-relative — no scrollY needed.
+  let top = rect.top;
+
+  // Prefer to open to the right of the option; fall back to the left.
+  let left = rect.right + 8;
+  if (left + popW > window.innerWidth - 8) {
+    left = rect.left - popW - 8;
+  }
+  // Last-resort: pin to right edge of viewport
+  if (left < 8) {
+    left = Math.max(8, window.innerWidth - popW - 8);
+  }
+
+  // Clamp vertically so the popup never overflows the viewport bottom or top.
+  if (top + popH > window.innerHeight - 8) top = window.innerHeight - popH - 8;
+  if (top < 8) top = 8;
+
   distractorPopup.style.left = left + 'px';
-  distractorPopup.style.top = (top + window.scrollY) + 'px';
+  distractorPopup.style.top = top + 'px';
 }
 
 function hideDistractorPopup() {
