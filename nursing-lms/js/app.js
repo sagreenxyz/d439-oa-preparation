@@ -870,31 +870,86 @@ function retryUnit(unitId) {
    ════════════════════════════════════════════════════════════════════════════ */
 
 /**
+ * Extract all bigrams and trigrams from a lowercase text string.
+ * These are stored in the index so multi-word phrases can be found and scored
+ * even when they cross boundaries not captured by single-word matching.
+ */
+function extractNgrams(text, maxN) {
+  const words = text.split(/\s+/).filter(w => w.length >= 2);
+  const grams = [];
+  for (let n = 2; n <= maxN; n++) {
+    for (let i = 0; i <= words.length - n; i++) {
+      grams.push(words.slice(i, i + n).join(' '));
+    }
+  }
+  return grams;
+}
+
+/**
+ * Parse a raw search query into:
+ *   phrases  — exact phrases wrapped in single (') or double (") quotes
+ *   terms    — remaining individual bare keywords
+ *
+ * Example: `"blood pressure" diastolic` → { phrases: ['blood pressure'], terms: ['diastolic'] }
+ * Example: `'vital signs'` → { phrases: ['vital signs'], terms: [] }
+ */
+function parseQuery(rawQuery) {
+  const phrases = [];
+  const terms = [];
+  const re = /['"](.*?)['"]/g;
+  let match;
+  const ranges = [];
+  while ((match = re.exec(rawQuery)) !== null) {
+    const p = match[1].trim().toLowerCase();
+    if (p.length >= 2) phrases.push(p);
+    ranges.push([match.index, match.index + match[0].length]);
+  }
+  // Remove quoted regions then split the remainder into bare terms
+  let bare = rawQuery;
+  for (let i = ranges.length - 1; i >= 0; i--) {
+    bare = bare.slice(0, ranges[i][0]) + ' ' + bare.slice(ranges[i][1]);
+  }
+  bare.split(/\s+/).forEach(w => {
+    const t = w.trim().toLowerCase();
+    if (t.length >= 2) terms.push(t);
+  });
+  return { phrases, terms };
+}
+
+/**
  * Build a flat search index from the curriculum.
- * Each entry has: { type, label, sublabel, unitId, sectionIdx, questionId }
+ * Each entry has:
+ *   searchText — the full lowercased text blob for substring matching
+ *   ngramSet   — Set of all bigrams and trigrams extracted from that text,
+ *                enabling phrase-level scoring for unquoted multi-word queries
  */
 function buildSearchIndex() {
   const entries = [];
 
   CURRICULUM.units.forEach(unit => {
-    // Unit entry
+    const raw = 'unit ' + unit.id + ' ' + unit.title;
+    const searchText = raw.toLowerCase();
     entries.push({
       type: 'unit',
       label: 'Unit ' + unit.id + ': ' + unit.title,
       sublabel: unit.sections.length + ' sections · ' + getUnitQuestions(unit.id).length + ' questions',
-      searchText: ('unit ' + unit.id + ' ' + unit.title).toLowerCase(),
+      searchText,
+      ngramSet: new Set(extractNgrams(searchText, 3)),
       unitId: unit.id,
       sectionIdx: undefined,
       questionId: undefined
     });
 
-    // Section entries
+    // Section entries — index the FULL content (no 400-char limit)
     unit.sections.forEach((sec, idx) => {
+      const raw = sec.title + ' ' + (sec.content || '');
+      const searchText = raw.toLowerCase();
       entries.push({
         type: 'section',
         label: sec.title,
         sublabel: 'Unit ' + unit.id + ': ' + unit.title,
-        searchText: (sec.title + ' ' + (sec.content || '').slice(0, 400)).toLowerCase(),
+        searchText,
+        ngramSet: new Set(extractNgrams(searchText, 3)),
         unitId: unit.id,
         sectionIdx: idx,
         questionId: undefined
@@ -902,15 +957,18 @@ function buildSearchIndex() {
     });
   });
 
-  // Question entries — indexed by topic, concept, and question text
+  // Question entries — topic, concept, and full question text
   CURRICULUM.questions.forEach(q => {
     const concepts = (q.concept || '').split(';').map(c => c.trim()).filter(Boolean);
+    const raw = 'q' + q.id + ' ' + (q.title || '') + ' ' + (q.questionText || '') + ' ' +
+                (q.topic || '') + ' ' + (q.concept || '');
+    const searchText = raw.toLowerCase();
     entries.push({
       type: 'question',
       label: 'Q' + q.id + ': ' + (q.title || q.questionText.slice(0, 60)),
       sublabel: (q.topic || '') + (concepts.length ? ' · ' + concepts.join(', ') : ''),
-      searchText: ('q' + q.id + ' ' + (q.title || '') + ' ' + (q.questionText || '') + ' ' +
-                   (q.topic || '') + ' ' + (q.concept || '')).toLowerCase(),
+      searchText,
+      ngramSet: new Set(extractNgrams(searchText, 3)),
       unitId: q.unitId,
       sectionIdx: undefined,
       questionId: q.id
@@ -927,22 +985,49 @@ function getSearchIndex() {
   return _searchIndex;
 }
 
+/**
+ * Run a search against the curriculum index.
+ *
+ * Quoted phrases (single or double quotes) require an EXACT match — every
+ * quoted phrase must appear verbatim in the entry's searchText.
+ *
+ * Unquoted terms are each matched individually; consecutive terms are also
+ * checked against the pre-built bigram/trigram set for a phrase-level bonus.
+ */
 function runSearch(query) {
-  const q = query.trim().toLowerCase();
-  if (q.length < 2) return [];
+  if (!query || query.trim().length < 2) return [];
 
-  const terms = q.split(/\s+/).filter(t => t.length >= 2);
+  const { phrases, terms } = parseQuery(query);
+  if (phrases.length === 0 && terms.length === 0) return [];
+
   const index = getSearchIndex();
 
   const scored = index.map(entry => {
     let score = 0;
-    terms.forEach(term => {
+
+    // Quoted phrases: ALL must be present (exact substring) — non-matching entries are excluded
+    for (const phrase of phrases) {
+      if (!entry.searchText.includes(phrase)) return { entry, score: 0 };
+      score += entry.label.toLowerCase().includes(phrase) ? 8 : 4;
+    }
+
+    // Bare terms: each match adds to score
+    for (const term of terms) {
       if (entry.searchText.includes(term)) {
-        // Boost exact label matches
-        if (entry.label.toLowerCase().includes(term)) score += 3;
-        else score += 1;
+        score += entry.label.toLowerCase().includes(term) ? 3 : 1;
       }
-    });
+    }
+
+    // Phrase-level bonus: check consecutive bare term pairs/triples against ngrams
+    if (terms.length >= 2) {
+      for (let n = 2; n <= Math.min(terms.length, 3); n++) {
+        for (let i = 0; i <= terms.length - n; i++) {
+          const gram = terms.slice(i, i + n).join(' ');
+          if (entry.ngramSet.has(gram)) score += n * 2;
+        }
+      }
+    }
+
     return { entry, score };
   }).filter(r => r.score > 0);
 
@@ -955,7 +1040,7 @@ function openSearch() {
   modal.style.display = 'flex';
   document.getElementById('search-input').value = '';
   document.getElementById('search-results').innerHTML =
-    '<p class="search-hint">Type a topic, concept, keyword, or question number to find and jump to it.</p>';
+    '<p class="search-hint">Type a topic, keyword, or question number. Wrap phrases in quotes for exact match — e.g. <code>"blood pressure"</code> or <code>\'vital signs\'</code>. Use <kbd>Ctrl K</kbd> to open.</p>';
   setTimeout(() => document.getElementById('search-input').focus(), 60);
 }
 
@@ -1037,12 +1122,12 @@ function initSearch() {
   document.querySelector('.search-modal-backdrop').addEventListener('click', closeSearch);
 
   document.getElementById('search-input').addEventListener('input', e => {
-    const results = runSearch(e.target.value);
-    if (e.target.value.trim().length < 2) {
+    const val = e.target.value;
+    if (val.trim().length < 2) {
       document.getElementById('search-results').innerHTML =
-        '<p class="search-hint">Type a topic, concept, keyword, or question number to find and jump to it.</p>';
+        '<p class="search-hint">Type a topic, keyword, or question number. Wrap phrases in quotes for exact match — e.g. <code>"blood pressure"</code> or <code>\'vital signs\'</code>. Use <kbd>Ctrl K</kbd> to open.</p>';
     } else {
-      renderSearchResults(results);
+      renderSearchResults(runSearch(val));
     }
   });
 
