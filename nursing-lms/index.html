@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundations of Nursing — Exam Review LMS</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TOP HEADER
+═══════════════════════════════════════════════════════════════ -->
+<header class="top-header">
+  <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <div class="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+    </svg>
+    <span>Foundations of Nursing — Exam Review</span>
+  </div>
+
+  <div class="overall-progress">
+    <label>Overall Progress</label>
+    <div class="prog-bar-wrap">
+      <div class="prog-bar-fill" id="header-prog-fill" style="width:0%"></div>
+    </div>
+    <span class="prog-pct" id="header-prog-pct">0%</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SHELL
+═══════════════════════════════════════════════════════════════ -->
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar" aria-label="Course navigation">
+    <div class="sidebar-inner">
+      <div class="sidebar-section-label">Course Units</div>
+      <div id="sidebar-unit-list"><!-- populated by JS --></div>
+
+      <div style="padding:16px 20px;margin-top:8px;border-top:1px solid var(--border)">
+        <button class="btn btn-outline" onclick="renderDashboard()" style="width:100%;justify-content:center;font-size:.8rem">
+          ⌂ Dashboard
+        </button>
+        <button class="btn btn-outline" onclick="resetAllProgress()" style="width:100%;justify-content:center;font-size:.8rem;margin-top:8px;color:var(--danger);border-color:var(--danger)">
+          ↺ Reset Progress
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="main-content">
+
+    <!-- ─────────────────────────────────────────────────────────
+         VIEW: DASHBOARD
+    ───────────────────────────────────────────────────────── -->
+    <section class="view active" id="view-dashboard">
+
+      <div class="dashboard-hero">
+        <h1>📋 Foundations of Nursing</h1>
+        <p>Work through each of the 21 units. Review the material, then test your knowledge with unit-specific practice questions.</p>
+
+        <div class="progress-overview">
+          <div class="stats">
+            <div class="stat-item">
+              <div class="stat-num" id="dash-completed">0</div>
+              <div class="stat-lbl">Units Done</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="dash-total">21</div>
+              <div class="stat-lbl">Total Units</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="dash-questions">125</div>
+              <div class="stat-lbl">Questions</div>
+            </div>
+          </div>
+          <div class="dash-prog-bar-wrap">
+            <div class="dash-prog-bar-fill" id="dash-prog-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="units-grid" class="units-grid"><!-- populated by JS --></div>
+
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VIEW: REVIEW
+    ───────────────────────────────────────────────────────── -->
+    <section class="view" id="view-review">
+
+      <div class="view-header">
+        <button id="review-back-btn" class="view-header-back">
+          ← Dashboard
+        </button>
+        <div class="view-header-info">
+          <div class="breadcrumb" id="review-breadcrumb">Foundations of Nursing</div>
+          <h2 id="review-unit-title">Unit Title</h2>
+          <p id="review-unit-subtitle">Review Material</p>
+        </div>
+      </div>
+
+      <!-- Section step indicators -->
+      <div class="section-steps" id="section-steps"></div>
+
+      <!-- Content Card -->
+      <div class="content-card">
+        <div class="content-card-header">
+          <span class="section-badge" id="review-section-badge">Section 1</span>
+          <h3 id="review-section-title">Section Title</h3>
+        </div>
+        <div class="content-card-body">
+          <div id="review-section-content"><!-- populated by JS --></div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="nav-actions">
+        <button id="review-prev-btn" class="btn btn-outline" style="display:none">
+          ← Previous
+        </button>
+        <button id="review-next-btn" class="btn btn-primary btn-lg" style="margin-left:auto">
+          Next Section →
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VIEW: QUIZ
+    ───────────────────────────────────────────────────────── -->
+    <section class="view" id="view-quiz">
+
+      <div class="view-header">
+        <button id="quiz-back-btn" class="view-header-back">
+          ← Dashboard
+        </button>
+        <div class="view-header-info">
+          <div class="breadcrumb" id="quiz-breadcrumb">Unit</div>
+          <h2 id="quiz-unit-subtitle">Quiz</h2>
+        </div>
+      </div>
+
+      <!-- Quiz Progress Bar -->
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quiz-prog-fill" style="width:0%"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card">
+        <div class="question-card-header">
+          <div class="question-meta" id="quiz-question-meta"></div>
+          <div class="question-num" id="quiz-question-num">Question 1</div>
+          <div class="question-text" id="quiz-question-text"></div>
+        </div>
+        <div class="question-card-body">
+          <ul class="options-list" id="quiz-options-list"></ul>
+          <div class="quiz-actions" id="quiz-actions"></div>
+        </div>
+      </div>
+
+      <!-- Explanation / Rationale -->
+      <div id="explanation-container"></div>
+
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VIEW: UNIT COMPLETE
+    ───────────────────────────────────────────────────────── -->
+    <section class="view" id="view-complete">
+      <div id="complete-container"><!-- populated by JS --></div>
+    </section>
+
+  </main><!-- /main-content -->
+</div><!-- /shell -->
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<!-- marked.js for Markdown rendering (local copy) -->
+<script src="js/marked.min.js"></script>
+<!-- Configure marked -->
+<script>
+  if (window.marked) {
+    window.marked.setOptions({
+      breaks: true,
+      gfm: true
+    });
+  }
+</script>
+<!-- Curriculum data (auto-generated from Notes.md) -->
+<script src="js/curriculum.js"></script>
+<!-- Application logic -->
+<script src="js/app.js"></script>
+
+</body>
+</html>
