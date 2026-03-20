@@ -1,7 +1,6 @@
 /**
  * Foundations of Nursing — LMS v2
  * Integrated section+question flow, hierarchy sidebar, vibrant theme
- * Includes Developer Mode with change-tour popups
  */
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -10,7 +9,7 @@
 
 const STATE_KEY = 'nursing_lms_v2';
 
-let state = { unitProgress: {}, devModeEnabled: false };
+let state = { unitProgress: {} };
 
 function loadState() {
   try {
@@ -867,178 +866,198 @@ function retryUnit(unitId) {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   DEVELOPER MODE — change-tour popup system
+   TOPIC & KEYWORD SEARCH INDEX
    ════════════════════════════════════════════════════════════════════════════ */
 
 /**
- * Changelog entries: each entry represents one change in the current iteration.
- * Add new entries at the TOP for the latest iteration.
- * Each entry: { version, date, title, description, highlight }
- *   highlight: optional CSS selector to spotlight in the UI during this step
+ * Build a flat search index from the curriculum.
+ * Each entry has: { type, label, sublabel, unitId, sectionIdx, questionId }
  */
-const DEV_CHANGELOG = [
-  {
-    version: '2.1',
-    date: '2026-03-20',
-    title: 'Developer Mode',
-    description: 'A new <strong>Developer Mode</strong> toggle has been added to the header. When enabled, this sequential popup tour launches automatically, walking through every change made in the current iteration. Use the Prev / Next buttons to step through changes. Toggle Dev Mode off at any time via the header button.',
-    highlight: '#dev-mode-btn'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Vibrant Color Scheme',
-    description: 'The color palette has been completely overhauled. The old dull blue-grey medical theme has been replaced with a vibrant <strong>indigo/violet + amber + emerald</strong> scheme. The header now uses a gradient, buttons have depth with shadows, and section headers have a two-tone accent border.',
-    highlight: '.top-header'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Hierarchical Sidebar Navigation',
-    description: 'The left sidebar now shows a <strong>collapsible tree</strong> matching the table of contents in the source Notes. Click a unit header to expand it and reveal all its sections. Click any section name to jump directly to that section within the unit.',
-    highlight: '.sidebar'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Integrated Section + Question Flow',
-    description: 'The old separate <em>Review</em> and <em>Quiz</em> phases have been replaced by a single integrated flow. After reading each section, the questions that relate to that section appear <strong>immediately inline</strong> — no more switching between modes. This creates a natural learn-then-practice loop for each sub-topic.',
-    highlight: '#unit-content'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Multiple Choice Auto-Submit',
-    description: 'For standard multiple-choice questions (one correct answer), selecting any option <strong>immediately submits</strong> the answer — no Submit button needed. The Submit button is still shown for <em>Select All That Apply</em> questions so you can check multiple boxes before committing.',
-    highlight: '#unit-content'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Correct-Answer Rationale Only',
-    description: 'After answering a question, the explanation panel now shows <strong>only the rationale for the correct answer</strong>. Distractor rationales are hidden by default to reduce cognitive overload.',
-    highlight: '#explanation-container'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Distractor Rationale on Hover',
-    description: 'Each <strong>incorrect option</strong> now has a hidden rationale that appears in a dark tooltip popup when you hover over it. Move your pointer away and the popup disappears. This keeps the interface clean while still giving access to the full reasoning.',
-    highlight: '.option-item.incorrect, .option-item.has-distractor'
-  },
-  {
-    version: '2.0',
-    date: '2026-03-20',
-    title: 'Source Updated: Notes2.md',
-    description: 'The LMS curriculum is now generated from <strong>Notes2.md</strong> instead of Notes.md. Notes2.md contains the same 21 units and 125 questions but with significantly expanded per-option rationales, providing much richer explanations for each answer choice.',
-    highlight: null
+function buildSearchIndex() {
+  const entries = [];
+
+  CURRICULUM.units.forEach(unit => {
+    // Unit entry
+    entries.push({
+      type: 'unit',
+      label: 'Unit ' + unit.id + ': ' + unit.title,
+      sublabel: unit.sections.length + ' sections · ' + getUnitQuestions(unit.id).length + ' questions',
+      searchText: ('unit ' + unit.id + ' ' + unit.title).toLowerCase(),
+      unitId: unit.id,
+      sectionIdx: undefined,
+      questionId: undefined
+    });
+
+    // Section entries
+    unit.sections.forEach((sec, idx) => {
+      entries.push({
+        type: 'section',
+        label: sec.title,
+        sublabel: 'Unit ' + unit.id + ': ' + unit.title,
+        searchText: (sec.title + ' ' + (sec.content || '').slice(0, 400)).toLowerCase(),
+        unitId: unit.id,
+        sectionIdx: idx,
+        questionId: undefined
+      });
+    });
+  });
+
+  // Question entries — indexed by topic, concept, and question text
+  CURRICULUM.questions.forEach(q => {
+    const concepts = (q.concept || '').split(';').map(c => c.trim()).filter(Boolean);
+    entries.push({
+      type: 'question',
+      label: 'Q' + q.id + ': ' + (q.title || q.questionText.slice(0, 60)),
+      sublabel: (q.topic || '') + (concepts.length ? ' · ' + concepts.join(', ') : ''),
+      searchText: ('q' + q.id + ' ' + (q.title || '') + ' ' + (q.questionText || '') + ' ' +
+                   (q.topic || '') + ' ' + (q.concept || '')).toLowerCase(),
+      unitId: q.unitId,
+      sectionIdx: undefined,
+      questionId: q.id
+    });
+  });
+
+  return entries;
+}
+
+let _searchIndex = null;
+
+function getSearchIndex() {
+  if (!_searchIndex) _searchIndex = buildSearchIndex();
+  return _searchIndex;
+}
+
+function runSearch(query) {
+  const q = query.trim().toLowerCase();
+  if (q.length < 2) return [];
+
+  const terms = q.split(/\s+/).filter(t => t.length >= 2);
+  const index = getSearchIndex();
+
+  const scored = index.map(entry => {
+    let score = 0;
+    terms.forEach(term => {
+      if (entry.searchText.includes(term)) {
+        // Boost exact label matches
+        if (entry.label.toLowerCase().includes(term)) score += 3;
+        else score += 1;
+      }
+    });
+    return { entry, score };
+  }).filter(r => r.score > 0);
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 40).map(r => r.entry);
+}
+
+function openSearch() {
+  const modal = document.getElementById('search-modal');
+  modal.style.display = 'flex';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-results').innerHTML =
+    '<p class="search-hint">Type a topic, concept, keyword, or question number to find and jump to it.</p>';
+  setTimeout(() => document.getElementById('search-input').focus(), 60);
+}
+
+function closeSearch() {
+  document.getElementById('search-modal').style.display = 'none';
+}
+
+function renderSearchResults(results) {
+  const container = document.getElementById('search-results');
+  if (results.length === 0) {
+    container.innerHTML = '<p class="search-hint search-no-results">No results found. Try different keywords.</p>';
+    return;
   }
-];
 
-let devTourIndex = 0;
-let devHighlightEl = null;
+  // Group by type
+  const groups = { unit: [], section: [], question: [] };
+  results.forEach(r => groups[r.type].push(r));
 
-function isDevModeEnabled() { return !!state.devModeEnabled; }
+  const typeLabels = { unit: '📚 Units', section: '§ Sections', question: '❓ Questions' };
+  let html = '';
 
-function toggleDevMode() {
-  state.devModeEnabled = !state.devModeEnabled;
-  saveState();
-  updateDevModeButton();
-  if (state.devModeEnabled) startDevTour();
-  else closeDevTour();
+  ['unit', 'section', 'question'].forEach(type => {
+    const items = groups[type];
+    if (!items.length) return;
+    html += '<div class="search-group"><div class="search-group-label">' + typeLabels[type] + '</div>';
+    items.forEach((item, i) => {
+      html +=
+        '<button class="search-result-item" data-idx="' + i + '" data-type="' + item.type + '"' +
+          ' data-unit-id="' + (item.unitId || '') + '"' +
+          ' data-section-idx="' + (item.sectionIdx !== undefined ? item.sectionIdx : '') + '"' +
+          ' data-question-id="' + (item.questionId !== undefined ? item.questionId : '') + '">' +
+          '<span class="search-result-label">' + escapeHtml(item.label) + '</span>' +
+          '<span class="search-result-sub">' + escapeHtml(item.sublabel) + '</span>' +
+        '</button>';
+    });
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('.search-result-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const unitId = parseInt(btn.dataset.unitId);
+      const sectionIdxStr = btn.dataset.sectionIdx;
+      const questionIdStr = btn.dataset.questionId;
+      const type = btn.dataset.type;
+
+      closeSearch();
+
+      if (type === 'unit') {
+        navigateToUnit(unitId);
+      } else if (type === 'section') {
+        const sectionIdx = parseInt(sectionIdxStr);
+        navigateToUnit(unitId, sectionIdx);
+      } else if (type === 'question') {
+        const questionId = parseInt(questionIdStr);
+        navigateToQuestion(unitId, questionId);
+      }
+    });
+  });
 }
 
-function updateDevModeButton() {
-  const btn = document.getElementById('dev-mode-btn');
-  if (!btn) return;
-  const on = isDevModeEnabled();
-  btn.textContent = on ? '\uD83D\uDEE0\uFE0F Dev: ON' : '\uD83D\uDEE0\uFE0F Dev: OFF';
-  btn.style.background = on ? 'rgba(245,158,11,.85)' : 'rgba(255,255,255,.18)';
-  btn.style.color = on ? '#1E293B' : '#fff';
-  btn.style.fontWeight = on ? '700' : '500';
+/**
+ * Navigate directly to a specific question within a unit.
+ */
+function navigateToQuestion(unitId, questionId) {
+  const steps = buildUnitSteps(unitId);
+  const qStepIdx = steps.findIndex(s => s.type === 'question' && s.question.id === questionId);
+  const startStep = qStepIdx >= 0 ? qStepIdx : 0;
+  unitState = { unitId, steps, currentStep: startStep, questionAnswered: false, selectedIds: [] };
+  highlightSidebarUnit(unitId);
+  renderCurrentStep();
+  showView('unit');
 }
 
-function startDevTour() {
-  devTourIndex = 0;
-  renderDevTourPopup();
-}
+function initSearch() {
+  document.getElementById('search-btn').addEventListener('click', openSearch);
+  document.getElementById('search-close-btn').addEventListener('click', closeSearch);
+  document.querySelector('.search-modal-backdrop').addEventListener('click', closeSearch);
 
-function closeDevTour() {
-  const overlay = document.getElementById('dev-tour-overlay');
-  if (overlay) overlay.remove();
-  removeDevHighlight();
-}
-
-function removeDevHighlight() {
-  if (devHighlightEl) {
-    devHighlightEl.classList.remove('dev-highlight');
-    devHighlightEl = null;
-  }
-}
-
-function renderDevTourPopup() {
-  // Remove existing overlay
-  const existing = document.getElementById('dev-tour-overlay');
-  if (existing) existing.remove();
-  removeDevHighlight();
-
-  const entry = DEV_CHANGELOG[devTourIndex];
-  const total = DEV_CHANGELOG.length;
-
-  // Highlight target element if specified
-  if (entry.highlight) {
-    const target = document.querySelector(entry.highlight);
-    if (target) {
-      devHighlightEl = target;
-      target.classList.add('dev-highlight');
+  document.getElementById('search-input').addEventListener('input', e => {
+    const results = runSearch(e.target.value);
+    if (e.target.value.trim().length < 2) {
+      document.getElementById('search-results').innerHTML =
+        '<p class="search-hint">Type a topic, concept, keyword, or question number to find and jump to it.</p>';
+    } else {
+      renderSearchResults(results);
     }
-  }
-
-  const overlay = document.createElement('div');
-  overlay.id = 'dev-tour-overlay';
-  overlay.className = 'dev-tour-overlay';
-  overlay.innerHTML =
-    '<div class="dev-tour-popup">' +
-      '<div class="dev-tour-header">' +
-        '<span class="dev-tour-badge">v' + entry.version + ' &bull; ' + entry.date + '</span>' +
-        '<button class="dev-tour-close" id="dev-tour-close-btn" title="Close tour">&times;</button>' +
-      '</div>' +
-      '<div class="dev-tour-title">' + (devTourIndex + 1) + ' / ' + total + ' &mdash; ' + entry.title + '</div>' +
-      '<div class="dev-tour-desc">' + entry.description + '</div>' +
-      '<div class="dev-tour-progress">' +
-        DEV_CHANGELOG.map((_, i) =>
-          '<div class="dev-tour-dot' + (i === devTourIndex ? ' active' : i < devTourIndex ? ' done' : '') + '"></div>'
-        ).join('') +
-      '</div>' +
-      '<div class="dev-tour-actions">' +
-        (devTourIndex > 0
-          ? '<button class="btn btn-outline dev-tour-btn" id="dev-tour-prev">&#8592; Prev</button>'
-          : '<span></span>') +
-        (devTourIndex < total - 1
-          ? '<button class="btn btn-primary dev-tour-btn" id="dev-tour-next">Next &#8594;</button>'
-          : '<button class="btn btn-success dev-tour-btn" id="dev-tour-done">Done &#10003;</button>') +
-      '</div>' +
-    '</div>';
-
-  document.body.appendChild(overlay);
-
-  document.getElementById('dev-tour-close-btn').addEventListener('click', () => {
-    state.devModeEnabled = false;
-    saveState();
-    updateDevModeButton();
-    closeDevTour();
   });
-  document.getElementById('dev-tour-prev')?.addEventListener('click', () => {
-    devTourIndex--;
-    renderDevTourPopup();
+
+  document.getElementById('search-input').addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
   });
-  document.getElementById('dev-tour-next')?.addEventListener('click', () => {
-    devTourIndex++;
-    renderDevTourPopup();
-  });
-  document.getElementById('dev-tour-done')?.addEventListener('click', () => {
-    closeDevTour();
-    // Keep dev mode on but close the tour
+
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+    if (e.key === 'Escape' && document.getElementById('search-modal').style.display !== 'none') {
+      closeSearch();
+    }
   });
 }
 
@@ -1048,8 +1067,7 @@ function renderDevTourPopup() {
 
 function resetAllProgress() {
   if (!confirm('Reset all progress? This cannot be undone.')) return;
-  const devMode = state.devModeEnabled;
-  state = { unitProgress: {}, devModeEnabled: devMode };
+  state = { unitProgress: {} };
   saveState();
   buildSidebar();
   updateHeaderProgress();
@@ -1078,6 +1096,7 @@ function showToast(msg) {
 document.addEventListener('DOMContentLoaded', () => {
   loadState();
   initDistractorPopup();
+  initSearch();
 
   document.getElementById('menu-toggle').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('open');
@@ -1086,13 +1105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sidebar').classList.remove('open');
   });
   document.getElementById('unit-back-btn').addEventListener('click', renderDashboard);
-  document.getElementById('dev-mode-btn').addEventListener('click', toggleDevMode);
 
   buildSidebar();
   updateHeaderProgress();
-  updateDevModeButton();
   renderDashboard();
-
-  // Auto-launch tour if dev mode was previously enabled
-  if (isDevModeEnabled()) startDevTour();
 });
+

@@ -34,10 +34,27 @@
     <span class="prog-pct" id="header-prog-pct">0%</span>
   </div>
 
-  <button id="dev-mode-btn" class="dev-mode-toggle" title="Toggle Developer Mode — view change tour">
-    🛠️ Dev: OFF
+  <button id="search-btn" class="search-toggle" title="Search topics &amp; keywords" aria-label="Open topic and keyword search">
+    🔍 Search
   </button>
 </header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SEARCH MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-label="Topic and keyword search" style="display:none">
+  <div class="search-modal-backdrop"></div>
+  <div class="search-modal-panel">
+    <div class="search-modal-header">
+      <span class="search-modal-title">🔍 Topic &amp; Keyword Index</span>
+      <button id="search-close-btn" class="search-close-btn" aria-label="Close search">&times;</button>
+    </div>
+    <div class="search-input-wrap">
+      <input id="search-input" class="search-input" type="search" placeholder="Search topics, sections, concepts, questions…" autocomplete="off" spellcheck="false" />
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      SHELL
