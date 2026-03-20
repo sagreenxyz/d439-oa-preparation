@@ -202,20 +202,23 @@ function parseRationales(md) {
   }
 
   lines.forEach(line => {
-    const correctMatch = line.match(/^\u2705\s+\*\*Option\s+(\w+)\s*[\u2014\u2013-]/i);
-    const incorrectMatch = line.match(/^\u274c\s+\*\*Option\s+(\w+)\s*[\u2014\u2013-]/i);
+    // Match both "✅ **Option 1 — Correct:**" and "✅ **C — Correct.**" formats.
+    // "Option " prefix is optional; strip everything up to and including the closing "**".
+    const correctMatch = line.match(/^\u2705\s+\*\*(?:Option\s+)?(\w+)\s*[\u2014\u2013-]/i);
+    const incorrectMatch = line.match(/^\u274c\s+\*\*(?:Option\s+)?(\w+)\s*[\u2014\u2013-]/i);
     const takeawayMatch = line.includes('\uD83D\uDCA1') || line.includes('💡');
     if (correctMatch) {
       flush();
       currentType = 'correct';
       currentId = correctMatch[1];
-      const stripped = line.replace(/^\u2705\s+\*\*Option\s+\w+\s*[\u2014\u2013-]\s*Correct:\*\*\s*/i, '').trim();
+      // Strip the whole "✅ **…** " prefix (anything up to and including the closing **)
+      const stripped = line.replace(/^\u2705\s+\*\*(?:Option\s+)?\w+\s*[\u2014\u2013-][^*]*\*\*\s*/i, '').trim();
       currentLines = [stripped];
     } else if (incorrectMatch) {
       flush();
       currentType = 'incorrect';
       currentId = incorrectMatch[1];
-      const stripped = line.replace(/^\u274c\s+\*\*Option\s+\w+\s*[\u2014\u2013-]\s*Incorrect:\*\*\s*/i, '').trim();
+      const stripped = line.replace(/^\u274c\s+\*\*(?:Option\s+)?\w+\s*[\u2014\u2013-][^*]*\*\*\s*/i, '').trim();
       currentLines = [stripped];
     } else if (takeawayMatch && (line.startsWith('>') || line.startsWith('��') || line.includes('💡'))) {
       flush();
