@@ -1112,6 +1112,8 @@ body {
 }
 
 /* Has-distractor options show a hint icon */
+.option-item.has-distractor { cursor: pointer; }
+
 .option-item.has-distractor::after {
   content: "ℹ";
   font-size: .85rem;
@@ -1152,29 +1154,6 @@ body {
 }
 
 .rationale-takeaway p { margin: 0; }
-
-/* Incorrect / distractor rationale block (shown inline for SATA) */
-.rationale-incorrect-block {
-  margin-bottom: 10px;
-  padding: 10px 14px;
-  background: var(--wrong-light);
-  border-left: 4px solid var(--danger);
-  border-radius: 0 6px 6px 0;
-  font-size: .88rem;
-  line-height: 1.6;
-}
-
-.rationale-incorrect-block p { margin: 0; }
-.rationale-incorrect-block strong { color: #991B1B; }
-
-.rationale-incorrect-label {
-  font-size: .72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--danger);
-  margin-bottom: 6px;
-}
 
 .distractor-hint-note {
   font-size: .75rem;
