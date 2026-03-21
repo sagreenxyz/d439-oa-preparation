@@ -246,13 +246,14 @@ function initDistractorPopup() {
   document.addEventListener('mouseenter', e => {
     if (!e.target || typeof e.target.closest !== 'function') return;
     const item = e.target.closest('.option-item.has-distractor');
-    if (item && item.dataset.distractorMd) showDistractorPopup(item, item.dataset.distractorMd);
+    if (item && item.dataset.distractorMd && (!e.relatedTarget || !item.contains(e.relatedTarget)))
+      showDistractorPopup(item, item.dataset.distractorMd);
   }, true);
 
   document.addEventListener('mouseleave', e => {
     if (!e.target || typeof e.target.closest !== 'function') return;
     const item = e.target.closest('.option-item.has-distractor');
-    if (item) hideDistractorPopup();
+    if (item && (!e.relatedTarget || !item.contains(e.relatedTarget))) hideDistractorPopup();
   }, true);
 }
 
