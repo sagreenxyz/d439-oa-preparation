@@ -541,6 +541,7 @@ function renderSectionStep(step) {
       '</div>' +
     '</div>';
 
+  attachNoteWidget(unitId, unit.title, 'section', section.id, section.title);
   renderUnitNavButtons();
 }
 
@@ -589,6 +590,7 @@ function renderQuestionStep(step) {
     if (q.isSATA) renderSATASubmitButton(q);
   }
 
+  attachNoteWidget(unitId, unit.title, 'question', q.id, q.title || (q.questionText || '').slice(0, 60));
   renderUnitNavButtons();
 }
 
@@ -1148,12 +1150,260 @@ function initSearch() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
+   NOTES
+   ════════════════════════════════════════════════════════════════════════════ */
+
+function getStepNotes(unitId, stepId) {
+  return (state.notes || []).filter(
+    n => n.unitId === unitId && n.stepId === String(stepId)
+  );
+}
+
+function saveNote(unitId, unitTitle, stepType, stepId, stepTitle, text) {
+  if (!text.trim()) return null;
+  if (!state.notes) state.notes = [];
+  const note = {
+    id: 'note-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+    unitId,
+    unitTitle,
+    stepType,
+    stepId: String(stepId),
+    stepTitle,
+    text: text.trim(),
+    createdAt: new Date().toISOString()
+  };
+  state.notes.push(note);
+  saveState();
+  return note;
+}
+
+function deleteNote(noteId) {
+  if (!state.notes) return;
+  state.notes = state.notes.filter(n => n.id !== noteId);
+  saveState();
+}
+
+function formatTimestamp(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) +
+    ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+function updateNotesButtonCount() {
+  const count = (state.notes || []).length;
+  const btn = document.getElementById('notes-btn');
+  if (!btn) return;
+  btn.innerHTML = count > 0
+    ? '📝 Notes <span class="notes-header-count">' + count + '</span>'
+    : '📝 Notes';
+}
+
+/* Attach a note-taking widget to #unit-content for the current step. */
+function attachNoteWidget(unitId, unitTitle, stepType, stepId, stepTitle) {
+  const container = document.getElementById('unit-content');
+  if (!container) return;
+  const widget = document.createElement('div');
+  widget.className = 'note-widget';
+  widget.id = 'note-widget';
+  container.appendChild(widget);
+  refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
+}
+
+function refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle) {
+  const notes = getStepNotes(unitId, stepId);
+  const loc = 'Unit ' + unitId + ' \u203a ' +
+    (stepType === 'section' ? 'Section ' + stepId : 'Question ' + stepId);
+
+  let notesHtml = '';
+  if (notes.length > 0) {
+    notesHtml =
+      '<div class="note-list">' +
+      notes.map(n =>
+        '<div class="note-item" data-note-id="' + n.id + '">' +
+          '<div class="note-item-meta">' +
+            '<span class="note-item-time">\uD83D\uDD52 ' + formatTimestamp(n.createdAt) + '</span>' +
+            '<span class="note-item-loc">' + escapeHtml(loc) + '</span>' +
+            '<button class="note-delete-btn" aria-label="Delete note">\u2715</button>' +
+          '</div>' +
+          '<div class="note-item-text">' + escapeHtml(n.text).replace(/\n/g, '<br>') + '</div>' +
+        '</div>'
+      ).join('') +
+      '</div>';
+  }
+
+  widget.innerHTML =
+    '<div class="note-widget-header">' +
+      '<span class="note-widget-title">\uD83D\uDCDD My Notes' +
+        (notes.length > 0 ? ' <span class="note-count">' + notes.length + '</span>' : '') +
+      '</span>' +
+      '<span class="note-widget-loc">' + escapeHtml(loc) + '</span>' +
+    '</div>' +
+    notesHtml +
+    '<div class="note-input-area">' +
+      '<textarea class="note-textarea" id="note-textarea" placeholder="Add a note for this step\u2026" rows="3"></textarea>' +
+      '<button class="btn note-save-btn" id="note-save-btn">Save Note</button>' +
+    '</div>';
+
+  widget.querySelector('#note-save-btn').addEventListener('click', () => {
+    const ta = widget.querySelector('#note-textarea');
+    const text = ta.value;
+    if (!text.trim()) return;
+    saveNote(unitId, unitTitle, stepType, stepId, stepTitle, text);
+    ta.value = '';
+    refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
+    updateNotesButtonCount();
+    showToast('Note saved.');
+  });
+
+  widget.querySelectorAll('.note-delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const noteId = btn.closest('.note-item').dataset.noteId;
+      deleteNote(noteId);
+      refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
+      updateNotesButtonCount();
+    });
+  });
+}
+
+/* ── Notes modal ── */
+
+function buildNotesMarkdown() {
+  const notes = state.notes || [];
+  if (!notes.length) return '# My Notes \u2014 Foundations of Nursing\n\n*No notes yet.*';
+
+  const byUnit = {};
+  notes.forEach(n => {
+    if (!byUnit[n.unitId]) byUnit[n.unitId] = { title: n.unitTitle, steps: {} };
+    const stepKey = n.stepType + '-' + n.stepId;
+    if (!byUnit[n.unitId].steps[stepKey]) {
+      byUnit[n.unitId].steps[stepKey] = {
+        stepType: n.stepType,
+        stepId: n.stepId,
+        stepTitle: n.stepTitle,
+        notes: []
+      };
+    }
+    byUnit[n.unitId].steps[stepKey].notes.push(n);
+  });
+
+  let md = '# My Notes \u2014 Foundations of Nursing\n\n';
+  const unitIds = Object.keys(byUnit).map(Number).sort((a, b) => a - b);
+  unitIds.forEach(unitId => {
+    const unit = byUnit[unitId];
+    md += '## Unit ' + unitId + ': ' + unit.title + '\n\n';
+    Object.values(unit.steps).forEach(step => {
+      const loc = 'Unit ' + unitId + ' \u203a ' +
+        (step.stepType === 'section' ? 'Section ' + step.stepId : 'Question ' + step.stepId);
+      const prefix = step.stepType === 'section' ? '\u00a7' : 'Q';
+      md += '### ' + prefix + step.stepId + ' \u2014 ' + step.stepTitle + '\n\n';
+      step.notes.forEach(n => {
+        md += '> **' + formatTimestamp(n.createdAt) + '** | ' + loc + '\n\n';
+        md += n.text + '\n\n';
+      });
+    });
+  });
+
+  return md.trim();
+}
+
+function showNotesModal() {
+  const modal = document.getElementById('notes-modal');
+  if (!modal) return;
+  const notes = state.notes || [];
+  const contentEl = document.getElementById('notes-modal-content');
+
+  if (!notes.length) {
+    contentEl.innerHTML =
+      '<p class="notes-empty">No notes yet. Use the \u201cMy Notes\u201d widget at the bottom of any section or question to add your first note.</p>';
+  } else {
+    const byUnit = {};
+    notes.forEach(n => {
+      if (!byUnit[n.unitId]) byUnit[n.unitId] = { title: n.unitTitle, steps: {} };
+      const stepKey = n.stepType + '-' + n.stepId;
+      if (!byUnit[n.unitId].steps[stepKey]) {
+        byUnit[n.unitId].steps[stepKey] = {
+          stepType: n.stepType, stepId: n.stepId, stepTitle: n.stepTitle, notes: []
+        };
+      }
+      byUnit[n.unitId].steps[stepKey].notes.push(n);
+    });
+
+    let html = '';
+    const unitIds = Object.keys(byUnit).map(Number).sort((a, b) => a - b);
+    unitIds.forEach(unitId => {
+      const unit = byUnit[unitId];
+      html += '<div class="notes-unit">';
+      html += '<h3 class="notes-unit-title">Unit ' + unitId + ': ' + escapeHtml(unit.title) + '</h3>';
+      Object.values(unit.steps).forEach(step => {
+        const loc = 'Unit ' + unitId + ' \u203a ' +
+          (step.stepType === 'section' ? 'Section ' + step.stepId : 'Question ' + step.stepId);
+        const prefix = step.stepType === 'section' ? '\u00a7' : 'Q';
+        html += '<div class="notes-step">';
+        html += '<h4 class="notes-step-title">' + prefix + step.stepId + ' \u2014 ' + escapeHtml(step.stepTitle) + '</h4>';
+        step.notes.forEach(n => {
+          html += '<div class="notes-note-item">';
+          html +=
+            '<div class="notes-note-meta">' +
+              '<span class="notes-note-time">\uD83D\uDD52 ' + formatTimestamp(n.createdAt) + '</span>' +
+              '<span class="notes-note-loc">' + escapeHtml(loc) + '</span>' +
+            '</div>';
+          html += '<div class="notes-note-text">' + escapeHtml(n.text).replace(/\n/g, '<br>') + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+    contentEl.innerHTML = html;
+  }
+
+  modal.style.display = 'flex';
+}
+
+function initNotes() {
+  const modal = document.getElementById('notes-modal');
+  if (!modal) return;
+
+  modal.querySelector('.notes-modal-backdrop').addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  document.getElementById('notes-close-btn').addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  document.getElementById('notes-copy-btn').addEventListener('click', () => {
+    const md = buildNotesMarkdown();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md).then(() => showToast('Notes copied to clipboard as Markdown!')).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+    function fallbackCopy() {
+      const ta = document.createElement('textarea');
+      ta.value = md;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('Notes copied to clipboard as Markdown!'); }
+      catch (_) { showToast('Copy failed \u2014 please copy manually.'); }
+      ta.remove();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.style.display !== 'none') modal.style.display = 'none';
+  });
+
+  document.getElementById('notes-btn').addEventListener('click', showNotesModal);
+  updateNotesButtonCount();
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
    RESET
    ════════════════════════════════════════════════════════════════════════════ */
 
 function resetAllProgress() {
   if (!confirm('Reset all progress? This cannot be undone.')) return;
-  state = { unitProgress: {} };
+  state = { unitProgress: {}, notes: state.notes || [] };
   saveState();
   buildSidebar();
   updateHeaderProgress();
@@ -1183,6 +1433,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadState();
   initDistractorPopup();
   initSearch();
+  initNotes();
 
   document.getElementById('menu-toggle').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('open');

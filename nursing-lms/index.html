@@ -37,6 +37,9 @@
   <button id="search-btn" class="search-toggle" title="Search topics &amp; keywords" aria-label="Open topic and keyword search">
     🔍 Search
   </button>
+  <button id="notes-btn" class="search-toggle notes-toggle" title="View &amp; manage your notes" aria-label="Open notes panel">
+    📝 Notes
+  </button>
 </header>
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -156,6 +159,21 @@
 
 <!-- Distractor popup (hover rationale for incorrect options) -->
 <div id="distractor-popup" class="distractor-popup"></div>
+
+<!-- Notes modal -->
+<div id="notes-modal" class="notes-modal" role="dialog" aria-modal="true" aria-label="My Notes" style="display:none">
+  <div class="notes-modal-backdrop"></div>
+  <div class="notes-modal-panel">
+    <div class="notes-modal-header">
+      <span class="notes-modal-title">📝 My Notes</span>
+      <div class="notes-modal-actions">
+        <button id="notes-copy-btn" class="notes-copy-btn" title="Copy all notes as Markdown">⎘ Copy as Markdown</button>
+        <button id="notes-close-btn" class="search-close-btn" aria-label="Close notes">&times;</button>
+      </div>
+    </div>
+    <div id="notes-modal-content" class="notes-modal-content"></div>
+  </div>
+</div>
 
 <!-- Toast notification -->
 <div class="toast" id="toast"></div>
