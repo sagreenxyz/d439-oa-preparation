@@ -1205,6 +1205,11 @@ function attachNoteWidget(unitId, unitTitle, stepType, stepId, stepTitle) {
   const widget = document.createElement('div');
   widget.className = 'note-widget';
   widget.id = 'note-widget';
+  widget.dataset.unitId = unitId;
+  widget.dataset.unitTitle = unitTitle;
+  widget.dataset.stepId = String(stepId);
+  widget.dataset.stepType = stepType;
+  widget.dataset.stepTitle = stepTitle;
   container.appendChild(widget);
   refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
 }
@@ -1252,15 +1257,20 @@ function refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitl
     ta.value = '';
     refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
     updateNotesButtonCount();
+    const modal = document.getElementById('notes-modal');
+    if (modal && modal.style.display === 'flex') renderNotesModalContent();
     showToast('Note saved.');
   });
 
   widget.querySelectorAll('.note-delete-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const noteId = btn.closest('.note-item').dataset.noteId;
-      deleteNote(noteId);
+      const item = btn.closest('.note-item');
+      if (!item) return;
+      deleteNote(item.dataset.noteId);
       refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitle);
       updateNotesButtonCount();
+      const modal = document.getElementById('notes-modal');
+      if (modal && modal.style.display === 'flex') renderNotesModalContent();
     });
   });
 }
@@ -1306,57 +1316,84 @@ function buildNotesMarkdown() {
   return md.trim();
 }
 
-function showNotesModal() {
-  const modal = document.getElementById('notes-modal');
-  if (!modal) return;
+function renderNotesModalContent() {
   const notes = state.notes || [];
   const contentEl = document.getElementById('notes-modal-content');
+  if (!contentEl) return;
 
   if (!notes.length) {
     contentEl.innerHTML =
       '<p class="notes-empty">No notes yet. Use the \u201cMy Notes\u201d widget at the bottom of any section or question to add your first note.</p>';
-  } else {
-    const byUnit = {};
-    notes.forEach(n => {
-      if (!byUnit[n.unitId]) byUnit[n.unitId] = { title: n.unitTitle, steps: {} };
-      const stepKey = n.stepType + '-' + n.stepId;
-      if (!byUnit[n.unitId].steps[stepKey]) {
-        byUnit[n.unitId].steps[stepKey] = {
-          stepType: n.stepType, stepId: n.stepId, stepTitle: n.stepTitle, notes: []
-        };
-      }
-      byUnit[n.unitId].steps[stepKey].notes.push(n);
-    });
+    return;
+  }
 
-    let html = '';
-    const unitIds = Object.keys(byUnit).map(Number).sort((a, b) => a - b);
-    unitIds.forEach(unitId => {
-      const unit = byUnit[unitId];
-      html += '<div class="notes-unit">';
-      html += '<h3 class="notes-unit-title">Unit ' + unitId + ': ' + escapeHtml(unit.title) + '</h3>';
-      Object.values(unit.steps).forEach(step => {
-        const loc = 'Unit ' + unitId + ' \u203a ' +
-          (step.stepType === 'section' ? 'Section ' + step.stepId : 'Question ' + step.stepId);
-        const prefix = step.stepType === 'section' ? '\u00a7' : 'Q';
-        html += '<div class="notes-step">';
-        html += '<h4 class="notes-step-title">' + prefix + step.stepId + ' \u2014 ' + escapeHtml(step.stepTitle) + '</h4>';
-        step.notes.forEach(n => {
-          html += '<div class="notes-note-item">';
-          html +=
-            '<div class="notes-note-meta">' +
-              '<span class="notes-note-time">\uD83D\uDD52 ' + formatTimestamp(n.createdAt) + '</span>' +
-              '<span class="notes-note-loc">' + escapeHtml(loc) + '</span>' +
-            '</div>';
-          html += '<div class="notes-note-text">' + escapeHtml(n.text).replace(/\n/g, '<br>') + '</div>';
-          html += '</div>';
-        });
+  const byUnit = {};
+  notes.forEach(n => {
+    if (!byUnit[n.unitId]) byUnit[n.unitId] = { title: n.unitTitle, steps: {} };
+    const stepKey = n.stepType + '-' + n.stepId;
+    if (!byUnit[n.unitId].steps[stepKey]) {
+      byUnit[n.unitId].steps[stepKey] = {
+        stepType: n.stepType, stepId: n.stepId, stepTitle: n.stepTitle, notes: []
+      };
+    }
+    byUnit[n.unitId].steps[stepKey].notes.push(n);
+  });
+
+  let html = '';
+  const unitIds = Object.keys(byUnit).map(Number).sort((a, b) => a - b);
+  unitIds.forEach(unitId => {
+    const unit = byUnit[unitId];
+    html += '<div class="notes-unit">';
+    html += '<h3 class="notes-unit-title">Unit ' + unitId + ': ' + escapeHtml(unit.title) + '</h3>';
+    Object.values(unit.steps).forEach(step => {
+      const loc = 'Unit ' + unitId + ' \u203a ' +
+        (step.stepType === 'section' ? 'Section ' + step.stepId : 'Question ' + step.stepId);
+      const prefix = step.stepType === 'section' ? '\u00a7' : 'Q';
+      html += '<div class="notes-step">';
+      html += '<h4 class="notes-step-title">' + prefix + step.stepId + ' \u2014 ' + escapeHtml(step.stepTitle) + '</h4>';
+      step.notes.forEach(n => {
+        html += '<div class="notes-note-item" data-note-id="' + n.id + '">';
+        html +=
+          '<div class="notes-note-meta">' +
+            '<span class="notes-note-time">\uD83D\uDD52 ' + formatTimestamp(n.createdAt) + '</span>' +
+            '<span class="notes-note-loc">' + escapeHtml(loc) + '</span>' +
+            '<button class="notes-note-delete-btn" aria-label="Delete note">\u2715</button>' +
+          '</div>';
+        html += '<div class="notes-note-text">' + escapeHtml(n.text).replace(/\n/g, '<br>') + '</div>';
         html += '</div>';
       });
       html += '</div>';
     });
-    contentEl.innerHTML = html;
-  }
+    html += '</div>';
+  });
+  contentEl.innerHTML = html;
 
+  contentEl.querySelectorAll('.notes-note-delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.notes-note-item');
+      if (!item) return;
+      deleteNote(item.dataset.noteId);
+      renderNotesModalContent();
+      updateNotesButtonCount();
+      const widget = document.getElementById('note-widget');
+      if (widget) {
+        refreshNoteWidget(
+          widget,
+          Number(widget.dataset.unitId),
+          widget.dataset.unitTitle,
+          widget.dataset.stepType,
+          widget.dataset.stepId,
+          widget.dataset.stepTitle
+        );
+      }
+    });
+  });
+}
+
+function showNotesModal() {
+  const modal = document.getElementById('notes-modal');
+  if (!modal) return;
+  renderNotesModalContent();
   modal.style.display = 'flex';
 }
 
