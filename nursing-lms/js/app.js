@@ -735,13 +735,33 @@ function showExplanation(q, isCorrect, isPartial) {
   if (rationales.takeaway) {
     rationaleHtml += '<div class="rationale-takeaway">' + renderMarkdown(rationales.takeaway) + '</div>';
   }
-  if (!rationaleHtml) {
+
+  // For SATA questions, render distractor rationales inline so they are always visible.
+  let distractorRationaleHtml = '';
+  if (q.isSATA) {
+    q.options.forEach(opt => {
+      if (!q.correctIds.includes(opt.id)) {
+        const text = rationales.incorrect[opt.id];
+        if (text) {
+          distractorRationaleHtml +=
+            '<div class="rationale-incorrect-block">' +
+              '<div class="rationale-incorrect-label">\u274c Option ' + opt.id + ' \u2014 Why this is incorrect</div>' +
+              renderMarkdown(text) +
+            '</div>';
+        }
+      }
+    });
+  }
+
+  if (!rationaleHtml && !distractorRationaleHtml) {
     rationaleHtml = q.explanation
       ? '<div class="md-content">' + renderMarkdown(q.explanation) + '</div>'
       : '<p>See the options above for the correct answer.</p>';
   }
 
-  const hasDistractors = q.options.some(o => !q.correctIds.includes(o.id));
+  // For non-SATA questions, keep the hover hint when distractor rationales exist on hover.
+  const hasHoverDistractors = !q.isSATA &&
+    q.options.some(o => !q.correctIds.includes(o.id) && rationales.incorrect[o.id]);
 
   container.innerHTML =
     '<div class="explanation-card">' +
@@ -753,7 +773,8 @@ function showExplanation(q, isCorrect, isPartial) {
         '<p class="correct-answer-line">Correct answer' +
           (q.correctIds.length > 1 ? 's' : '') + ': <strong>' + q.correctAnswerText + '</strong></p>' +
         rationaleHtml +
-        (hasDistractors ? '<p class="distractor-hint-note">\ud83d\udcac Hover over any incorrect option for its rationale.</p>' : '') +
+        distractorRationaleHtml +
+        (hasHoverDistractors ? '<p class="distractor-hint-note">\ud83d\udcac Hover over any incorrect option for its rationale.</p>' : '') +
       '</div>' +
     '</div>';
 
