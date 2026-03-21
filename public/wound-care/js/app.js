@@ -1146,6 +1146,19 @@ function navigateToQuestion(unitId, questionId) {
   showView('unit');
 }
 
+/**
+ * Navigate directly to a specific section within a unit.
+ */
+function navigateToSection(unitId, sectionId) {
+  const steps = buildUnitSteps(unitId);
+  const sStepIdx = steps.findIndex(s => s.type === 'section' && s.section.id === String(sectionId));
+  const startStep = sStepIdx >= 0 ? sStepIdx : 0;
+  unitState = { unitId, steps, currentStep: startStep, questionAnswered: false, selectedIds: [] };
+  highlightSidebarUnit(unitId);
+  renderCurrentStep();
+  showView('unit');
+}
+
 function initSearch() {
   document.getElementById('search-btn').addEventListener('click', openSearch);
   document.getElementById('search-close-btn').addEventListener('click', closeSearch);
@@ -1376,8 +1389,8 @@ function renderNotesModalContent() {
       const loc = 'Unit ' + unitId + ' \u203a ' +
         (step.stepType === 'section' ? 'Section ' + step.stepId : 'Question ' + step.stepId);
       const prefix = step.stepType === 'section' ? '\u00a7' : 'Q';
-      html += '<div class="notes-step">';
-      html += '<h4 class="notes-step-title">' + prefix + step.stepId + ' \u2014 ' + escapeHtml(step.stepTitle) + '</h4>';
+      html += '<div class="notes-step" data-unit-id="' + unitId + '" data-step-type="' + step.stepType + '" data-step-id="' + escapeHtml(String(step.stepId)) + '">';
+      html += '<div class="notes-step-title"><h4>' + prefix + step.stepId + ' \u2014 ' + escapeHtml(step.stepTitle) + '</h4><button class="notes-step-goto-btn" aria-label="Go to this location">Go to \u2192</button></div>';
       step.notes.forEach(n => {
         html += '<div class="notes-note-item" data-note-id="' + n.id + '">';
         html +=
@@ -1412,6 +1425,22 @@ function renderNotesModalContent() {
           widget.dataset.stepId,
           widget.dataset.stepTitle
         );
+      }
+    });
+  });
+
+  contentEl.querySelectorAll('.notes-step-goto-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stepDiv = btn.closest('.notes-step');
+      if (!stepDiv) return;
+      const unitId = Number(stepDiv.dataset.unitId);
+      const stepType = stepDiv.dataset.stepType;
+      const stepId = stepDiv.dataset.stepId;
+      document.getElementById('notes-modal').style.display = 'none';
+      if (stepType === 'question') {
+        navigateToQuestion(unitId, stepId);
+      } else {
+        navigateToSection(unitId, stepId);
       }
     });
   });
