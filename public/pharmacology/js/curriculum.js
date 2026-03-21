@@ -114,6 +114,38 @@ const CURRICULUM = {
           "content": "### 3.6 Adrenergic Adverse Effects & Nursing Implications\n\n#### Common Adverse Effects by Receptor\n\n| Receptor | Drug Examples | Key Adverse Effects |\n|---|---|---|\n| **α₁ stimulation** | NE, high-dose epi, phenylephrine | Severe HTN, reflex bradycardia, tissue necrosis (extravasation), ischemia |\n| **β₁ stimulation** | Epinephrine, dobutamine, dopamine | Tachycardia, angina, arrhythmias, ↑ myocardial O₂ demand |\n| **β₂ stimulation** | Albuterol, salmeterol | Tremor, tachycardia, **hypokalemia**, hyperglycemia |\n\n#### Nursing Priorities for IV Adrenergic Infusions\n1. **Central line preferred** for potent vasopressors (NE, epi, dopamine at vasoconstrictor doses) — peripheral extravasation → tissue necrosis\n2. **Continuous cardiac monitoring** — arrhythmias can be triggered\n3. **Frequent BP monitoring** — every 5–15 minutes during titration\n4. **Assess extremity perfusion** — vasopressors can cause limb ischemia (color, cap refill, pulses)\n5. **Titrate to target MAP** (usually ≥65 mmHg in septic shock)\n6. **Monitor urine output** — indicator of perfusion; target ≥0.5 mL/kg/hr\n7. **Extravasation management** — stop infusion; aspirate; inject phentolamine into site for alpha agonists\n\n#### Albuterol Nursing Priorities\n- Assess breath sounds before and after administration\n- Teach correct inhaler technique — spacer use if needed\n- Monitor HR and K⁺ during frequent nebulizations\n- SABA overuse (>2 days/week for symptom control) indicates poorly controlled asthma — reassess controller therapy\n\n---"
         }
       ]
+    },
+    {
+      "id": 4,
+      "title": "Antiadrenergics (Sympatholytics)",
+      "intro": "",
+      "sections": [
+        {
+          "id": "4.1",
+          "title": "Alpha Blockers (Alpha-Adrenergic Antagonists)",
+          "content": "### 4.1 Alpha Blockers (Alpha-Adrenergic Antagonists)\n\nAlpha blockers prevent catecholamines from binding alpha receptors. Depending on selectivity, they block α₁, α₂, or both.\n\n#### Non-Selective Alpha Blockers (block α₁ + α₂)\n\n| Drug | Uses | Key Points |\n|---|---|---|\n| **Phentolamine** (Regitine) | Pheochromocytoma crisis; norepinephrine/epinephrine extravasation antidote; erectile dysfunction (injectable) | Short-acting; IV for hypertensive emergencies; inject into extravasation site to reverse NE necrosis |\n| **Phenoxybenzamine** | Pheochromocytoma pre-op management | Long-acting; irreversible; used for days before adrenalectomy to prevent intraoperative crisis |\n\n#### Selective Alpha-1 Blockers (\"-osin\" drugs)\n\n| Drug | Primary Uses | Key Adverse Effect |\n|---|---|---|\n| **Prazosin** (Minipress) | Hypertension; PTSD nightmares; BPH | **First-dose phenomenon** — severe orthostatic hypotension with first dose |\n| **Terazosin** (Hytrin) | Hypertension; BPH | First-dose orthostatic hypotension |\n| **Doxazosin** (Cardura) | Hypertension; BPH | First-dose orthostatic hypotension |\n| **Tamsulosin** (Flomax) | BPH (prostate-selective) | Less orthostatic hypotension; **intraoperative floppy iris syndrome** (ophthalmology concern) |\n| **Alfuzosin** (Uroxatral) | BPH | Less antihypertensive effect |\n| **Silodosin** (Rapaflo) | BPH | Most uroselective |\n\n**Alpha-1 blocker mechanisms:**\n- Block α₁ on **arterioles** → vasodilation → ↓ BP\n- Block α₁ on **bladder neck and prostate** → ↓ urethral resistance → improved urine flow (BPH)\n\n> 💡 **First-dose phenomenon:** Give prazosin/doxazosin/terazosin at **bedtime** to reduce falls from orthostatic hypotension. Counsel clients to sit at bedside before standing.\n\n---"
+        },
+        {
+          "id": "4.2",
+          "title": "Beta Blockers (Beta-Adrenergic Antagonists)",
+          "content": "### 4.2 Beta Blockers (Beta-Adrenergic Antagonists)\n\nBeta blockers competitively block adrenergic beta receptors, reducing sympathetic cardiovascular effects.\n\n#### Classification\n\n| Category | Selectivity | Examples | Key Distinction |\n|---|---|---|---|\n| **Non-selective** | β₁ + β₂ | Propranolol, Nadolol, Timolol, Carvedilol (also α₁) | Block β₂ → bronchoconstriction; contraindicated in asthma |\n| **Cardioselective (β₁-selective)** | β₁ >> β₂ | Metoprolol (Lopressor), Atenolol, Bisoprolol, Acebutolol | Less bronchoconstriction; still caution in severe asthma |\n| **Alpha + Beta blocker** | α₁ + β₁ + β₂ | Labetalol, Carvedilol | Vasodilation + cardiac blockade; useful in HTN emergencies, HF |\n\n#### Key Beta Blockers and Their Uses\n\n| Drug | Primary Uses | Notes |\n|---|---|---|\n| **Metoprolol** (Lopressor, Toprol XL) | HTN, angina, HF, MI, arrhythmias | Most widely used cardioselective β-blocker |\n| **Atenolol** | HTN, angina, post-MI | Cardioselective; renal elimination |\n| **Propranolol** | HTN, angina, arrhythmias, migraine prophylaxis, essential tremor, thyroid storm, PTSD | Non-selective; crosses BBB |\n| **Carvedilol** (Coreg) | Heart failure, HTN, post-MI | Alpha + beta blocker; improves HF mortality |\n| **Labetalol** | Hypertensive emergency; pregnancy-associated HTN | IV formulation; safe in pregnancy |\n| **Bisoprolol** | Heart failure, HTN | Cardioselective; first-line for HF |\n| **Timolol** | Glaucoma (ophthalmic) | Reduces aqueous humor production |\n| **Sotalol** | Atrial fibrillation, ventricular arrhythmias | Also has class III antiarrhythmic properties; QT prolongation risk |\n| **Esmolol** | Perioperative tachycardia/HTN | Ultra-short acting; IV only |\n\n#### Beta Blocker Effects\n\n| Effect | Receptor Blocked | Clinical Benefit |\n|---|---|---|\n| ↓ HR (chronotropy) | β₁ (SA node) | Slows rate in tachycardia/afib; ↓ O₂ demand |\n| ↓ Contractility (inotropy) | β₁ (ventricles) | ↓ myocardial O₂ demand in angina |\n| ↓ AV conduction (dromotropy) | β₁ (AV node) | Controls ventricular rate in afib/flutter |\n| ↓ Renin release | β₁ (kidney JGA) | ↓ BP via RAAS suppression |\n| Bronchoconstriction | β₂ (bronchi) | Adverse — avoid in asthma/COPD |\n\n---"
+        },
+        {
+          "id": "4.3",
+          "title": "Centrally-Acting Alpha-2 Agonists",
+          "content": "### 4.3 Centrally-Acting Alpha-2 Agonists\n\nThese drugs stimulate **central alpha-2 receptors** in the brainstem (nucleus tractus solitarius), which **decreases sympathetic outflow** from the CNS → ↓ BP, ↓ HR.\n\n**Mechanism:** α₂ agonism → presynaptic inhibition → ↓ NE release from sympathetic neurons → ↓ sympathetic tone → ↓ BP and ↓ HR.\n\n| Drug | Uses | Key Points |\n|---|---|---|\n| **Clonidine** (Catapres) | Hypertension; ADHD (Kapvay); opioid/nicotine withdrawal; pain | Transdermal patch available; **Rebound hypertension** if stopped abruptly — must taper |\n| **Methyldopa** (Aldomet) | Hypertension in **pregnancy** (first-line in 1st/2nd trimester) | Safest antihypertensive in early pregnancy; CNS side effects (sedation) |\n| **Tizanidine** (Zanaflex) | Muscle spasticity | CNS sedation; similar mechanism to clonidine |\n| **Dexmedetomidine** (Precedex) | ICU sedation; procedural sedation | α₂ agonist sedative; does NOT cause respiratory depression |\n| **Guanfacine** (Tenex, Intuniv) | Hypertension; ADHD | Longer acting than clonidine; less sedation |\n\n**⚠️ Clonidine withdrawal:** Abrupt discontinuation after chronic use causes **severe rebound hypertension** (hypertensive crisis), tachycardia, and agitation from sudden return of sympathetic tone. Always taper slowly over 1–2 weeks.\n\n---"
+        },
+        {
+          "id": "4.4",
+          "title": "Therapeutic Uses of Antiadrenergics",
+          "content": "### 4.4 Therapeutic Uses of Antiadrenergics\n\n| Indication | Drug Class | Drug Examples |\n|---|---|---|\n| **Hypertension** | Beta blockers, Alpha-1 blockers, Central α₂ agonists | Metoprolol, Lisinopril combination; Prazosin; Clonidine |\n| **Heart failure** | Beta blockers (selected) | Carvedilol, Metoprolol succinate, Bisoprolol — reduce mortality |\n| **Angina pectoris** | Beta blockers | Metoprolol, Atenolol, Propranolol — ↓ O₂ demand |\n| **Post-MI cardioprotection** | Beta blockers | Metoprolol, Atenolol — reduce remodeling, sudden cardiac death |\n| **Arrhythmias** | Beta blockers | Rate control in afib; suppression of SVT/VT |\n| **Glaucoma** | Beta blockers (ophthalmic) | Timolol, Betaxolol — ↓ aqueous humor production |\n| **Benign Prostatic Hyperplasia (BPH)** | Alpha-1 blockers (uroselective) | Tamsulosin, Silodosin, Alfuzosin |\n| **Pheochromocytoma** | Alpha blockers FIRST, then add beta blocker | Phenoxybenzamine (α), then propranolol (β) — NEVER give beta-blocker first |\n| **Hypertensive emergency in pregnancy** | Labetalol IV; Hydralazine IV | Labetalol is alpha+beta — safe in pregnancy |\n| **Migraine prophylaxis** | Beta blockers (non-selective) | Propranolol, Timolol, Nadolol |\n| **Essential tremor** | Beta blockers | Propranolol |\n| **Thyroid storm** | Beta blockers | Propranolol — blocks peripheral conversion of T4→T3; controls tachycardia |\n| **Anxiety / PTSD** | Beta blockers | Propranolol (performance anxiety); prazosin (PTSD nightmares) |\n| **Opioid/alcohol withdrawal** | Clonidine | Reduces sympathetic rebound during withdrawal |\n\n---"
+        },
+        {
+          "id": "4.5",
+          "title": "Antiadrenergic Adverse Effects & Nursing Implications",
+          "content": "### 4.5 Antiadrenergic Adverse Effects & Nursing Implications\n\n#### Beta Blocker Adverse Effects\n\n| Effect | Mechanism | Clinical Significance |\n|---|---|---|\n| **Bradycardia** | β₁ block → ↓ SA node automaticity | Hold if HR <60 bpm (per facility policy) |\n| **Hypotension** | ↓ cardiac output + vasodilation (labetalol/carvedilol) | Monitor BP before each dose; orthostatic precautions |\n| **Bronchoconstriction** | β₂ block → bronchospasm | Contraindicated in asthma; caution in COPD |\n| **Fatigue, depression** | CNS beta blockade (lipophilic agents — propranolol) | Evaluate for quality-of-life impact; may switch to hydrophilic agent |\n| **Hyperglycemia masking** | β₂ block → blocks warning tachycardia of hypoglycemia | Diabetics: teach to monitor glucose; sweating still occurs |\n| **Cold extremities** | ↓ peripheral perfusion (beta-1 + some vasoconstriction) | Assess peripheral pulses; Raynaud's worsened |\n| **Rebound hypertension** | Abrupt discontinuation → catecholamine surge | Always taper gradually; educate client |\n\n#### Alpha-1 Blocker Adverse Effects\n- **First-dose orthostatic hypotension** — most significant; instruct to take first dose at bedtime\n- **Tachycardia** (reflex from hypotension)\n- **Nasal congestion** (dilation of nasal vasculature)\n- **Intraoperative floppy iris syndrome (IFIS)** — tamsulosin; warn ophthalmologist before cataract surgery\n\n#### Nursing Priorities for Beta Blockers\n1. **Hold** if HR <60 or BP <90/60 (per facility protocol)\n2. **Never abruptly stop** — taper over 1–2 weeks; educate client\n3. **Contraindications:** Asthma (non-selective), severe COPD, cardiogenic shock, 2nd/3rd degree AV block, sick sinus syndrome\n4. **Diabetic monitoring:** Glucometer checks more important — tachycardia sign of hypoglycemia masked\n5. **Heart failure:** Start at very low doses and titrate up slowly (\"start low, go slow\") — abrupt therapy initiation can worsen decompensation\n\n#### Pheochromocytoma: Alpha Before Beta — Critical Safety Rule\n\nIn pheochromocytoma, the adrenal medullary tumor secretes massive amounts of catecholamines. **ALWAYS establish alpha blockade (phenoxybenzamine) BEFORE adding a beta blocker.** If beta blockade is given first:\n- Beta-1 and beta-2 receptors are blocked → only alpha-1 remains active\n- Catecholamines → unopposed alpha-1 stimulation → **life-threatening hypertensive crisis**\n\n---"
+        }
+      ]
     }
   ],
   "questions": [
@@ -562,6 +594,156 @@ const CURRICULUM = {
       "correctIds": ["2"],
       "correctAnswerText": "2",
       "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Epinephrine 1:1000 IM to the anterolateral thigh is the correct route and formulation for **anaphylaxis**, NOT cardiac arrest. The 1:1000 concentration (1 mg/mL) given IM for cardiac arrest (where IV access exists) is incorrect — the IV dose for cardiac arrest uses the more dilute 1:10,000 (0.1 mg/mL) preparation to allow accurate IV bolus dosing.\n\n✅ **Option 2 — Correct:** For **cardiac arrest**, ACLS guidelines specify **epinephrine 1:10,000 (0.1 mg/mL), 1 mg IV push every 3–5 minutes** during resuscitation. The 1:10,000 formulation allows a 10 mL IV bolus of the correct 1 mg dose. This concentration is also used in pediatric dosing calculations. Administering the more concentrated 1:1000 preparation IV would result in a 10× overdose — a potentially fatal medication error.\n\n❌ **Option 3 — Incorrect:** Epinephrine 1:1000 IV push at 1 mg would deliver the correct milligram dose, BUT the volume would be only 1 mL (too small for rapid IV push and easy to misdose). More importantly, this introduces a dangerous practice — using the 1:1000 vial IV — when the 1:10,000 preparation is standard ACLS protocol. Mixing concentrations in emergency settings is a known cause of fatal medication errors.\n\n❌ **Option 4 — Incorrect:** 0.3 mg IM is the anaphylaxis dose for an adult, and IM is the anaphylaxis route. This is not the cardiac arrest dose or route.\n\n> 💡 **Epinephrine concentration safety:** 1:1000 = anaphylaxis IM. 1:10,000 = cardiac arrest IV. The numbers represent dilution (1 part epinephrine in 1000 mL vs. 10,000 mL). Epinephrine is on The Joint Commission's **high-alert medication** list — two-nurse verification is best practice before administration.\n\n---",
+      "isSATA": false
+    },
+
+    /* ═══════════════════════════════════════════════
+       UNIT 4 — ANTIADRENERGICS QUESTIONS
+    ═══════════════════════════════════════════════ */
+    {
+      "id": 25,
+      "title": "Beta Blocker — Hold Parameters",
+      "topic": "Antiadrenergics",
+      "concept": "Beta Blockers; Metoprolol; Safe Administration; Hold Parameters",
+      "unitId": 4,
+      "questionText": "A nurse is preparing to administer metoprolol tartrate (Lopressor) 25 mg PO to a client with hypertension. Which assessment findings require the nurse to HOLD the medication and notify the provider? *(Select all that apply)*",
+      "options": [
+        { "id": "1", "text": "Blood pressure of 142/88 mmHg" },
+        { "id": "2", "text": "Heart rate of 54 bpm" },
+        { "id": "3", "text": "Blood pressure of 82/50 mmHg" },
+        { "id": "4", "text": "Active wheezing and dyspnea (new onset)" },
+        { "id": "5", "text": "Second-degree AV block (Mobitz type II) on telemetry" }
+      ],
+      "correctIds": ["2", "3", "4", "5"],
+      "correctAnswerText": "2, 3, 4, 5",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect (do NOT hold):** A BP of 142/88 is elevated (Stage 2 hypertension) but is not a contraindication to administering an antihypertensive. In fact, this finding suggests the medication is needed. The drug is appropriately ordered.\n\n✅ **Option 2 — Correct (hold):** Metoprolol blocks β₁ receptors at the SA node, lowering heart rate. A resting HR of **54 bpm** is bradycardic. Administering metoprolol could further decrease the HR to dangerous levels. Standard practice is to hold beta blockers when HR is **<60 bpm** (some facilities use <55 bpm). Notify the provider.\n\n✅ **Option 3 — Correct (hold):** A BP of **82/50 mmHg** represents hypotension (SBP <90, DBP <60). Metoprolol reduces cardiac output and BP — administering it in the setting of hypotension could cause cardiovascular collapse. Hold and notify provider.\n\n✅ **Option 4 — Correct (hold):** Active wheezing and new-onset dyspnea suggest **bronchospasm**. Metoprolol, though cardioselective (β₁-preferring), can still cause bronchoconstriction via β₂ blockade — especially in reactive airway disease. In the setting of active bronchospasm, administering metoprolol could worsen respiratory status. Notify provider.\n\n✅ **Option 5 — Correct (hold):** Second-degree AV block Mobitz type II (and third-degree block) are **contraindications** to beta blockers. Beta blockers further slow AV conduction, potentially causing complete heart block. Notify provider immediately.\n\n> 💡 **Beta blocker hold parameters:** HR <60, SBP <90, signs of active bronchospasm, 2nd or 3rd degree heart block. Always assess apical pulse for a full minute before administering — apical pulse is more accurate than radial for assessing true ventricular rate.\n\n---",
+      "isSATA": true
+    },
+    {
+      "id": 26,
+      "title": "Abrupt Beta Blocker Discontinuation",
+      "topic": "Antiadrenergics",
+      "concept": "Beta Blockers; Rebound Hypertension; Patient Teaching; Medication Safety",
+      "unitId": 4,
+      "questionText": "A client on metoprolol succinate (Toprol XL) 50 mg daily for hypertension tells the nurse, \"I ran out of my pills two days ago and haven't been to the pharmacy. I feel fine.\" Which is the nurse's priority teaching point?",
+      "options": [
+        { "id": "1", "text": "It is acceptable to stop metoprolol abruptly if the blood pressure remains within normal limits" },
+        { "id": "2", "text": "Missing two doses is not significant because metoprolol has a very long half-life" },
+        { "id": "3", "text": "Abrupt discontinuation of beta blockers can cause rebound hypertension, angina, and potentially MI — obtain refill immediately" },
+        { "id": "4", "text": "Switch to a calcium channel blocker immediately until the prescription can be refilled" }
+      ],
+      "correctIds": ["3"],
+      "correctAnswerText": "3",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** It is NOT acceptable to stop metoprolol abruptly. Even if the client feels fine now, the risk of rebound hypertensive crisis and cardiac events is real. The absence of immediate symptoms does not guarantee safety.\n\n❌ **Option 2 — Incorrect:** Metoprolol tartrate has a half-life of 3–7 hours; metoprolol succinate (XL) is somewhat longer-acting but still requires consistent dosing. Two missed doses of a once-daily beta blocker is clinically significant, especially in a client with cardiovascular disease who may already be experiencing a period of increased catecholamine sensitivity.\n\n✅ **Option 3 — Correct:** Abrupt beta blocker discontinuation causes **beta receptor upregulation** (supersensitivity) during chronic therapy. When the drug is stopped suddenly, the upregulated receptors are suddenly exposed to full catecholamine stimulation → **rebound tachycardia, rebound hypertension, worsening angina, and — in clients with coronary artery disease — increased risk of MI and sudden death**. This is particularly dangerous in cardiac patients. The client must obtain a refill immediately and, if needed, contact the provider for a bridge or emergency supply. Beta blockers should always be tapered over 1–2 weeks if discontinuing intentionally.\n\n❌ **Option 4 — Incorrect:** Substituting a different antihypertensive without a provider order is outside the nurse's scope of practice and is not the correct response. The nurse should counsel the client to get the prescription refilled urgently and contact the provider. Switching drug classes without medical oversight is unsafe.\n\n> 💡 **\"Never stop a beta blocker cold turkey.\"** Especially in cardiac patients. The catecholamine rebound effect can precipitate MI. Teach clients at every medication interaction: refill proactively, do not skip doses, taper if stopping is planned.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 27,
+      "title": "Pheochromocytoma — Drug Sequencing",
+      "topic": "Antiadrenergics",
+      "concept": "Pheochromocytoma; Alpha Blockers; Beta Blockers; Drug Sequencing Safety",
+      "unitId": 4,
+      "questionText": "A client is being prepared for surgical resection of a pheochromocytoma. Which pharmacological treatment sequence is CORRECT for pre-operative management?",
+      "options": [
+        { "id": "1", "text": "Start propranolol first to control tachycardia, then add phenoxybenzamine" },
+        { "id": "2", "text": "Start phenoxybenzamine first to establish alpha blockade, then add propranolol after several days" },
+        { "id": "3", "text": "Begin both phenoxybenzamine and propranolol simultaneously at high doses" },
+        { "id": "4", "text": "Use phentolamine IV alone; oral alpha or beta blockers are not indicated pre-operatively" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** This sequence is **potentially lethal**. If a beta blocker is given first in pheochromocytoma, it blocks beta-1 and beta-2 receptors. The tumor continues releasing catecholamines, which now bind only the **unblocked alpha-1 receptors** → **unopposed, severe vasoconstriction** → **life-threatening hypertensive crisis** (BP may exceed 300 mmHg systolic). The rule is absolute: **alpha BEFORE beta, always.**\n\n✅ **Option 2 — Correct:** The correct sequence is: (1) **Phenoxybenzamine** (non-selective, irreversible alpha blocker) is started first — typically 7–14 days before surgery — to establish complete alpha blockade and prevent catecholamine-induced vasoconstriction and hypertensive crises. After adequate alpha blockade is confirmed (BP normalized, orthostatic symptoms present indicating effective blockade), (2) **propranolol or atenolol** is added to control reflex tachycardia from the vasodilation caused by alpha blockade. Starting the beta blocker only after alpha blockade is established is the safest sequence.\n\n❌ **Option 3 — Incorrect:** Starting both simultaneously at high doses risks inadequate alpha blockade relative to beta blockade initially — the same risk of unopposed alpha stimulation, though less likely than giving beta blocker alone first. Simultaneous high-dose initiation also risks severe orthostatic hypotension and hemodynamic instability.\n\n❌ **Option 4 — Incorrect:** Phentolamine IV is used acutely (hypertensive crisis during surgery or angiography) but is not practical for the 7–14 day pre-operative preparation period due to its very short half-life. Oral phenoxybenzamine is the standard for pre-operative preparation.\n\n> 💡 **Pheochromocytoma safety rule:** Alpha before beta. ALWAYS. This is a classic NCLEX safety question and real-world clinical priority. A beta blocker given first = unopposed alpha = hypertensive emergency = potentially fatal.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 28,
+      "title": "Clonidine — Rebound Hypertension",
+      "topic": "Antiadrenergics",
+      "concept": "Clonidine; Central Alpha-2 Agonist; Rebound Hypertension; Patient Teaching",
+      "unitId": 4,
+      "questionText": "A client who has been taking clonidine (Catapres) 0.2 mg twice daily for hypertension abruptly stops the medication. Which assessment findings would the nurse MOST expect to see 24–48 hours after discontinuation?",
+      "options": [
+        { "id": "1", "text": "Bradycardia, hypotension, and profound sedation" },
+        { "id": "2", "text": "Severe hypertension, tachycardia, diaphoresis, and agitation" },
+        { "id": "3", "text": "Bronchoconstriction, wheezing, and decreased respiratory rate" },
+        { "id": "4", "text": "Urinary retention, constipation, and dry mucous membranes" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Bradycardia, hypotension, and sedation describe the **effects of clonidine itself** (central alpha-2 agonism → ↓ sympathetic outflow). These are the therapeutic/adverse effects of the drug while it is being taken — not the effects of withdrawal.\n\n✅ **Option 2 — Correct:** Abrupt discontinuation of clonidine after prolonged use causes **rebound hypertension** (also called clonidine withdrawal syndrome). During chronic therapy, sympathetic neurons are chronically suppressed. When clonidine is stopped abruptly, there is a **sudden rebound surge of sympathetic activity and norepinephrine release** from the now-disinhibited neurons. Clinically: **severe hypertension (can exceed pre-treatment levels), tachycardia, diaphoresis, tremor, restlessness, agitation, and headache**. This can occur within 12–48 hours of the last dose and may progress to hypertensive emergency. Treatment: restart clonidine and taper slowly, or convert to labetalol IV if in crisis.\n\n❌ **Option 3 — Incorrect:** Bronchoconstriction and wheezing are associated with **non-selective beta blocker** withdrawal (where the bronchi lose protective beta-2 tone) or with cholinergic excess. Clonidine withdrawal produces sympathomimetic, not parasympathomimetic or respiratory, effects.\n\n❌ **Option 4 — Incorrect:** Urinary retention, constipation, and dry mucous membranes describe the **anticholinergic syndrome**. Clonidine withdrawal is a sympathomimetic syndrome (excess NE/epinephrine-like effects), not an anticholinergic syndrome.\n\n> 💡 **Clonidine withdrawal = hypertensive crisis.** Teach: never stop abruptly. Taper over 1–2 weeks. If client misses doses or plans to discontinue, the provider must be involved. Same principle applies to beta blockers. Both drug classes require gradual tapering.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 29,
+      "title": "Alpha-1 Blockers — BPH and First-Dose Effect",
+      "topic": "Antiadrenergics",
+      "concept": "Alpha-1 Blockers; Tamsulosin; BPH; First-Dose Phenomenon; Patient Teaching",
+      "unitId": 4,
+      "questionText": "A nurse is teaching a 70-year-old client newly prescribed tamsulosin (Flomax) for benign prostatic hyperplasia. Which teaching points are MOST important? *(Select all that apply)*",
+      "options": [
+        { "id": "1", "text": "Take tamsulosin 30 minutes after the same meal each day" },
+        { "id": "2", "text": "Rise slowly from sitting or lying positions to prevent dizziness and falls" },
+        { "id": "3", "text": "Inform any ophthalmologist or surgeon that you take tamsulosin before any eye procedures" },
+        { "id": "4", "text": "Tamsulosin will immediately relieve all symptoms of prostate enlargement" },
+        { "id": "5", "text": "Avoid driving or operating heavy machinery until response to the drug is known" }
+      ],
+      "correctIds": ["1", "2", "3", "5"],
+      "correctAnswerText": "1, 2, 3, 5",
+      "explanation": "**Rationales:**\n\n✅ **Option 1 — Correct:** Tamsulosin should be taken **30 minutes after the same meal each day** to optimize absorption and reduce orthostatic hypotension. Consistent timing with food helps maintain steady drug levels.\n\n✅ **Option 2 — Correct:** Alpha-1 blockers cause vasodilation by blocking α₁ receptors on arterioles. This can produce **orthostatic hypotension** — especially problematic in elderly clients at risk for falls. The client should **rise slowly** from lying to sitting to standing, sit at the bedside for a minute before standing, and hold onto support when getting up. First-dose hypotension is a particular concern, though tamsulosin (being uroselective) has less systemic hypotension than non-selective alpha blockers like prazosin.\n\n✅ **Option 3 — Correct:** Tamsulosin causes **intraoperative floppy iris syndrome (IFIS)** — a serious surgical complication where the iris becomes flaccid and difficult to dilate during cataract surgery, increasing the risk of complications. The ophthalmologist must know the client is on (or has taken) tamsulosin **before any ophthalmic procedure** so they can prepare appropriately. Stopping tamsulosin before surgery does NOT eliminate the risk — the effect persists.\n\n❌ **Option 4 — Incorrect:** Tamsulosin provides symptom relief (improved urine flow, reduced urgency) but does NOT reverse the underlying prostate enlargement. Full symptom improvement may take **weeks**. It also does not shrink the prostate (5-alpha reductase inhibitors like finasteride do that). Setting expectations for immediate complete relief would be inaccurate and could lead to non-adherence.\n\n✅ **Option 5 — Correct:** Dizziness and orthostatic hypotension from tamsulosin — especially early in therapy — create a **fall and injury risk** while driving or operating machinery. The client should avoid these activities until they know how the drug affects them.\n\n> 💡 **IFIS (Intraoperative Floppy Iris Syndrome):** Any client on any alpha-1 blocker (especially tamsulosin) must inform their eye surgeon. This applies even if the drug was stopped months earlier. The iris changes are not reversed by discontinuation.\n\n---",
+      "isSATA": true
+    },
+    {
+      "id": 30,
+      "title": "Beta Blocker — Contraindications",
+      "topic": "Antiadrenergics",
+      "concept": "Beta Blockers; Contraindications; Asthma; Heart Block",
+      "unitId": 4,
+      "questionText": "A nurse reviews the medication orders for four clients. For which client should the nurse question an order for propranolol (Inderal)?",
+      "options": [
+        { "id": "1", "text": "A 55-year-old with chronic stable angina and a HR of 82 bpm" },
+        { "id": "2", "text": "A 48-year-old with essential hypertension and a history of migraine headaches" },
+        { "id": "3", "text": "A 62-year-old with moderate persistent asthma and a history of COPD" },
+        { "id": "4", "text": "A 70-year-old post-MI with an ejection fraction of 35% on carvedilol" }
+      ],
+      "correctIds": ["3"],
+      "correctAnswerText": "3",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect (propranolol is appropriate):** Propranolol is indicated for **chronic stable angina** — it reduces myocardial oxygen demand by lowering HR and contractility. A HR of 82 bpm is within normal range, and beta blockers are a first-line treatment for this condition. No contraindication exists here.\n\n❌ **Option 2 — Incorrect (propranolol is appropriate):** Propranolol is FDA-approved for **migraine prophylaxis** and hypertension. This client has both conditions, making propranolol an excellent two-in-one agent. Migraine history is an indication, not a contraindication, for propranolol.\n\n✅ **Option 3 — Correct (QUESTION this order):** Propranolol is a **non-selective beta blocker** — it blocks both β₁ and **β₂ receptors**. Blocking β₂ receptors in the bronchi causes **bronchoconstriction**, which can precipitate severe bronchospasm in a client with **asthma or COPD**. Asthma is a **contraindication** to non-selective beta blockers. If a beta blocker is needed for this client, a **cardioselective β₁ agent** (metoprolol, atenolol) would be safer, and even then, it should be used with caution in severe reactive airway disease.\n\n❌ **Option 4 — Incorrect (propranolol/carvedilol combination addressed):** This client is already on carvedilol (an alpha+beta blocker). Adding propranolol would be inappropriate (double beta blockade) — but the question asks only about propranolol being questioned. The reason to question the order would be the duplicate therapy with carvedilol, not because carvedilol is contraindicated post-MI with reduced EF (it's actually indicated). However, among the four options, Option 3 presents the clearest and most dangerous contraindication.\n\n> 💡 **Beta blocker + asthma = non-selective contraindicated.** Cardioselective agents (metoprolol, atenolol) can be cautiously used in mild COPD but are still avoided in active bronchospasm or asthma. Propranolol, nadolol, timolol are non-selective — never in asthma.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 31,
+      "title": "Labetalol — Hypertensive Emergency in Pregnancy",
+      "topic": "Antiadrenergics",
+      "concept": "Labetalol; Pregnancy Hypertension; Alpha+Beta Blocker; Safe Drug Use in Pregnancy",
+      "unitId": 4,
+      "questionText": "A nurse is caring for a client at 34 weeks of gestation with severe preeclampsia and a BP of 172/114 mmHg. The provider orders labetalol IV. Which statement BEST explains why labetalol is selected over other antihypertensives for this client?",
+      "options": [
+        { "id": "1", "text": "Labetalol is an ACE inhibitor, which is the safest class of antihypertensives in pregnancy" },
+        { "id": "2", "text": "Labetalol blocks both alpha-1 and beta receptors, effectively lowering BP without causing reflex tachycardia, and is considered safe in pregnancy" },
+        { "id": "3", "text": "Labetalol stimulates beta-2 receptors in the uterus, promoting uterine relaxation and preventing preterm labor" },
+        { "id": "4", "text": "Labetalol is selected because it can be given as a single oral dose for rapid-onset BP reduction" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Labetalol is NOT an ACE inhibitor. ACE inhibitors (enalapril, lisinopril) are **contraindicated in pregnancy** (Categories D and X after first trimester) because they cause fetal renal agenesis, oligohydramnios, and neonatal renal failure. Labetalol is an **alpha + beta blocker**.\n\n✅ **Option 2 — Correct:** Labetalol is an **alpha-1 AND non-selective beta blocker**. The dual receptor blockade provides effective BP lowering through multiple mechanisms: α₁ blockade causes vasodilation (↓ peripheral resistance → ↓ BP), while β₁ blockade prevents the reflex tachycardia that would otherwise occur from vasodilation. Labetalol has an extensive safety record in pregnancy and is a **first-line IV agent** for severe hypertension in preeclampsia/eclampsia. It crosses the placenta minimally and is considered safe.\n\n❌ **Option 3 — Incorrect:** Labetalol does NOT stimulate beta-2 receptors — it blocks them (non-selective beta blocker). Beta-2 **agonists** (terbutaline, ritodrine) relax the uterus for tocolysis. Beta-2 **blockade** by labetalol could theoretically reduce uterine relaxation (minor clinical concern), but this is not why labetalol is selected — its proven safety and efficacy profile in obstetric hypertension is the reason.\n\n❌ **Option 4 — Incorrect:** Labetalol is given **IV** in hypertensive emergency in pregnancy, not oral. The IV formulation allows for precise, rapid titration. While oral labetalol exists for chronic hypertension management, this scenario — severe preeclampsia with BP 172/114 — requires IV administration for prompt BP control.\n\n> 💡 **Antihypertensives safe in pregnancy:** Labetalol (IV for emergency; oral for maintenance), hydralazine (IV), nifedipine, methyldopa. **Avoid:** ACE inhibitors, ARBs, direct renin inhibitors, nitroprusside (cyanide fetal risk). Magnesium sulfate is used for seizure prophylaxis in preeclampsia — NOT to lower BP.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 32,
+      "title": "Timolol Ophthalmic — Systemic Effects",
+      "topic": "Antiadrenergics",
+      "concept": "Timolol; Ophthalmic Beta Blocker; Systemic Absorption; Adverse Effects",
+      "unitId": 4,
+      "questionText": "A nurse is reviewing the medication list of a client with open-angle glaucoma who uses timolol ophthalmic drops 0.5% twice daily. The nurse notes the client also has a diagnosis of COPD and a resting HR of 52 bpm. Which action is the PRIORITY?",
+      "options": [
+        { "id": "1", "text": "Continue the timolol drops as prescribed — ophthalmic medications have no systemic effects" },
+        { "id": "2", "text": "Notify the provider of concerns regarding systemic absorption of timolol and its potential effects on the client's heart rate and respiratory status" },
+        { "id": "3", "text": "Instruct the client to increase the frequency of timolol drops to better control intraocular pressure" },
+        { "id": "4", "text": "Administer the drops and monitor intraocular pressure without contacting the provider" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** This statement is **false and dangerous**. Ophthalmic medications ARE absorbed systemically through the nasolacrimal duct into the nasal mucosa and GI tract — bypassing first-pass metabolism. Timolol ophthalmic drops can produce systemic beta blockade sufficient to cause bradycardia, bronchoconstriction, and other systemic adverse effects, particularly in susceptible clients.\n\n✅ **Option 2 — Correct:** This client has two significant risk factors for timolol ophthalmic toxicity: (1) a resting **HR of 52 bpm** (bradycardia) from systemic β₁ blockade — further slowing risks syncope, AV block, or cardiovascular compromise; (2) **COPD** — systemic timolol causes β₂ blockade → bronchoconstriction → can precipitate severe COPD exacerbation. The nurse must contact the provider to reassess whether timolol is still appropriate (alternatives: prostaglandin analogs like latanoprost, carbonic anhydrase inhibitors, or selective alpha-2 agonist brimonidine). Betaxolol (cardioselective ophthalmic beta blocker) may be a safer alternative if a topical beta blocker is needed, though still with caution.\n\n❌ **Option 3 — Incorrect:** Increasing the frequency of timolol drops would worsen the systemic adverse effects (bradycardia, bronchoconstriction). This is the opposite of safe practice.\n\n❌ **Option 4 — Incorrect:** Administering the drops without addressing the safety concerns (HR 52, COPD) ignores the duty to advocate for client safety. The nurse must act proactively on identified risks before administering a medication that could cause harm.\n\n> 💡 **Nasolacrimal occlusion technique:** Gently press the inner corner of the eye for 1–2 minutes after instilling ophthalmic drops to reduce nasolacrimal drainage and limit systemic absorption. This is especially important for ophthalmic beta blockers, alpha agonists, and other systemically active drugs.\n\n---",
       "isSATA": false
     }
   ]
