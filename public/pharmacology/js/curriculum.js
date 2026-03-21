@@ -77,6 +77,43 @@ const CURRICULUM = {
           "content": "### 2.5 Nursing Implications for Anticholinergics\n\n#### Pre-administration Checks\n1. Confirm no narrow-angle glaucoma, urinary retention, GI obstruction, myasthenia gravis\n2. Check HR — hold (except when bradycardia is the indication) if HR >100\n3. Review medication list for **additive anticholinergic burden** (diphenhydramine, TCAs, antipsychotics)\n\n#### Monitoring\n- **Urinary output:** Retention risk — expect voiding within 8 hours\n- **Bowel sounds:** Constipation/ileus risk with prolonged use\n- **Mental status:** Delirium risk — especially in elderly using tertiary agents\n- **Heart rate:** Expected tachycardia; may be problematic in cardiac disease\n- **Temperature:** Hyperthermia risk — ensure hydration and cooling in hot environments\n\n#### Patient Teaching\n- Dry mouth: Sugar-free gum, frequent water sips, good oral hygiene\n- Constipation: Fluids, fiber, activity\n- Void before each dose if possible (urinary retention risk)\n- Avoid vigorous exercise in heat — inability to sweat increases heatstroke risk\n- Vision: Blurred near vision and light sensitivity are expected — caution driving\n- Fall risk: Dizziness, confusion, blurred vision → especially in elderly\n\n---"
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "Adrenergics (Sympathomimetics)",
+      "intro": "",
+      "sections": [
+        {
+          "id": "3.1",
+          "title": "Adrenergic Receptors: Alpha & Beta",
+          "content": "### 3.1 Adrenergic Receptors: Alpha & Beta\n\nAdrenergic receptors respond to **norepinephrine (NE)** and **epinephrine (Epi)**. Understanding receptor location and effect is essential for predicting drug actions.\n\n#### Alpha (α) Receptors\n\n| Subtype | Location | Effect When Stimulated |\n|---|---|---|\n| **α₁** | Peripheral arteries/arterioles, veins, skin, mucosa; bladder neck sphincter; radial muscle of iris | Vasoconstriction (↑ BP); bladder sphincter contraction; mydriasis |\n| **α₂** | Presynaptic nerve terminals; pancreatic beta cells; CNS | ↓ NE release (negative feedback); ↓ insulin secretion; ↓ sympathetic outflow (CNS) |\n\n#### Beta (β) Receptors\n\n| Subtype | Location | Effect When Stimulated |\n|---|---|---|\n| **β₁** | Heart (SA node, AV node, ventricles); kidney (juxtaglomerular cells) | ↑ HR (chronotropy), ↑ force (inotropy), ↑ conduction (dromotropy); ↑ renin → ↑ BP |\n| **β₂** | Bronchial smooth muscle; uterus; skeletal muscle vasculature; liver | Bronchodilation; uterine relaxation (tocolysis); vasodilation; glycogenolysis |\n| **β₃** | Adipose tissue; bladder detrusor | Lipolysis; bladder relaxation |\n\n#### Dopamine (D) Receptors\n- **D₁:** Renal, mesenteric, coronary vessels → vasodilation (renal perfusion at low dopamine doses)\n\n> 💡 **Memory device:** β₁ = ONE heart. β₂ = TWO lungs. α₁ = ALL vessels squeeze.\n\n---"
+        },
+        {
+          "id": "3.2",
+          "title": "Catecholamines vs. Non-Catecholamines",
+          "content": "### 3.2 Catecholamines vs. Non-Catecholamines\n\n#### Catecholamines (Epinephrine, NE, Dopamine)\n- Naturally occurring or synthetic amines with catechol ring\n- **Cannot be given orally** (destroyed by GI enzymes/MAO/COMT)\n- Rapid onset, short duration when given IV\n- Metabolized by MAO and COMT\n\n#### Key Catecholamines\n\n| Drug | α₁ | β₁ | β₂ | Clinical Uses |\n|---|---|---|---|---|\n| **Epinephrine** | +++ | +++ | +++ | Anaphylaxis, cardiac arrest, bronchospasm, local vasoconstriction with anesthetics |\n| **Norepinephrine** (Levophed) | +++ | ++ | Minimal | Septic shock (vasopressor) |\n| **Dopamine** | + (high dose) | ++ | + | Cardiogenic shock; renal perfusion (low dose D₁ effect) |\n| **Dobutamine** | Minimal | +++ | + | Heart failure (↑ inotropy) |\n| **Isoproterenol** | None | +++ | +++ | Refractory bradycardia; bronchospasm (historical) |\n\n#### Non-Catecholamines\n\n| Drug | Main Receptors | Uses |\n|---|---|---|\n| **Phenylephrine** (Neo-Synephrine) | α₁ only | Nasal decongestant; hypotension; mydriasis |\n| **Albuterol** (Salbutamol) | β₂ selective | Asthma/COPD rescue bronchodilator |\n| **Salmeterol, Formoterol** | β₂ (long-acting) | Asthma/COPD maintenance |\n| **Amphetamine** | α + β (indirect) | ADHD, narcolepsy |\n| **Pseudoephedrine** | α₁ > β | Nasal decongestant |\n| **Midodrine** | α₁ | Orthostatic hypotension |\n\n---"
+        },
+        {
+          "id": "3.3",
+          "title": "Epinephrine — The Prototype Adrenergic",
+          "content": "### 3.3 Epinephrine — The Prototype Adrenergic\n\nEpinephrine activates **all adrenergic receptors** (α₁, α₂, β₁, β₂). Its effects depend on dose and the receptor affinity at that dose.\n\n#### Dose-Dependent Effects\n\n| Dose | Dominant Receptors | Cardiovascular Effect |\n|---|---|---|\n| Low | β₁, β₂ | ↑ HR, ↑ force; vasodilation in skeletal muscle |\n| High | α₁, β₁, β₂ | ↑ HR, ↑ force; generalized vasoconstriction, ↑↑ BP |\n\n#### Clinical Uses of Epinephrine\n\n| Indication | Concentration | Route |\n|---|---|---|\n| **Anaphylaxis** | 1:1000 (1 mg/mL) | IM, anterolateral thigh — FIRST-LINE |\n| **Cardiac arrest** | 1:10,000 (0.1 mg/mL) | IV push every 3–5 min |\n| **Severe bronchospasm** | 1:1000 | SQ or nebulized |\n| **Local anesthetic adjunct** | Varies | Mixed with local — prolongs anesthesia, ↓ bleeding |\n| **Croup (severe)** | Racemic epinephrine | Nebulized |\n\n**CRITICAL nursing point:** 1:1000 = 10× more concentrated than 1:10,000. **Anaphylaxis uses 1:1000 IM; cardiac arrest uses 1:10,000 IV.** Concentration error = fatal.\n\n#### Anaphylaxis — Nursing Priorities\n1. **Epinephrine 1:1000, 0.3–0.5 mg IM** to anterolateral thigh — FIRST action\n2. Assess airway — position upright if breathing; supine if hypotensive\n3. Call for emergency response\n4. IV access, fluids, supplemental O₂\n5. Diphenhydramine and corticosteroids (adjuncts, NOT first-line)\n\n---"
+        },
+        {
+          "id": "3.4",
+          "title": "Beta-2 Agonists — Respiratory Pharmacology",
+          "content": "### 3.4 Beta-2 Agonists — Respiratory Pharmacology\n\nBeta-2 agonists act on β₂ receptors in bronchial smooth muscle → **bronchodilation**. They are the most important drug class for acute asthma.\n\n#### Short-Acting Beta-2 Agonists (SABA) — Rescue\n\n| Drug | Onset | Duration | Primary Use |\n|---|---|---|---|\n| **Albuterol** (Salbutamol, ProAir, Ventolin) | 5–15 min | 4–6 hr | Acute asthma attack, exercise-induced bronchospasm |\n| **Levalbuterol** (Xopenex) | 5–15 min | 5–8 hr | Asthma; fewer cardiac side effects than albuterol |\n\n#### Long-Acting Beta-2 Agonists (LABA) — Maintenance\n\n| Drug | Duration | Primary Use | Warning |\n|---|---|---|---|\n| **Salmeterol** (Serevent) | 12 hr | COPD/Asthma maintenance | NEVER for acute attacks |\n| **Formoterol** (Foradil) | 12 hr | COPD/Asthma maintenance | NEVER for acute attacks |\n| **Indacaterol** | 24 hr | COPD | Once daily |\n\n**⚠️ BLACK BOX WARNING — LABAs:** Increased risk of asthma-related death. LABAs should only be used in combination with an inhaled corticosteroid (ICS) in asthma, never as monotherapy.\n\n#### Beta-2 Agonist Adverse Effects\n- **Tachycardia** (β₁ cross-reactivity, especially at high doses)\n- **Hypokalemia** — β₂ activation drives K⁺ into cells; monitor serum K⁺ in acute exacerbations\n- **Tremor** — skeletal muscle β₂ activation\n- **Hyperglycemia** — glycogenolysis from β₂ activation in liver\n\n---"
+        },
+        {
+          "id": "3.5",
+          "title": "Vasopressors — Shock Management",
+          "content": "### 3.5 Vasopressors — Shock Management\n\nVasopressors are adrenergic agents used to restore blood pressure in shock. Selection depends on the type of shock.\n\n| Vasopressor | Key Receptors | Preferred Shock Type | Nursing Considerations |\n|---|---|---|---|\n| **Norepinephrine** (Levophed) | α₁ >>> β₁ | **Septic shock** (first-line per Surviving Sepsis Campaign) | Potent vasoconstriction; infuse via central line — severe extravasation risk; antidote: phentolamine |\n| **Epinephrine** | α₁, β₁, β₂ | Anaphylactic shock; refractory septic shock | First-line for anaphylaxis (IM) |\n| **Dopamine** | D₁, β₁, α₁ (dose-dependent) | Cardiogenic shock; hemodynamically significant bradycardia | Low dose: renal D₁; Mid dose: β₁ cardiac; High dose: α₁ vasoconstriction |\n| **Dobutamine** | β₁ >>> β₂ | Cardiogenic shock (↑ cardiac output) | Does NOT raise BP through vasoconstriction; may ↓ BP from β₂ vasodilation |\n| **Phenylephrine** | α₁ only | Hypotension from neuraxial anesthesia; SVT (reflexive) | Reflex bradycardia common; no β stimulation |\n| **Vasopressin** | V₁ (non-adrenergic) | Refractory septic shock (adjunct) | Non-catecholamine; causes direct vasoconstriction independent of adrenergic receptors |\n\n> 💡 **Norepinephrine extravasation:** Causes severe local tissue ischemia and necrosis. Must be infused via **central venous catheter**. Antidote = phentolamine (alpha blocker) injected into the affected area.\n\n---"
+        },
+        {
+          "id": "3.6",
+          "title": "Adrenergic Adverse Effects & Nursing Implications",
+          "content": "### 3.6 Adrenergic Adverse Effects & Nursing Implications\n\n#### Common Adverse Effects by Receptor\n\n| Receptor | Drug Examples | Key Adverse Effects |\n|---|---|---|\n| **α₁ stimulation** | NE, high-dose epi, phenylephrine | Severe HTN, reflex bradycardia, tissue necrosis (extravasation), ischemia |\n| **β₁ stimulation** | Epinephrine, dobutamine, dopamine | Tachycardia, angina, arrhythmias, ↑ myocardial O₂ demand |\n| **β₂ stimulation** | Albuterol, salmeterol | Tremor, tachycardia, **hypokalemia**, hyperglycemia |\n\n#### Nursing Priorities for IV Adrenergic Infusions\n1. **Central line preferred** for potent vasopressors (NE, epi, dopamine at vasoconstrictor doses) — peripheral extravasation → tissue necrosis\n2. **Continuous cardiac monitoring** — arrhythmias can be triggered\n3. **Frequent BP monitoring** — every 5–15 minutes during titration\n4. **Assess extremity perfusion** — vasopressors can cause limb ischemia (color, cap refill, pulses)\n5. **Titrate to target MAP** (usually ≥65 mmHg in septic shock)\n6. **Monitor urine output** — indicator of perfusion; target ≥0.5 mL/kg/hr\n7. **Extravasation management** — stop infusion; aspirate; inject phentolamine into site for alpha agonists\n\n#### Albuterol Nursing Priorities\n- Assess breath sounds before and after administration\n- Teach correct inhaler technique — spacer use if needed\n- Monitor HR and K⁺ during frequent nebulizations\n- SABA overuse (>2 days/week for symptom control) indicates poorly controlled asthma — reassess controller therapy\n\n---"
+        }
+      ]
     }
   ],
   "questions": [
@@ -375,6 +412,156 @@ const CURRICULUM = {
       "correctIds": ["2"],
       "correctAnswerText": "2",
       "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Atropine is an anticholinergic agent. Administering it here would **worsen** the anticholinergic toxidrome. Atropine is the antidote for **cholinergic** (organophosphate) toxicity, not anticholinergic toxicity.\n\n✅ **Option 2 — Correct:** The clinical picture is the classic **anticholinergic toxidrome** — \"Blind as a bat (mydriasis), dry as a bone (dry flushed skin), red as a beet (flushing), hot as Hades (hyperthermia), mad as a hatter (altered mental status), full as a flask (urinary retention), fast as a fiddle (tachycardia).\" The antidote is **physostigmine** — a reversible acetylcholinesterase inhibitor that **crosses the BBB**, reversing both central and peripheral anticholinergic effects.\n\n❌ **Option 3 — Incorrect:** Naloxone reverses **opioid** toxicity — characterized by miosis (pinpoint pupils), respiratory depression, and decreased consciousness. This client has DILATED pupils and tachycardia — the opposite of opioid toxicity.\n\n❌ **Option 4 — Incorrect:** Flumazenil reverses **benzodiazepine** toxicity (CNS depression, normal pupils) — not anticholinergic toxicity.\n\n> 💡 **Physostigmine** is the ONLY cholinesterase inhibitor that crosses the BBB, making it the specific antidote for anticholinergic toxicity with CNS involvement. It reverses both central (delirium) and peripheral (urinary retention, tachycardia, mydriasis) effects.\n\n---",
+      "isSATA": false
+    },
+
+    /* ═══════════════════════════════════════════════
+       UNIT 3 — ADRENERGICS QUESTIONS
+    ═══════════════════════════════════════════════ */
+    {
+      "id": 17,
+      "title": "Epinephrine — Anaphylaxis Priority Action",
+      "topic": "Adrenergics",
+      "concept": "Epinephrine; Anaphylaxis; Priority Intervention; Concentration",
+      "unitId": 3,
+      "questionText": "A client in the outpatient clinic develops sudden urticaria, angioedema, and audible stridor after receiving a penicillin injection. Which action is the nurse's FIRST priority?",
+      "options": [
+        { "id": "1", "text": "Administer diphenhydramine 50 mg IV to block the histamine response" },
+        { "id": "2", "text": "Administer epinephrine 1:1000, 0.3 mg intramuscularly into the anterolateral thigh" },
+        { "id": "3", "text": "Establish IV access and begin a normal saline infusion at 500 mL/hr" },
+        { "id": "4", "text": "Apply oxygen via non-rebreather mask at 15 L/min" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Diphenhydramine (H₁ antagonist) is an **adjunct** treatment for anaphylaxis — it helps relieve urticaria and itching but does NOT reverse the life-threatening bronchospasm, laryngeal edema, or cardiovascular collapse of anaphylaxis. It is given AFTER epinephrine. Giving diphenhydramine first delays the definitive treatment and can be fatal.\n\n✅ **Option 2 — Correct:** **Epinephrine 1:1000, 0.3 mg IM** to the anterolateral thigh is the **first and most critical intervention** in anaphylaxis. Epinephrine activates α₁ receptors (vasoconstriction → ↑ BP, ↓ angioedema), β₁ receptors (↑ HR and cardiac output), and β₂ receptors (bronchodilation, ↑ mast cell stabilization). The anterolateral thigh provides faster absorption than the deltoid due to greater muscle mass and blood flow. The 1:1000 concentration (1 mg/mL) is correct for IM anaphylaxis treatment — do NOT confuse with 1:10,000 (cardiac arrest IV dose).\n\n❌ **Option 3 — Incorrect:** IV access and fluid resuscitation are important in anaphylaxis with hypotension, but they come AFTER epinephrine. Establishing IV access first when the airway is closing is an inappropriate delay. Epinephrine must be given immediately — even IM without IV access established.\n\n❌ **Option 4 — Incorrect:** Supplemental oxygen is appropriate and should be given, but it does not reverse the anaphylactic process. Laryngeal edema causing stridor requires epinephrine to reverse — oxygen alone will not prevent airway loss. Epinephrine remains the priority.\n\n> 💡 **Anaphylaxis = Epinephrine FIRST, everything else second.** Diphenhydramine and steroids are adjuncts. Epinephrine 1:1000 IM (thigh). Not IV unless patient is in cardiac arrest. Dose: 0.01 mg/kg (adult max 0.5 mg).\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 18,
+      "title": "Albuterol — Adverse Effects SATA",
+      "topic": "Adrenergics",
+      "concept": "Albuterol; Beta-2 Agonists; Adverse Effects; Monitoring",
+      "unitId": 3,
+      "questionText": "A client with asthma receives multiple doses of nebulized albuterol in the emergency department for an acute exacerbation. Which adverse effects should the nurse monitor for? *(Select all that apply)*",
+      "options": [
+        { "id": "1", "text": "Hypokalemia" },
+        { "id": "2", "text": "Tachycardia" },
+        { "id": "3", "text": "Tremor" },
+        { "id": "4", "text": "Hyperkalemia" },
+        { "id": "5", "text": "Hyperglycemia" },
+        { "id": "6", "text": "Bradycardia" }
+      ],
+      "correctIds": ["1", "2", "3", "5"],
+      "correctAnswerText": "1, 2, 3, 5",
+      "explanation": "**Rationales:**\n\n✅ **Option 1 — Correct:** Beta-2 activation stimulates the Na⁺/K⁺-ATPase pump, driving potassium **into cells** → **hypokalemia**. This is clinically significant during multiple nebulizations and can precipitate life-threatening cardiac arrhythmias. Monitor serum K⁺; supplement as needed.\n\n✅ **Option 2 — Correct:** Although albuterol is β₂-selective, at high doses it also stimulates **β₁ receptors** in the heart → **tachycardia**. Even β₂ stimulation itself can cause reflex tachycardia from vasodilation. Monitor HR continuously during acute treatment.\n\n✅ **Option 3 — Correct:** β₂ stimulation of **skeletal muscle** causes muscle tremor — one of the most common side effects of albuterol. Clients often report shakiness and fine hand tremors, especially after multiple doses or with systemic (nebulized) delivery.\n\n❌ **Option 4 — Incorrect:** Albuterol causes **hypo**kalemia (drives K⁺ into cells), NOT hyperkalemia. Albuterol is sometimes used clinically as a temporary treatment for hyperkalemia (along with insulin and dextrose) precisely because of this intracellular K⁺ shifting effect.\n\n✅ **Option 5 — Correct:** β₂ activation in the **liver** stimulates glycogenolysis (breakdown of glycogen → glucose) → **hyperglycemia**. This is particularly relevant in diabetic clients receiving frequent albuterol nebulizations.\n\n❌ **Option 6 — Incorrect:** Bradycardia is NOT an expected adverse effect of albuterol. The drug causes tachycardia. Bradycardia would suggest an opposing effect (parasympathetic or beta-blocker effect) rather than adrenergic stimulation.\n\n> 💡 **Albuterol monitoring triad in acute exacerbation:** Heart rate, serum potassium, blood glucose. All three shift in predictable directions from beta-2 (and some beta-1) stimulation.\n\n---",
+      "isSATA": true
+    },
+    {
+      "id": 19,
+      "title": "Norepinephrine — Extravasation Risk",
+      "topic": "Adrenergics",
+      "concept": "Norepinephrine; Vasopressors; IV Administration Safety; Extravasation",
+      "unitId": 3,
+      "questionText": "A client in septic shock is receiving a norepinephrine infusion through a peripheral IV site in the forearm. The nurse notes swelling and pallor at the insertion site. Which is the PRIORITY nursing action?",
+      "options": [
+        { "id": "1", "text": "Slow the infusion rate and apply a warm compress to the IV site" },
+        { "id": "2", "text": "Stop the infusion, disconnect the IV, and prepare phentolamine for local injection at the site" },
+        { "id": "3", "text": "Flush the IV line with normal saline and reposition the extremity" },
+        { "id": "4", "text": "Increase the infusion rate to ensure adequate drug delivery despite the compromised site" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Slowing the infusion does not address the active extravasation, and warm compresses would **worsen** tissue ischemia. Norepinephrine is an extremely potent α₁ agonist — local vasoconstriction from extravasation causes severe tissue ischemia that progresses rapidly to necrosis. Heat increases metabolic demand in already-ischemic tissue.\n\n✅ **Option 2 — Correct:** **Stop the infusion immediately** and **do not flush** (flushing pushes more drug into extravasated tissue). The priority treatment for norepinephrine extravasation is **local injection of phentolamine** (an alpha-adrenergic blocker) into the affected area. Phentolamine blocks the α₁-mediated vasoconstriction, restoring blood flow and preventing tissue necrosis. Ideally, norepinephrine and other potent vasopressors should be infused via a **central venous catheter** to prevent this complication — the nurse should raise this safety concern with the provider.\n\n❌ **Option 3 — Incorrect:** Flushing the IV line with normal saline after extravasation would push the norepinephrine further into the subcutaneous tissue, worsening the injury. The IV line should not be flushed.\n\n❌ **Option 4 — Incorrect:** Increasing the infusion rate into an extravasated site would rapidly worsen local tissue destruction. This is a dangerous option that could lead to compartment syndrome and limb loss.\n\n> 💡 **Vasopressor safety rule:** Norepinephrine, dopamine (high dose), and epinephrine should ideally infuse through a **central line**. If peripheral is unavoidable, use the largest, most proximal vein available, monitor continuously, and have phentolamine available. Antidote: phentolamine 5–10 mg diluted in NS injected into affected area within 12 hours.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 20,
+      "title": "Dopamine — Dose-Dependent Receptor Effects",
+      "topic": "Adrenergics",
+      "concept": "Dopamine; Dose-Dependent Effects; Receptor Pharmacology; Vasopressors",
+      "unitId": 3,
+      "questionText": "A provider orders dopamine for a client in cardiogenic shock with a BP of 74/48 and HR of 116. The nurse understands that at intermediate doses (5–10 mcg/kg/min), dopamine primarily exerts its therapeutic effects through which receptor?",
+      "options": [
+        { "id": "1", "text": "Dopamine D₁ receptors in the renal vasculature" },
+        { "id": "2", "text": "Beta-1 adrenergic receptors in the heart" },
+        { "id": "3", "text": "Alpha-1 adrenergic receptors in peripheral vessels" },
+        { "id": "4", "text": "Beta-2 adrenergic receptors in the bronchi" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** D₁ receptor activation (renal vasodilation, ↑ urine output) is the dominant effect at **low doses** (1–3 mcg/kg/min). Note: the clinical utility of this \"renal dose\" dopamine is now largely discredited — it does not reliably protect renal function and is not recommended as a sole renal-protective strategy.\n\n✅ **Option 2 — Correct:** At **intermediate doses** (approximately 5–10 mcg/kg/min), dopamine predominantly activates **β₁ receptors** in the heart → **↑ HR (chronotropy), ↑ contractility (inotropy), ↑ cardiac output**. This makes it valuable in cardiogenic shock where the primary problem is inadequate cardiac pump function. This dose range is sometimes called the \"cardiac dose.\"\n\n❌ **Option 3 — Incorrect:** Alpha-1 receptor activation (vasoconstriction → ↑ SVR → ↑ BP) predominates at **high doses** (>10 mcg/kg/min). At this dose, dopamine behaves more like norepinephrine, causing significant peripheral vasoconstriction — useful in septic shock but can worsen cardiogenic shock by increasing afterload.\n\n❌ **Option 4 — Incorrect:** While dopamine has some beta-2 activity, bronchodilation is NOT its primary therapeutic effect at any clinically used dose range. Beta-2 effects from dopamine are minimal and not therapeutically relevant in the vasopressor context.\n\n> 💡 **Dopamine dose-receptor mnemonic:** Low (1–3): **D**opamine receptors (Diuresis). Mid (5–10): **B**eta-1 (Beats the heart). High (>10): **A**lpha-1 (All vessels squeeze). Think **D-B-A** as doses rise.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 21,
+      "title": "Beta-2 Agonist — LABA Black Box Warning",
+      "topic": "Adrenergics",
+      "concept": "LABA; Salmeterol; Black Box Warning; Asthma Safety",
+      "unitId": 3,
+      "questionText": "A nurse is teaching a client with asthma who has been prescribed salmeterol (Serevent) as their only inhaler. Which teaching point is MOST important?",
+      "options": [
+        { "id": "1", "text": "Use salmeterol immediately at the onset of wheezing for rapid relief" },
+        { "id": "2", "text": "Salmeterol carries a black box warning — it should never be used as the sole asthma therapy and requires a concurrent inhaled corticosteroid" },
+        { "id": "3", "text": "Salmeterol may cause excessive drying of the airways and should be combined with a mucolytic" },
+        { "id": "4", "text": "Salmeterol is safe for long-term monotherapy if the client's asthma is stable" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Salmeterol is a **long-acting beta-2 agonist (LABA)** with an onset of 15–30 minutes — it is entirely inappropriate for acute symptom relief. Using it during an attack (instead of a SABA like albuterol) could be fatal due to delayed onset. Clients must have a SABA for rescue use.\n\n✅ **Option 2 — Correct:** Salmeterol carries an **FDA Black Box Warning** — clinical trials demonstrated **increased risk of asthma-related death** when LABAs are used as monotherapy in asthma. LABAs **must be prescribed in combination with an inhaled corticosteroid (ICS)** in asthma (e.g., as Advair = fluticasone + salmeterol). They should NEVER be used as the only maintenance therapy and NEVER for acute episodes. This is the most critical and potentially life-saving teaching point.\n\n❌ **Option 3 — Incorrect:** Salmeterol does not dry airways significantly. The drug causes bronchodilation via smooth muscle relaxation, not secretion reduction. The anticholinergic drug class (ipratropium) reduces secretions, not beta-2 agonists.\n\n❌ **Option 4 — Incorrect:** This directly contradicts the FDA Black Box Warning. Salmeterol monotherapy in asthma is contraindicated regardless of disease stability. In COPD (not asthma), LABAs can be used without an ICS — but in asthma, ICS combination is mandatory.\n\n> 💡 **LABA safety rule in asthma:** Never alone. Always with ICS. Never for rescue. For COPD, LABAs can be standalone maintenance. This distinction is frequently tested.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 22,
+      "title": "Adrenergic Receptor — Clinical Correlation",
+      "topic": "Adrenergics",
+      "concept": "Alpha-1 Receptors; Beta-1 Receptors; Beta-2 Receptors; Receptor-Effect Matching",
+      "unitId": 3,
+      "questionText": "A nurse is caring for a client receiving phenylephrine (Neo-Synephrine) for intraoperative hypotension. Which assessment finding is the EXPECTED pharmacological response to this drug?",
+      "options": [
+        { "id": "1", "text": "Increased heart rate and cardiac output" },
+        { "id": "2", "text": "Bronchodilation and decreased airway resistance" },
+        { "id": "3", "text": "Increased blood pressure with reflex bradycardia" },
+        { "id": "4", "text": "Decreased blood pressure from peripheral vasodilation" }
+      ],
+      "correctIds": ["3"],
+      "correctAnswerText": "3",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Increased heart rate would require **beta-1 receptor** stimulation. Phenylephrine is a **pure alpha-1 agonist** — it has no beta-1 activity. In fact, the opposite occurs: the marked increase in BP from vasoconstriction triggers baroreceptor-mediated **reflex bradycardia** (the baroreceptors sense high BP and signal the vagus nerve to slow the heart).\n\n❌ **Option 2 — Incorrect:** Bronchodilation requires **beta-2 receptor** stimulation. Phenylephrine has no beta-2 activity. Bronchial alpha-1 stimulation would actually cause mild bronchoconstriction, not bronchodilation.\n\n✅ **Option 3 — Correct:** Phenylephrine acts **only at alpha-1 receptors** — causing intense vasoconstriction of arteries and arterioles → **↑ systemic vascular resistance → ↑ blood pressure**. The baroreceptor reflex detects the elevated BP and responds by increasing vagal tone → **reflex bradycardia**. This reflex slowing of the heart is a reliable and expected pharmacological consequence. This is actually used therapeutically to terminate certain supraventricular tachycardias (by reflexively increasing vagal tone).\n\n❌ **Option 4 — Incorrect:** Vasodilation would require alpha-1 **blockade** (e.g., phentolamine, prazosin) or beta-2 stimulation (e.g., albuterol). Alpha-1 agonism causes vasoconstriction, not vasodilation. A decrease in BP is the opposite of phenylephrine's expected effect.\n\n> 💡 **Pure alpha-1 agonist = ↑ BP + reflex ↓ HR.** This distinguishes phenylephrine from epinephrine (↑ BP + ↑ HR from β₁) and dopamine at mid-doses (↑ HR from β₁). Reflex bradycardia with phenylephrine can be used to slow SVT without direct vagal manipulation.\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 23,
+      "title": "Dobutamine — Heart Failure",
+      "topic": "Adrenergics",
+      "concept": "Dobutamine; Beta-1 Agonist; Cardiogenic Shock; Inotropy",
+      "unitId": 3,
+      "questionText": "A client with acute decompensated heart failure has a cardiac output of 2.8 L/min and a BP of 86/54. The provider initiates a dobutamine infusion. Which assessment finding BEST indicates a therapeutic response to dobutamine?",
+      "options": [
+        { "id": "1", "text": "Mean arterial pressure rises from 65 to 85 mmHg due to peripheral vasoconstriction" },
+        { "id": "2", "text": "Urine output increases from 10 to 40 mL/hr and cardiac output improves to 4.5 L/min" },
+        { "id": "3", "text": "Heart rate decreases from 118 to 72 bpm due to increased vagal tone" },
+        { "id": "4", "text": "Peripheral extremities become cool and mottled as blood is redirected to vital organs" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Dobutamine works primarily via **β₁ stimulation** → increased myocardial contractility and cardiac output. It has **minimal alpha-1 activity** — it does NOT significantly increase BP through peripheral vasoconstriction. In fact, dobutamine can slightly **lower** BP due to mild beta-2 vasodilation. If peripheral vasoconstriction was producing the MAP rise, that would suggest norepinephrine or dopamine at high doses, not dobutamine.\n\n✅ **Option 2 — Correct:** Dobutamine's primary therapeutic effect is **positive inotropy** (↑ contractility via β₁) → ↑ cardiac output → improved tissue perfusion. The clinical markers of improved perfusion are: **↑ urine output** (kidneys receive more blood flow), improved cardiac output on monitoring, reduced filling pressures, and improved mentation. Urine output rising to ≥0.5 mL/kg/hr is a reliable indicator that cardiac output has improved and organ perfusion has been restored.\n\n❌ **Option 3 — Incorrect:** Dobutamine causes **β₁ stimulation** → chronotropy (↑ HR), not bradycardia. A decrease in heart rate would not be an expected therapeutic effect of a beta-1 agonist. If the HR was previously elevated due to compensatory tachycardia from low output, it might normalize as output improves — but a decrease from 118 to 72 bpm would be an unusually large reduction and is not the primary expected response.\n\n❌ **Option 4 — Incorrect:** Cool, mottled extremities indicate **worsening** peripheral perfusion — a sign of inadequate cardiac output or excessive vasoconstriction. This would indicate treatment failure or a side effect, not a therapeutic response. Dobutamine therapy should improve peripheral perfusion (extremities become warmer) as cardiac output rises.\n\n> 💡 **Dobutamine = β₁ inotrope.** It improves cardiac output without significantly raising BP (not a vasopressor). Used in cardiogenic shock when the problem is pump failure, not vasodilation. Contrast with norepinephrine (vasopressor) used in septic shock (vasodilation problem).\n\n---",
+      "isSATA": false
+    },
+    {
+      "id": 24,
+      "title": "Epinephrine Concentration — Safety",
+      "topic": "Adrenergics",
+      "concept": "Epinephrine; Concentration; Medication Safety; High-Alert Medications",
+      "unitId": 3,
+      "questionText": "A nurse is preparing epinephrine for a client in cardiac arrest. Which concentration and route is correct for this indication?",
+      "options": [
+        { "id": "1", "text": "Epinephrine 1:1000 (1 mg/mL), 1 mg IM into the anterolateral thigh" },
+        { "id": "2", "text": "Epinephrine 1:10,000 (0.1 mg/mL), 1 mg IV push every 3–5 minutes" },
+        { "id": "3", "text": "Epinephrine 1:1000 (1 mg/mL), 1 mg IV push every 3–5 minutes" },
+        { "id": "4", "text": "Epinephrine 1:10,000 (0.1 mg/mL), 0.3 mg IM into the anterolateral thigh" }
+      ],
+      "correctIds": ["2"],
+      "correctAnswerText": "2",
+      "explanation": "**Rationales:**\n\n❌ **Option 1 — Incorrect:** Epinephrine 1:1000 IM to the anterolateral thigh is the correct route and formulation for **anaphylaxis**, NOT cardiac arrest. The 1:1000 concentration (1 mg/mL) given IM for cardiac arrest (where IV access exists) is incorrect — the IV dose for cardiac arrest uses the more dilute 1:10,000 (0.1 mg/mL) preparation to allow accurate IV bolus dosing.\n\n✅ **Option 2 — Correct:** For **cardiac arrest**, ACLS guidelines specify **epinephrine 1:10,000 (0.1 mg/mL), 1 mg IV push every 3–5 minutes** during resuscitation. The 1:10,000 formulation allows a 10 mL IV bolus of the correct 1 mg dose. This concentration is also used in pediatric dosing calculations. Administering the more concentrated 1:1000 preparation IV would result in a 10× overdose — a potentially fatal medication error.\n\n❌ **Option 3 — Incorrect:** Epinephrine 1:1000 IV push at 1 mg would deliver the correct milligram dose, BUT the volume would be only 1 mL (too small for rapid IV push and easy to misdose). More importantly, this introduces a dangerous practice — using the 1:1000 vial IV — when the 1:10,000 preparation is standard ACLS protocol. Mixing concentrations in emergency settings is a known cause of fatal medication errors.\n\n❌ **Option 4 — Incorrect:** 0.3 mg IM is the anaphylaxis dose for an adult, and IM is the anaphylaxis route. This is not the cardiac arrest dose or route.\n\n> 💡 **Epinephrine concentration safety:** 1:1000 = anaphylaxis IM. 1:10,000 = cardiac arrest IV. The numbers represent dilution (1 part epinephrine in 1000 mL vs. 10,000 mL). Epinephrine is on The Joint Commission's **high-alert medication** list — two-nurse verification is best practice before administration.\n\n---",
       "isSATA": false
     }
   ]
