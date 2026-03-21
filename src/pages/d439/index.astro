@@ -1,0 +1,208 @@
+---
+// D439 Foundations of Nursing — LMS Page
+// Static assets (css/js) are relative to this page's output path: d439/
+// In Astro 4.x, BASE_URL does NOT include a trailing slash
+const base = import.meta.env.BASE_URL;
+const homeHref = `${base}/`;
+// Use absolute paths so Vite doesn't try to resolve them as local modules
+const cssHref = `${base}/d439/css/styles.css`;
+const jsMarked = `${base}/d439/js/marked.min.js`;
+const jsCurriculum = `${base}/d439/js/curriculum.js`;
+const jsApp = `${base}/d439/js/app.js`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D439 Foundations of Nursing — Exam Review LMS</title>
+    <!-- Relative path — this page lives at d439/index.html in the build output -->
+    <link rel="stylesheet" href={cssHref} />
+  </head>
+  <body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         TOP HEADER
+    ═══════════════════════════════════════════════════════════════ -->
+    <header class="top-header">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <span>Foundations of Nursing — Exam Review</span>
+      </div>
+
+      <div class="overall-progress">
+        <label>Overall Progress</label>
+        <div class="prog-bar-wrap">
+          <div class="prog-bar-fill" id="header-prog-fill" style="width:0%"></div>
+        </div>
+        <span class="prog-pct" id="header-prog-pct">0%</span>
+      </div>
+
+      <button id="search-btn" class="search-toggle" title="Search topics &amp; keywords" aria-label="Open topic and keyword search">
+        🔍 Search
+      </button>
+      <button id="notes-btn" class="search-toggle notes-toggle" title="View &amp; manage your notes" aria-label="Open notes panel">
+        📝 Notes
+      </button>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEARCH MODAL
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-label="Topic and keyword search" style="display:none">
+      <div class="search-modal-backdrop"></div>
+      <div class="search-modal-panel">
+        <div class="search-modal-header">
+          <span class="search-modal-title">🔍 Topic &amp; Keyword Index</span>
+          <button id="search-close-btn" class="search-close-btn" aria-label="Close search">&times;</button>
+        </div>
+        <div class="search-input-wrap">
+          <input id="search-input" class="search-input" type="search" placeholder="Search topics, sections, concepts, questions…" autocomplete="off" spellcheck="false" />
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SHELL
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="shell">
+
+      <!-- SIDEBAR -->
+      <nav class="sidebar" id="sidebar" aria-label="Course navigation">
+        <div class="sidebar-inner">
+          <div class="sidebar-section-label">Course Units</div>
+          <div id="sidebar-unit-list"><!-- populated by JS --></div>
+
+          <div style="padding:16px 20px;margin-top:8px;border-top:1px solid var(--border)">
+            <a href={homeHref} class="btn btn-outline" style="width:100%;justify-content:center;font-size:.8rem;display:flex;text-decoration:none;margin-bottom:8px">
+              🏠 All Modules
+            </a>
+            <button class="btn btn-outline" onclick="renderDashboard()" style="width:100%;justify-content:center;font-size:.8rem">
+              ⌂ Dashboard
+            </button>
+            <button class="btn btn-outline" onclick="resetAllProgress()" style="width:100%;justify-content:center;font-size:.8rem;margin-top:8px;color:var(--danger);border-color:var(--danger)">
+              ↺ Reset Progress
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content" id="main-content">
+
+        <!-- ─────────────────────────────────────────────────────────
+             VIEW: DASHBOARD
+        ───────────────────────────────────────────────────────── -->
+        <section class="view active" id="view-dashboard">
+
+          <div class="dashboard-hero">
+            <h1>📋 Foundations of Nursing</h1>
+            <p>Work through each of the 21 units. Read each section, then answer its practice questions inline — no separate quiz phase.</p>
+
+            <div class="progress-overview">
+              <div class="stats">
+                <div class="stat-item">
+                  <div class="stat-num" id="dash-completed">0</div>
+                  <div class="stat-lbl">Units Done</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-num" id="dash-total">21</div>
+                  <div class="stat-lbl">Total Units</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-num" id="dash-questions">125</div>
+                  <div class="stat-lbl">Questions</div>
+                </div>
+              </div>
+              <div class="dash-prog-bar-wrap">
+                <div class="dash-prog-bar-fill" id="dash-prog-fill" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="units-grid" class="units-grid"><!-- populated by JS --></div>
+
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────────
+             VIEW: UNIT  (integrated section-by-section + inline questions)
+        ───────────────────────────────────────────────────────── -->
+        <section class="view" id="view-unit">
+
+          <div class="view-header">
+            <button id="unit-back-btn" class="view-header-back">
+              ← Dashboard
+            </button>
+            <div class="view-header-info">
+              <div class="breadcrumb" id="unit-breadcrumb">Foundations of Nursing</div>
+              <h2 id="unit-title">Unit Title</h2>
+              <p id="unit-step-info">Section 1 of N</p>
+            </div>
+          </div>
+
+          <!-- Step progress bar -->
+          <div class="unit-progress-bar">
+            <div class="unit-progress-fill" id="unit-prog-fill" style="width:0%"></div>
+          </div>
+
+          <!-- Dynamic content area (section or question) -->
+          <div id="unit-content"><!-- populated by JS --></div>
+
+          <!-- Navigation -->
+          <div class="nav-actions" id="unit-nav"></div>
+
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────────
+             VIEW: UNIT COMPLETE
+        ───────────────────────────────────────────────────────── -->
+        <section class="view" id="view-complete">
+          <div id="complete-container"><!-- populated by JS --></div>
+        </section>
+
+      </main><!-- /main-content -->
+    </div><!-- /shell -->
+
+    <!-- Distractor popup (hover rationale for incorrect options) -->
+    <div id="distractor-popup" class="distractor-popup"></div>
+
+    <!-- Notes modal -->
+    <div id="notes-modal" class="notes-modal" role="dialog" aria-modal="true" aria-label="My Notes" style="display:none">
+      <div class="notes-modal-backdrop"></div>
+      <div class="notes-modal-panel">
+        <div class="notes-modal-header">
+          <span class="notes-modal-title">📝 My Notes</span>
+          <div class="notes-modal-actions">
+            <button id="notes-copy-btn" class="notes-copy-btn" title="Copy all notes as Markdown">⎘ Copy as Markdown</button>
+            <button id="notes-close-btn" class="search-close-btn" aria-label="Close notes">&times;</button>
+          </div>
+        </div>
+        <div id="notes-modal-content" class="notes-modal-content"></div>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Scripts — using absolute paths to avoid Vite module resolution in dev mode -->
+    <Fragment set:html={`<script src="${jsMarked}"></script>`} />
+    <script is:inline>
+      if (window.marked) {
+        window.marked.setOptions({ breaks: true, gfm: true });
+      }
+    </script>
+    <Fragment set:html={`<script src="${jsCurriculum}"></script>`} />
+    <Fragment set:html={`<script src="${jsApp}"></script>`} />
+
+  </body>
+</html>
