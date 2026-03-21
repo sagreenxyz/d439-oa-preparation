@@ -3139,8 +3139,8 @@ const CURRICULUM = {
         "C",
         "D"
       ],
-      "correctAnswerText": "",
-      "explanation": "",
+      "correctAnswerText": "B, C, D",
+      "explanation": "**Rationales:**\n\n❌ **A — Incorrect:** Using the index and middle fingers together to palpate the radial pulse is the *correct* technique and does **not** indicate a need for further teaching. These fingers are more sensitive to pulsation than the thumb and do not have a prominent pulse of their own.\n\n✅ **B — Correct:** Apical pulse must be counted for a full **60 seconds** when the cardiac rhythm is irregular. Counting for only 30 seconds (and doubling) may miss irregular beats and yield an inaccurate rate. A full 1-minute count is required to ensure accuracy when rhythm is irregular.\n\n✅ **C — Correct:** The thumb must never be used to palpate the radial pulse because the thumb has its own palpable radial artery. Using the thumb risks confusing the nurse's own pulse with the patient's pulse, resulting in an inaccurate assessment.\n\n✅ **D — Correct:** Documenting the pulse as \"regular\" without actually counting and assessing the rate is not acceptable. Accurate documentation requires counting the rate and characterizing the rhythm based on direct assessment — not assumption.\n\n---",
       "isSATA": true
     },
     {

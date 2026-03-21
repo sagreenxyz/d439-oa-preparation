@@ -243,6 +243,7 @@ let distractorPopup = null;
 function initDistractorPopup() {
   distractorPopup = document.getElementById('distractor-popup');
 
+  // Hover support (desktop)
   document.addEventListener('mouseenter', e => {
     if (!e.target || typeof e.target.closest !== 'function') return;
     const item = e.target.closest('.option-item.has-distractor');
@@ -255,6 +256,24 @@ function initDistractorPopup() {
     const item = e.target.closest('.option-item.has-distractor');
     if (item && (!e.relatedTarget || !item.contains(e.relatedTarget))) hideDistractorPopup();
   }, true);
+
+  // Click / tap support (mobile + desktop)
+  document.addEventListener('click', e => {
+    if (!e.target || typeof e.target.closest !== 'function') return;
+    const item = e.target.closest('.option-item.has-distractor');
+    if (item && item.dataset.distractorMd) {
+      // Toggle: clicking the same item again closes the popup.
+      if (distractorPopup && distractorPopup.classList.contains('visible') &&
+          distractorPopup.dataset.anchorOptId === item.dataset.optId) {
+        hideDistractorPopup();
+      } else {
+        showDistractorPopup(item, item.dataset.distractorMd);
+        if (distractorPopup) distractorPopup.dataset.anchorOptId = item.dataset.optId;
+      }
+    } else if (!e.target.closest('#distractor-popup')) {
+      hideDistractorPopup();
+    }
+  });
 }
 
 function showDistractorPopup(element, md) {
@@ -262,6 +281,7 @@ function showDistractorPopup(element, md) {
   distractorPopup.innerHTML =
     '<div class="distractor-popup-label">❌ Why this is incorrect</div>' +
     renderMarkdown(md);
+  distractorPopup.classList.add('visible');
   distractorPopup.style.display = 'block';
   positionDistractorPopup(element);
 }
@@ -299,7 +319,11 @@ function positionDistractorPopup(element) {
 }
 
 function hideDistractorPopup() {
-  if (distractorPopup) distractorPopup.style.display = 'none';
+  if (distractorPopup) {
+    distractorPopup.style.display = 'none';
+    distractorPopup.classList.remove('visible');
+    delete distractorPopup.dataset.anchorOptId;
+  }
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -704,7 +728,7 @@ function styleAnsweredOptions(q, selectedIds, isCorrect) {
     }
 
     if (!isActuallyCorrect) {
-      const distractorMd = rationales.incorrect[optId] || '';
+      const distractorMd = (rationales.incorrect[optId] || '').trim();
       if (distractorMd) {
         item.classList.add('has-distractor');
         item.dataset.distractorMd = distractorMd;
@@ -735,13 +759,16 @@ function showExplanation(q, isCorrect, isPartial) {
   if (rationales.takeaway) {
     rationaleHtml += '<div class="rationale-takeaway">' + renderMarkdown(rationales.takeaway) + '</div>';
   }
+
   if (!rationaleHtml) {
     rationaleHtml = q.explanation
       ? '<div class="md-content">' + renderMarkdown(q.explanation) + '</div>'
       : '<p>See the options above for the correct answer.</p>';
   }
 
-  const hasDistractors = q.options.some(o => !q.correctIds.includes(o.id));
+  // Show hint whenever any incorrect option has parsed rationale text.
+  const hasDistractors = q.options.some(
+    o => !q.correctIds.includes(o.id) && rationales.incorrect[o.id]?.trim());
 
   container.innerHTML =
     '<div class="explanation-card">' +
@@ -753,7 +780,7 @@ function showExplanation(q, isCorrect, isPartial) {
         '<p class="correct-answer-line">Correct answer' +
           (q.correctIds.length > 1 ? 's' : '') + ': <strong>' + q.correctAnswerText + '</strong></p>' +
         rationaleHtml +
-        (hasDistractors ? '<p class="distractor-hint-note">\ud83d\udcac Hover over any incorrect option for its rationale.</p>' : '') +
+        (hasDistractors ? '<p class="distractor-hint-note">\ud83d\udcac Tap or hover over any incorrect option for its rationale.</p>' : '') +
       '</div>' +
     '</div>';
 

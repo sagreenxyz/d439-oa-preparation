@@ -1112,6 +1112,8 @@ body {
 }
 
 /* Has-distractor options show a hint icon */
+.option-item.has-distractor { cursor: pointer; }
+
 .option-item.has-distractor::after {
   content: "ℹ";
   font-size: .85rem;
