@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon?: string;
+  badge?: string;
+}
+
+const { title, description, href, icon = '📚', badge } = Astro.props;
+---
+
+<a href={href} class="module-card">
+  <div class="module-icon">{icon}</div>
+  <div class="module-body">
+    <div class="module-header">
+      <h2 class="module-title">{title}</h2>
+      {badge && <span class="module-badge">{badge}</span>}
+    </div>
+    <p class="module-desc">{description}</p>
+    <span class="module-cta">Start Learning →</span>
+  </div>
+</a>
+
+<style>
+  .module-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .module-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: #4F46E5;
+  }
+
+  .module-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EEF2FF;
+    border-radius: 12px;
+  }
+
+  .module-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .module-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .module-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0F172A;
+  }
+
+  .module-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    background: #D1FAE5;
+    color: #065F46;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .module-desc {
+    font-size: 0.9rem;
+    color: #64748B;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .module-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4F46E5;
+  }
+</style>
