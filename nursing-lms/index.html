@@ -33,7 +33,28 @@
     </div>
     <span class="prog-pct" id="header-prog-pct">0%</span>
   </div>
+
+  <button id="search-btn" class="search-toggle" title="Search topics &amp; keywords" aria-label="Open topic and keyword search">
+    🔍 Search
+  </button>
 </header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SEARCH MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-label="Topic and keyword search" style="display:none">
+  <div class="search-modal-backdrop"></div>
+  <div class="search-modal-panel">
+    <div class="search-modal-header">
+      <span class="search-modal-title">🔍 Topic &amp; Keyword Index</span>
+      <button id="search-close-btn" class="search-close-btn" aria-label="Close search">&times;</button>
+    </div>
+    <div class="search-input-wrap">
+      <input id="search-input" class="search-input" type="search" placeholder="Search topics, sections, concepts, questions…" autocomplete="off" spellcheck="false" />
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      SHELL
@@ -67,7 +88,7 @@
 
       <div class="dashboard-hero">
         <h1>📋 Foundations of Nursing</h1>
-        <p>Work through each of the 21 units. Review the material, then test your knowledge with unit-specific practice questions.</p>
+        <p>Work through each of the 21 units. Read each section, then answer its practice questions inline — no separate quiz phase.</p>
 
         <div class="progress-overview">
           <div class="stats">
@@ -95,82 +116,31 @@
     </section>
 
     <!-- ─────────────────────────────────────────────────────────
-         VIEW: REVIEW
+         VIEW: UNIT  (integrated section-by-section + inline questions)
     ───────────────────────────────────────────────────────── -->
-    <section class="view" id="view-review">
+    <section class="view" id="view-unit">
 
       <div class="view-header">
-        <button id="review-back-btn" class="view-header-back">
+        <button id="unit-back-btn" class="view-header-back">
           ← Dashboard
         </button>
         <div class="view-header-info">
-          <div class="breadcrumb" id="review-breadcrumb">Foundations of Nursing</div>
-          <h2 id="review-unit-title">Unit Title</h2>
-          <p id="review-unit-subtitle">Review Material</p>
+          <div class="breadcrumb" id="unit-breadcrumb">Foundations of Nursing</div>
+          <h2 id="unit-title">Unit Title</h2>
+          <p id="unit-step-info">Section 1 of N</p>
         </div>
       </div>
 
-      <!-- Section step indicators -->
-      <div class="section-steps" id="section-steps"></div>
-
-      <!-- Content Card -->
-      <div class="content-card">
-        <div class="content-card-header">
-          <span class="section-badge" id="review-section-badge">Section 1</span>
-          <h3 id="review-section-title">Section Title</h3>
-        </div>
-        <div class="content-card-body">
-          <div id="review-section-content"><!-- populated by JS --></div>
-        </div>
+      <!-- Step progress bar -->
+      <div class="unit-progress-bar">
+        <div class="unit-progress-fill" id="unit-prog-fill" style="width:0%"></div>
       </div>
+
+      <!-- Dynamic content area (section or question) -->
+      <div id="unit-content"><!-- populated by JS --></div>
 
       <!-- Navigation -->
-      <div class="nav-actions">
-        <button id="review-prev-btn" class="btn btn-outline" style="display:none">
-          ← Previous
-        </button>
-        <button id="review-next-btn" class="btn btn-primary btn-lg" style="margin-left:auto">
-          Next Section →
-        </button>
-      </div>
-
-    </section>
-
-    <!-- ─────────────────────────────────────────────────────────
-         VIEW: QUIZ
-    ───────────────────────────────────────────────────────── -->
-    <section class="view" id="view-quiz">
-
-      <div class="view-header">
-        <button id="quiz-back-btn" class="view-header-back">
-          ← Dashboard
-        </button>
-        <div class="view-header-info">
-          <div class="breadcrumb" id="quiz-breadcrumb">Unit</div>
-          <h2 id="quiz-unit-subtitle">Quiz</h2>
-        </div>
-      </div>
-
-      <!-- Quiz Progress Bar -->
-      <div class="quiz-progress-bar">
-        <div class="quiz-progress-fill" id="quiz-prog-fill" style="width:0%"></div>
-      </div>
-
-      <!-- Question Card -->
-      <div class="question-card">
-        <div class="question-card-header">
-          <div class="question-meta" id="quiz-question-meta"></div>
-          <div class="question-num" id="quiz-question-num">Question 1</div>
-          <div class="question-text" id="quiz-question-text"></div>
-        </div>
-        <div class="question-card-body">
-          <ul class="options-list" id="quiz-options-list"></ul>
-          <div class="quiz-actions" id="quiz-actions"></div>
-        </div>
-      </div>
-
-      <!-- Explanation / Rationale -->
-      <div id="explanation-container"></div>
+      <div class="nav-actions" id="unit-nav"></div>
 
     </section>
 
@@ -183,6 +153,9 @@
 
   </main><!-- /main-content -->
 </div><!-- /shell -->
+
+<!-- Distractor popup (hover rationale for incorrect options) -->
+<div id="distractor-popup" class="distractor-popup"></div>
 
 <!-- Toast notification -->
 <div class="toast" id="toast"></div>
@@ -199,7 +172,7 @@
     });
   }
 </script>
-<!-- Curriculum data (auto-generated from Notes.md) -->
+<!-- Curriculum data (auto-generated from Notes2.md) -->
 <script src="js/curriculum.js"></script>
 <!-- Application logic -->
 <script src="js/app.js"></script>

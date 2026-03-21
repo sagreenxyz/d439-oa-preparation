@@ -5,7 +5,7 @@ import os
 
 # Resolve paths relative to this script's location
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-NOTES_PATH = os.path.join(SCRIPT_DIR, '..', 'Notes.md')
+NOTES_PATH = os.path.join(SCRIPT_DIR, '..', 'Notes2.md')
 OUTPUT_PATH = os.path.join(SCRIPT_DIR, 'js', 'curriculum.js')
 
 with open(NOTES_PATH, 'r', encoding='utf-8') as f:
