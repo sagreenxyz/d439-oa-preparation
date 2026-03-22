@@ -11,6 +11,7 @@ https://sagreenxyz.github.io/d439-oa-preparation/
 | Module | Description |
 |--------|-------------|
 | [D439 — Foundations of Nursing](https://sagreenxyz.github.io/d439-oa-preparation/d439/) | Interactive exam-review LMS covering all 21 WGU D439 units |
+| [Nursing Pharmacology — Autonomic Drugs](https://sagreenxyz.github.io/d439-oa-preparation/pharmacology/) | In-depth module covering cholinergics, anticholinergics, adrenergics, and antiadrenergics |
 
 ## Project Structure
 

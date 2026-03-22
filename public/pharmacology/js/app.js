@@ -1,5 +1,5 @@
 /**
- * Foundations of Nursing — LMS v2
+ * Nursing Pharmacology — LMS v2
  * Integrated section+question flow, hierarchy sidebar, vibrant theme
  */
 
@@ -7,7 +7,7 @@
    STATE
    ════════════════════════════════════════════════════════════════════════════ */
 
-const STATE_KEY = 'nursing_lms_v2';
+const STATE_KEY = 'pharmacology_lms_v1';
 
 let state = { unitProgress: {} };
 
@@ -547,7 +547,7 @@ function renderSectionStep(step) {
   const { section, sectionIdx } = step;
 
   document.getElementById('unit-breadcrumb').textContent =
-    'Foundations of Nursing \u203a Unit ' + unitId + ': ' + unit.title;
+    'Nursing Pharmacology \u203a Unit ' + unitId + ': ' + unit.title;
   document.getElementById('unit-title').textContent = 'Unit ' + unitId + ': ' + unit.title;
   document.getElementById('unit-step-info').textContent =
     'Section ' + (sectionIdx + 1) + ' of ' + unit.sections.length;
@@ -575,7 +575,7 @@ function renderQuestionStep(step) {
   const q = step.question;
 
   document.getElementById('unit-breadcrumb').textContent =
-    'Foundations of Nursing \u203a Unit ' + unitId + ': ' + unit.title;
+    'Nursing Pharmacology \u203a Unit ' + unitId + ': ' + unit.title;
   document.getElementById('unit-title').textContent = 'Unit ' + unitId + ': ' + unit.title;
   document.getElementById('unit-step-info').textContent =
     q.isSATA ? 'Select All That Apply' : 'Multiple Choice';
@@ -1319,7 +1319,7 @@ function refreshNoteWidget(widget, unitId, unitTitle, stepType, stepId, stepTitl
 
 function buildNotesMarkdown() {
   const notes = state.notes || [];
-  if (!notes.length) return '# My Notes \u2014 Foundations of Nursing\n\n*No notes yet.*';
+  if (!notes.length) return '# My Notes \u2014 Nursing Pharmacology\n\n*No notes yet.*';
 
   const byUnit = {};
   notes.forEach(n => {
@@ -1336,7 +1336,7 @@ function buildNotesMarkdown() {
     byUnit[n.unitId].steps[stepKey].notes.push(n);
   });
 
-  let md = '# My Notes \u2014 Foundations of Nursing\n\n';
+  let md = '# My Notes \u2014 Nursing Pharmacology\n\n';
   const unitIds = Object.keys(byUnit).map(Number).sort((a, b) => a - b);
   unitIds.forEach(unitId => {
     const unit = byUnit[unitId];
